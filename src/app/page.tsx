@@ -1,5 +1,5 @@
-import Image from "next/image";
+
 
 export default function Home() {
-  return <div>Hao</div>;
+  // return <div className="text-2xl w-full bg-re">Hao</div>;
 }
