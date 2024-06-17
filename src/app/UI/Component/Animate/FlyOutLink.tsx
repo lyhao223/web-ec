@@ -3,16 +3,19 @@
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
+import { FaAngleDown } from "react-icons/fa6";
 
 interface DropDownMenuProps {
   href: string;
   children: React.ReactNode;
   FlyoutContent: React.ComponentType;
+  IconMenu?: React.ReactNode;
 }
 export default function FlyOutLink({
   children,
   href,
   FlyoutContent,
+  IconMenu
 }: DropDownMenuProps) {
   const [open, setOpen] = useState(false);
 
@@ -22,8 +25,9 @@ export default function FlyOutLink({
     <div
       onMouseEnter={() => setOpen(true)}
       onMouseLeave={() => setOpen(false)}
-      className="relative w-fit h-fit">
-      <Link href={href} className="relative text-white font-bold text-lg m-5">
+      onClick={() => setOpen(!open)}
+      className="relative w-fit h-fit flex flex-row">
+      <Link href={href} className="relative text-white font-bold">
         {children}
         <span
           style={{
@@ -32,6 +36,7 @@ export default function FlyOutLink({
           className="absolute -bottom-2 -left-2 -right-2 h-1 origin-left scale-x-0 rounded-full bg-indigo-300 transition-transform duration-300 ease-out"
         />
       </Link>
+      {IconMenu}
       <AnimatePresence>
         {showFlyout && (
           <motion.div
