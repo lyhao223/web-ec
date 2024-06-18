@@ -10,6 +10,8 @@ import LogoDunker from "../../../../assets/Logo/Dunker-logo-white.png";
 import FlyOutLink from "../Component/Animate/FlyOutLink";
 import ItemMenuShop from "../Component/ListDropDownMenu/ItemsMenuShop";
 import ItemMenuServices from "../Component/ListDropDownMenu/ItemsMenuServices";
+import FlyDownSearchBar from "../Component/Animate/FlyDownSearchBar";
+import SearchInput from "../Component/Search/SearchInput";
 
 export default function Header() {
   return (
@@ -20,7 +22,7 @@ export default function Header() {
           className="hidden md:block mx-3 my-4 md:mr-24 md:ml-12"
         />
       </Link>
-      <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 md:mr-56">
+      <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-[45rem] xl:ml-20">
         <Link href="/" className="text-white font-bold text-sm md:text-lg m-5">
           Home
         </Link>
@@ -47,11 +49,8 @@ export default function Header() {
         </Link>
       </div>
 
-      <div className="flex flex-row items-center justify-center md:mt-4 space-x-3">
-        <button className="flex flex-row text-white font-bold text-sm md:text-lg m-5">
-          Search
-          <FaSearch className="inline-block text-white text-sm md:text-lg md:ml-2 ml-2 md:mt-[0.2rem] mt-1" />
-        </button>
+      <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-12">
+        <FlyDownSearchBar SearchInput={SearchInput} />
         <button className="flex flex-row text-white font-bold text-sm md:text-lg m-5 border-r pr-2">
           Account
           <MdAccountCircle className="inline-block text-white text-sm md:text-lg md:ml-2 ml-2 md:mt-[0.2rem] mt-1" />

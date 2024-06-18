@@ -1,8 +1,8 @@
 import { FaSearch } from "react-icons/fa";
-
+import { IoMdCloseCircle } from "react-icons/io";
 export default function SearchInput() {
   return (
-    <div className="fixed w-full p-10 bg-slate-700 h-36">
+    <div className="relative w-screen p-10 bg-slate-700 h-36">
       <div className="flex flex-row items-center justify-center group">
         <input
           type="input"
@@ -15,7 +15,7 @@ export default function SearchInput() {
           </button>
         </div>
       </div>
-      <div className="absolute top-2 right-4 p-6 rounded-full bg-black"></div>
+      
     </div>
   );
 }
