@@ -15,7 +15,7 @@ export default function FlyOutLink({
   children,
   href,
   FlyoutContent,
-  IconMenu
+  IconMenu,
 }: DropDownMenuProps) {
   const [open, setOpen] = useState(false);
 

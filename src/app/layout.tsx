@@ -2,8 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./UI/Header/Header";
-
-
+import SearchInput from "./UI/Component/Search/SearchInput";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -20,8 +19,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Header />
+        <SearchInput />
         {children}
-        </body>
+      </body>
     </html>
   );
 }
