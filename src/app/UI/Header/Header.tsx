@@ -49,7 +49,7 @@ export default function Header() {
         </Link>
       </div>
 
-      <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-12">
+      <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-12 md:-ml-40">
         <FlyDownSearchBar SearchInput={SearchInput} />
         <button className="flex flex-row text-white font-bold text-sm md:text-lg m-5 border-r pr-2">
           Account

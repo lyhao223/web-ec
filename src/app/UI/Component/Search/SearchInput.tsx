@@ -15,7 +15,6 @@ export default function SearchInput() {
           </button>
         </div>
       </div>
-      
     </div>
   );
 }
