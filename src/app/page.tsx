@@ -6,8 +6,10 @@ import imgSectionHero__2 from "../../assets/HeroSection/slider-2.webp";
 
 export default function Home() {
   return (
-    <div>
+    <div className="min-w-full">
+
       <CarouselHeroSection />
     </div>
+    
   );
 }
