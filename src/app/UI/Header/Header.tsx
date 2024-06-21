@@ -15,12 +15,12 @@ import SearchInput from "../Component/Search/SearchInput";
 
 export default function Header() {
   return (
-    <header className="w-full bg-black p-3">
+    <header className="min-w-full bg-black">
       <div className="flex flex-col md:flex-row items-center justify-center md:justify-start">
         <Link href="/">
           <img
             src={LogoDunker.src}
-            className="hidden md:block mx-3 my-4 md:mr-24 md:ml-12"
+            className="w-min mx-2 hidden md:inline-block"
           />
         </Link>
         <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-[45rem] xl:ml-20">
@@ -52,7 +52,7 @@ export default function Header() {
           </Link>
         </div>
 
-        <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-12 md:-ml-40">
+        <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-10 md:-ml-32">
           <FlyDownSearchBar SearchInput={SearchInput} />
           <button className="flex flex-row text-white font-bold text-sm md:text-lg m-5 border-r pr-2">
             Account
