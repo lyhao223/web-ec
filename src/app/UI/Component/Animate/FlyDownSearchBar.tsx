@@ -1,3 +1,4 @@
+'use client';
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { Fragment, useState } from "react";
@@ -30,7 +31,7 @@ export default function FlyDownSearchBar({
             exit={{ opacity: 0, y: -15 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             style={{ translateY: "5%" }}
-            className="absolute right-0 top-0 bg-slate-700 text-black bg-transparent">
+            className="absolute z-20 right-0 top-0 bg-slate-700 text-black bg-transparent">
             <SearchInput />
             <div className="absolute -top-4 md:top-0 md:right-4 -right-5 p-6">
               <button onClick={() => setOpen(false)}>
