@@ -28,10 +28,11 @@ const AnimationArrow = ({
   const [animate, setAnimate] = useState(false);
 
   return (
-    <IconButton
+    <button
       className={classCssDiv}
       onMouseEnter={() => setAnimate(true)}
       onMouseLeave={() => setAnimate(false)}
+      onMouseOut={() => setAnimate(false)}
       onClick={onClickArrow}>
       {!animate && children}
       <AnimatePresence>
@@ -47,7 +48,7 @@ const AnimationArrow = ({
           </motion.div>
         )}
       </AnimatePresence>
-    </IconButton>
+    </button>
   );
 };
 
