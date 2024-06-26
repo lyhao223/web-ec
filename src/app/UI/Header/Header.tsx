@@ -15,7 +15,7 @@ import SearchInput from "../Component/Search/SearchInput";
 
 export default function Header() {
   return (
-    <header className="fixed z-20 min-w-full bg-black">
+    <header className="min-w-full bg-black">
       <div className="flex flex-col md:flex-row items-center justify-center md:justify-start">
         <Link href="/">
           <img
