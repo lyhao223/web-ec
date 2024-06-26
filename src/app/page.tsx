@@ -5,9 +5,8 @@ import imgSectionHero__2 from "../../assets/HeroSection/slider-2.webp";
 
 export default function Home() {
   return (
-    <div className="absolute">
+    <div className="">
       <CarouselHeroSection />
-     
     </div>
   );
 }
