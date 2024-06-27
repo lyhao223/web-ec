@@ -3,12 +3,14 @@ import React, { Fragment } from "react";
 import { GrFormNext } from "react-icons/gr";
 import { GrFormPrevious } from "react-icons/gr";
 
-import image2 from "../../../../../assets/HeroSection/slider-0.jpg";
-import image1 from "../../../../../assets/HeroSection/slider-2.jpg";
+import image2 from "../../../../../assets/HeroSection/slider-1.png";
+import image1 from "../../../../../assets/HeroSection/slider-2.png";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import RightArrow from "../Animate/CustomArrow/RightArrow";
+import LeftArrow from "../Animate/CustomArrow/LeftArrow";
+import CustomDots from "../Animate/CustomDots/CustomDots";
 export default function CarouselHeroSection() {
   const responsive = {
     superLargeDesktop: {
@@ -29,17 +31,18 @@ export default function CarouselHeroSection() {
       items: 1,
     },
   };
-
+  
   return (
-    <Carousel responsive={responsive} customRightArrow={<RightArrow />}>
-      <div className="relative min-w-full h-1">
-        <img src={image1.src} alt="img1" />
+    <Carousel responsive={responsive} customRightArrow={<RightArrow />} customLeftArrow={<LeftArrow />} swipeable={false} draggable={false}>
+      <div className="relative z-20 h-[1080px]">
+        <img src={image1.src} alt="img1" className="min-w-full object-top"/>
+        <div className="absolute z-10">
+          <p>Hao</p>
+        </div>
       </div>
-      <div>
-        <img src={image2.src} alt="img1" />
+      <div className="relative">
+        <img src={image2.src} alt="img1" className="min-w-full object-center h-[37.444rem]" />
       </div>
-      <div>Item 3</div>
-      <div>Item 4</div>
     </Carousel>
   );
 }
