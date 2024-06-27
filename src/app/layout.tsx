@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import Header from "./UI/Header/Header";
 import SearchInput from "./UI/Component/Search/SearchInput";
-import CarouselHeroSection from "./UI/Component/Animate/CarouselHeroSection";
+import CarouselHeroSection from "./UI/Component/HeroSection/CarouselHeroSection";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
