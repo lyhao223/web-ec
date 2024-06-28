@@ -31,17 +31,33 @@ export default function CarouselHeroSection() {
       items: 1,
     },
   };
-  
+
   return (
-    <Carousel responsive={responsive} customRightArrow={<RightArrow />} customLeftArrow={<LeftArrow />} swipeable={false} draggable={false}>
-      <div className="relative z-20 h-[1080px]">
-        <img src={image1.src} alt="img1" className="min-w-full object-top"/>
-        <div className="absolute z-10">
-          <p>Hao</p>
+    <Carousel
+      responsive={responsive}
+      customRightArrow={<RightArrow />}
+      customLeftArrow={<LeftArrow />}
+      swipeable={false}
+      draggable={false}>
+      <div className="relative">
+        <img
+          src={image1.src}
+          alt="img1"
+          className="object-cover w-full xl:h-[45.888rem] h-[36rem]"
+        />
+        <div className="absolute z-10 top-0 left-0">
+          <p className="text-black">Hao</p>
         </div>
       </div>
       <div className="relative">
-        <img src={image2.src} alt="img1" className="min-w-full object-center h-[37.444rem]" />
+        <img
+          src={image2.src}
+          alt="img1"
+          className="object-cover w-full xl:h-[45.888rem] h-[45.888rem]"
+        />
+        <div className="absolute z-10 top-0 left-0">
+          <p className="text-black">Hao</p>
+        </div>
       </div>
     </Carousel>
   );
