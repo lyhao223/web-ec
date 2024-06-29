@@ -1,18 +1,11 @@
-import React from 'react'
+import React from "react";
 interface ICustomDotsProps {
-    onClick?: () => void;
-    active?: boolean;
+  onClick?: () => void;
+  active?: boolean;
 }
-const CustomDots = ({onClick, active }: ICustomDotsProps) => {
-    
-  return (
-    <li
-      className={`rounded-full bg-black ${active ? 'active' : ''}`}
-      onClick={onClick}
-    >
-      
-    </li>
-  )
-}
-
-export default CustomDots
+const CustomDot = ({ onClick, active }: ICustomDotsProps) => (
+  <li className={` ${active ? "active" : ""}`} onClick={onClick}>
+    <span className="w-3 h-3 bg-gray-400 rounded-full"></span>
+  </li>
+);
+export default CustomDot;

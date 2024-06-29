@@ -10,12 +10,12 @@ const RightArrow = ({ onClick }: IRightArrowProps) => {
   return (
     <button
       onClick={onClick}
-      className={`absolute xl:top-56 xl:right-32 right-4 p-3 hidden xl:inline-block ${
+      className={`absolute xl:top-56 xl:right-24 right-4 p-3 hidden xl:inline-block ${
         !animate ? "rounded-full bg-gray-700" : ""
       }`}
       onMouseEnter={() => setAnimate(true)}
       onMouseLeave={() => setAnimate(false)}>
-      {!animate && <GrNext color="white" />}
+      {!animate && <GrNext color="white" size={36} />}
       <AnimatePresence>
         {animate && (
           <motion.div
@@ -24,8 +24,8 @@ const RightArrow = ({ onClick }: IRightArrowProps) => {
             exit={{ opacity: 0, x: 0 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
             style={{ translateX: "5%" }}
-            className="absolute xl:left-12 xl:top-[0.035rem] p-3 rounded-full bg-gray-700 hidden xl:inline-block">
-            <GrNext color="red" />
+            className="absolute xl:left-14 xl:top-[0.035rem] p-3 rounded-full bg-gray-700 hidden xl:inline-block">
+            <GrNext color="red" size={36} />
           </motion.div>
         )}
       </AnimatePresence>
