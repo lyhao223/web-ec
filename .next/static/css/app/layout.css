@@ -630,30 +630,6 @@ video {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
 }
-.mx-44 {
-  margin-left: 11rem;
-  margin-right: 11rem;
-}
-.mx-96 {
-  margin-left: 24rem;
-  margin-right: 24rem;
-}
-.-mx-96 {
-  margin-left: -24rem;
-  margin-right: -24rem;
-}
-.mx-24 {
-  margin-left: 6rem;
-  margin-right: 6rem;
-}
-.mx-48 {
-  margin-left: 12rem;
-  margin-right: 12rem;
-}
-.mx-56 {
-  margin-left: 14rem;
-  margin-right: 14rem;
-}
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
@@ -676,14 +652,14 @@ video {
 .mt-1 {
   margin-top: 0.25rem;
 }
+.mt-12 {
+  margin-top: 3rem;
+}
 .mt-2 {
   margin-top: 0.5rem;
 }
 .mt-\[0\.3rem\] {
   margin-top: 0.3rem;
-}
-.mt-12 {
-  margin-top: 3rem;
 }
 .line-clamp-3 {
   overflow: hidden;
@@ -724,9 +700,6 @@ video {
 .h-fit {
   height: fit-content;
 }
-.h-screen {
-  height: 100vh;
-}
 .w-24 {
   width: 6rem;
 }
@@ -756,15 +729,6 @@ video {
 }
 .w-screen {
   width: 100vw;
-}
-.w-32 {
-  width: 8rem;
-}
-.w-96 {
-  width: 24rem;
-}
-.w-80 {
-  width: 20rem;
 }
 .min-w-full {
   min-width: 100%;
@@ -797,9 +761,6 @@ video {
 .flex-col {
   flex-direction: column;
 }
-.items-start {
-  align-items: flex-start;
-}
 .items-center {
   align-items: center;
 }
@@ -808,15 +769,6 @@ video {
 }
 .justify-center {
   justify-content: center;
-}
-.justify-between {
-  justify-content: space-between;
-}
-.justify-items-start {
-  justify-items: start;
-}
-.justify-items-center {
-  justify-items: center;
 }
 .space-x-10 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -913,10 +865,6 @@ video {
 .text-sm {
   font-size: 0.875rem;
   line-height: 1.25rem;
-}
-.text-xl {
-  font-size: 1.25rem;
-  line-height: 1.75rem;
 }
 .font-bold {
   font-weight: 700;
@@ -1196,6 +1144,11 @@ video {
     padding: 1.25rem;
   }
 
+  .xl\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
   .xl\:text-5xl {
     font-size: 3rem;
     line-height: 1;
@@ -1209,11 +1162,6 @@ video {
   .xl\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
-  }
-
-  .xl\:text-2xl {
-    font-size: 1.5rem;
-    line-height: 2rem;
   }
 }
 
