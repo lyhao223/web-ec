@@ -7,6 +7,7 @@ interface MenuState {
     [key: string]: Product[];
   };
   status: 'idle' | 'loading' | 'succeeded' | 'failed';
+  visable: number;
 }
 interface Product {
   id: number;
@@ -25,6 +26,7 @@ const initialState: MenuState = {
     SALE: [],
   },
   status: 'idle',
+  visable: 9
 };
 export const fetchProducts = createAsyncThunk(
   'menuSection/fetchProducts',
@@ -53,6 +55,7 @@ const menuSlices = createSlice({
     reducers: {
         setMenuSection: (state, action: PayloadAction<'HOT' | 'NEW' | 'SALE'>) => {
             state.currentSection = action.payload;
+            state.visable = 4;
             console.log(action.payload);
         },
 

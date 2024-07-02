@@ -8,7 +8,7 @@ const MenuListItems = () => {
   const currentSection = useSelector(
     (state: RootState) => state.menuSection.currentSection
   );
-  const handleSectionChange = (section: 'HOT' | 'NEW' | 'SALE') => {
+  const handleSectionChange = (section: "HOT" | "NEW" | "SALE") => {
     dispatch(setMenuSection(section));
     dispatch(fetchProducts(section));
   };
