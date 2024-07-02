@@ -2,6 +2,7 @@ import React, { use, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/app/services/redux/store";
 import { fetchProducts } from "../../../../services/redux/slices/menuSlice";
+import { addItemToCart } from "@/app/services/redux/slices/cartSlice";
 import Gesture from "../../Animate/Gesture";
 import LoadingItems from "./LoadingItems";
 import ErrorLoadingItems from "./ErrorLoadingItems";
@@ -17,9 +18,14 @@ const Items = () => {
   const visableProducts = useSelector(
     (state: RootState) => state.menuSection.visable
   );
+
   useEffect(() => {
     dispatch(fetchProducts(currentSection));
   }, [dispatch, currentSection]);
+
+  const handleAddToCart = (product:any) => {
+    dispatch(addItemToCart(product));
+  };
   return (
     <div className="flex xl:flex-row flex-col items-center justify-center xl:px-6 p-4 xl:space-x-8 space-y-2 xl:space-y-0 my-12">
       {status === "loading" && <LoadingItems />}
@@ -38,7 +44,7 @@ const Items = () => {
               scaleHover={1.1}
               scaleTap={0.9}
               classes="flex flex-row items-center justify-center">
-              <button className="border p-3 border-black w-56 transition-all duration-200 hover:text-white hover:bg-black ease-linear">
+              <button className="border p-3 border-black w-56 transition-all duration-200 hover:text-white hover:bg-black ease-linear" onClick={()=>handleAddToCart(product)}>
                 Add to Cart
               </button>
             </Gesture>

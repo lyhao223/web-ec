@@ -19,7 +19,7 @@ interface Product {
 }
 
 const initialState: MenuState = {
-  currentSection: 'NEW',
+  currentSection: 'HOT',
   products: {
     HOT: [],
     NEW: [],
