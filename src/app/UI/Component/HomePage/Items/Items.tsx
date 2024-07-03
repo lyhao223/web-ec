@@ -20,10 +20,12 @@ const Items = () => {
   );
 
   useEffect(() => {
-    dispatch(fetchProducts(currentSection));
+    if (typeof window !== "undefined") {
+      dispatch(fetchProducts(currentSection));
+    }
   }, [dispatch, currentSection]);
 
-  const handleAddToCart = (product:any) => {
+  const handleAddToCart = (product: any) => {
     dispatch(addItemToCart(product));
   };
   return (
@@ -44,7 +46,9 @@ const Items = () => {
               scaleHover={1.1}
               scaleTap={0.9}
               classes="flex flex-row items-center justify-center">
-              <button className="border p-3 border-black w-56 transition-all duration-200 hover:text-white hover:bg-black ease-linear" onClick={()=>handleAddToCart(product)}>
+              <button
+                className="border p-3 border-black w-56 transition-all duration-200 hover:text-white hover:bg-black ease-linear"
+                onClick={() => handleAddToCart(product)}>
                 Add to Cart
               </button>
             </Gesture>

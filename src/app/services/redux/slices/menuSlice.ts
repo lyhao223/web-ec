@@ -1,3 +1,4 @@
+'use client';
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
 import { loadBindings } from "next/dist/build/swc";

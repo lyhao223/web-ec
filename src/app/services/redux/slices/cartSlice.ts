@@ -1,8 +1,11 @@
+'use client';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import isClient from "../../utils/isClient";
 interface CartItem{
     id: number;
     title: string;
     price: number;
+    image: string;
     quantity: number;
 }
 
@@ -11,9 +14,13 @@ interface CartState {
 }
 
 const initialState: CartState = {
-    items: [],
+    items: isClient() ? JSON.parse(sessionStorage.getItem('cartItems') || '[]') : [],
 };
-
+const saveCartToSessionStorage = (items: CartItem[]) => {
+  if (isClient()) {
+    sessionStorage.setItem('cartItems', JSON.stringify(items));
+  }
+};
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -26,6 +33,7 @@ const cartSlice = createSlice({
                 state.items.push({...action.payload, quantity: 1});
                 console.log('done')
             }
+            saveCartToSessionStorage(state.items)
         },
     }
 });
