@@ -14,7 +14,7 @@ import FlyDownSearchBar from "../../Animate/FlyDownSearchBar";
 import SearchInput from "../../Search/SearchInput";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/services/redux/store";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Box, Modal } from "@mui/material";
 import FlyModal from "../../Animate/FlyModal";
 import ItemsModal from "./ItemsModal";
@@ -23,7 +23,7 @@ export default function Header() {
   const TotalQuantity = quantity.reduce((acc, item) => acc + item.quantity, 0);
   const [open, setOpen] = useState(false);
   const [isClient, setIsClient] = useState(false);
-
+  const modalRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -90,8 +90,8 @@ export default function Header() {
           </button>
 
           <Modal open={open} onClose={handleCloseModal}>
-            <FlyModal open={open}>
-              <ItemsModal />
+            <FlyModal open={open} ref={modalRef}>
+              <ItemsModal open={handleCloseModal}/>
             </FlyModal>
           </Modal>
         </div>

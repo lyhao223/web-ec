@@ -21,6 +21,7 @@ const saveCartToSessionStorage = (items: CartItem[]) => {
     sessionStorage.setItem('cartItems', JSON.stringify(items));
   }
 };
+
 const cartSlice = createSlice({
     name: 'cart',
     initialState,
@@ -35,8 +36,25 @@ const cartSlice = createSlice({
             }
             saveCartToSessionStorage(state.items)
         },
+
+        increaseItemQuantity(state, action: PayloadAction<number>) {
+            const existingItem = state.items.find(item => item.id === action.payload);
+            if(existingItem){
+                existingItem.quantity++;
+            }
+            saveCartToSessionStorage(state.items);
+        },
+        decreaseItemQuantity(state, action: PayloadAction<number>) {
+            const existingItem = state.items.find(item => item.id === action.payload);
+            if(existingItem && existingItem.quantity > 1){
+                existingItem.quantity--;
+        }else{
+            state.items = state.items.filter(item => item.id !== action.payload);
+        }
+        saveCartToSessionStorage(state.items);
+    }
     }
 });
 
-export const { addItemToCart } = cartSlice.actions;
+export const { addItemToCart, increaseItemQuantity, decreaseItemQuantity } = cartSlice.actions;
 export default cartSlice.reducer;
