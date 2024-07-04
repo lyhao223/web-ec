@@ -38,7 +38,7 @@ export default function CarouselHeroSection() {
       swipeable={true}
       draggable={true}
       showDots
-      itemClass="w-full xl:h-[40rem] h-56">
+      itemClass="w-full xl:h-[46.555rem] h-56">
       <div className="relative">
         <div className="brightness-50">
           <img

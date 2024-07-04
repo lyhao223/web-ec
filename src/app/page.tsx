@@ -3,6 +3,9 @@ import { Fragment } from "react";
 import CarouselHeroSection from "./UI/Component/HomePage/HeroSection/CarouselHeroSection";
 import SubArtical from "./UI/Component/HomePage/SubArtical/SubArtical";
 import ListItems from "./UI/Component/HomePage/Items/ListItems";
+import ElemtentorWidgetContainer from "./UI/Component/HomePage/ElementorWidgetContainer/ElemtentorWidgetContainer";
+import FirstContent from "./UI/Component/HomePage/ElementorContent/FirstContent";
+import SeconContent from "./UI/Component/HomePage/ElementorContent/SeconContent";
 
 export default function Home() {
   return (
@@ -10,6 +13,9 @@ export default function Home() {
       <CarouselHeroSection />
       <SubArtical />
       <ListItems />
+      <ElemtentorWidgetContainer />
+      <FirstContent />
+      {/* <SeconContent /> */}
     </section>
   );
 }

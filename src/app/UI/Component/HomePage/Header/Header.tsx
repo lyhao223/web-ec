@@ -73,29 +73,28 @@ export default function Header() {
 
         <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-10 md:-ml-32">
           <FlyDownSearchBar SearchInput={SearchInput} />
-          <button className="flex flex-row text-white font-bold text-sm md:text-lg m-5 border-r pr-2">
+          <button className="flex flex-row items-center justify-center text-white font-bold text-sm md:text-lg m-5 border-r pr-2">
             Account
             <MdAccountCircle className="inline-block text-white text-sm md:text-lg md:ml-2 ml-2 md:mt-[0.2rem] mt-1" />
           </button>
           <button
-            className="flex flex-row text-white font-bold text-sm md:text-lg m-5 space-x-2"
+            className="flex flex-row items-center justify-center text-white font-bold text-sm m-5 md:text-sm space-x-2"
             onClick={handleOpenModal}>
             Cart
             <IoCart className="inline-block text-white text-sm md:text-xl md:ml-2 ml-2 md:mt-[0.2rem] mt-1" />
-            <div className="rounded-full bg-white">
-              <span className="p-2 font-bold text-black">
+            <div className=" bg-white w-9 h-9 rounded-full flex items-center justify-center">
+              <span className="text-center font-bold text-black">
                 {isClient && TotalQuantity}
               </span>
             </div>
           </button>
-
-          <Modal open={open} onClose={handleCloseModal}>
-            <FlyModal open={open} ref={modalRef}>
-              <ItemsModal open={handleCloseModal}/>
-            </FlyModal>
-          </Modal>
         </div>
       </div>
+      <Modal open={open} onClose={handleCloseModal}>
+        <FlyModal open={open} ref={modalRef}>
+          <ItemsModal close={handleCloseModal} />
+        </FlyModal>
+      </Modal>
     </header>
   );
 }

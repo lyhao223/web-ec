@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 interface GestureProps {
   children: React.ReactNode;
   scaleHover: number;
