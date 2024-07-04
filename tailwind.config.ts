@@ -15,6 +15,9 @@ const config: Config = {
         //   "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         'bg-LogoDunkerPC': "url('assets/Logo/Dunker-logo-white.png')",
       },
+      borderRadius: {
+        'border-tl-5xl': '5rem',
+      },
     },
   },
   plugins: [

@@ -7,16 +7,16 @@ import { IoCart } from "react-icons/io5";
 
 import LogoDunker from "../../../../../../assets/Logo/Dunker-logo-white.png";
 
-import FlyOutLink from "../../Animate/FlyOutLink";
+import FlyOutLink from "../../../Animation/FlyOutLink";
 import ItemMenuShop from "../../ListDropDownMenu/ItemsMenuShop";
 import ItemMenuServices from "../../ListDropDownMenu/ItemsMenuServices";
-import FlyDownSearchBar from "../../Animate/FlyDownSearchBar";
+import FlyDownSearchBar from "../../../Animation/FlyDownSearchBar";
 import SearchInput from "../../Search/SearchInput";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/services/redux/store";
 import { useEffect, useRef, useState } from "react";
 import { Box, Modal } from "@mui/material";
-import FlyModal from "../../Animate/FlyModal";
+import FlyModal from "../../../Animation/FlyModal";
 import ItemsModal from "./ItemsModal";
 export default function Header() {
   const quantity = useSelector((state: RootState) => state.cart.items);
@@ -35,7 +35,7 @@ export default function Header() {
   };
   return (
     <header className="xl:fixed z-20 min-w-full bg-black">
-      <div className="flex flex-col md:flex-row items-center justify-center md:justify-start">
+      <div className="flex flex-col md:flex-row items-center justify-center md:justify-start xl:items-center xl:justify-center">
         <Link href="/">
           <img
             src={LogoDunker.src}

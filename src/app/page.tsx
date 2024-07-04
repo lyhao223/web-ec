@@ -5,7 +5,8 @@ import SubArtical from "./UI/Component/HomePage/SubArtical/SubArtical";
 import ListItems from "./UI/Component/HomePage/Items/ListItems";
 import ElemtentorWidgetContainer from "./UI/Component/HomePage/ElementorWidgetContainer/ElemtentorWidgetContainer";
 import FirstContent from "./UI/Component/HomePage/ElementorContent/FirstContent";
-import SeconContent from "./UI/Component/HomePage/ElementorContent/SeconContent";
+import SeconContent from "./UI/Component/HomePage/ElementorContent/SecondContent";
+import BestSeller from "./UI/Component/HomePage/BestSeller/BestSeller";
 
 export default function Home() {
   return (
@@ -15,7 +16,8 @@ export default function Home() {
       <ListItems />
       <ElemtentorWidgetContainer />
       <FirstContent />
-      {/* <SeconContent /> */}
+      <SeconContent />
+      <BestSeller />
     </section>
   );
 }

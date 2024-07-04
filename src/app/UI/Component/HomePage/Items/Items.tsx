@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/app/services/redux/store";
 import { fetchProducts } from "../../../../services/redux/slices/menuSlice";
 import { addItemToCart } from "@/app/services/redux/slices/cartSlice";
-import Gesture from "../../Animate/Gesture";
+import Gesture from "../../../Animation/Gesture";
 import LoadingItems from "./LoadingItems";
 import ErrorLoadingItems from "./ErrorLoadingItems";
 const Items = () => {

@@ -6,8 +6,8 @@ import image2 from "../../../../../../assets/HeroSection/slider-2.png";
 
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-import RightArrow from "../../Animate/CustomArrow/RightArrow";
-import LeftArrow from "../../Animate/CustomArrow/LeftArrow";
+import RightArrow from "../../../Animation/CustomArrow/RightArrow";
+import LeftArrow from "../../../Animation/CustomArrow/LeftArrow";
 
 export default function CarouselHeroSection() {
   const responsive = {

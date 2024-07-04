@@ -4,7 +4,7 @@ import { MdOutlineLocalShipping } from "react-icons/md";
 import { MdCurrencyExchange } from "react-icons/md";
 import { FaExchangeAlt } from "react-icons/fa";
 import { MdOutlinePayments } from "react-icons/md";
-import Gesture from "../../Animate/Gesture";
+import Gesture from "../../../Animation/Gesture";
 
 const ElemtentorWidgetContainer = () => {
   return (
