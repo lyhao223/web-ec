@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import MenuListItems from "./MenuListItems";
 import ReduxProvider from "@/app/services/redux/provider";

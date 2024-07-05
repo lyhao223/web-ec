@@ -1,3 +1,4 @@
+"use client";
 import React, { Fragment } from "react";
 import { GoPlusCircle } from "react-icons/go";
 import { GrSubtractCircle } from "react-icons/gr";

@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState } from "react";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { MdCurrencyExchange } from "react-icons/md";

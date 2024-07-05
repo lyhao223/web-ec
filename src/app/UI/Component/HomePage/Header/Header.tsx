@@ -84,7 +84,7 @@ export default function Header() {
             <IoCart className="inline-block text-white text-sm md:text-xl md:ml-2 ml-2 md:mt-[0.2rem] mt-1" />
             <div className=" bg-white w-9 h-9 rounded-full flex items-center justify-center">
               <span className="text-center font-bold text-black">
-                {isClient && TotalQuantity ? TotalQuantity:''}
+                {isClient && TotalQuantity ? TotalQuantity : ""}
               </span>
             </div>
           </button>
