@@ -3,7 +3,9 @@ import React, { use, useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts } from "@/app/services/redux/slices/productSlice";
-
+import Gesture from "@/app/UI/Animation/Gesture";
+import Button from "@/app/UI/Reusable/Button";
+import {addItemToCart} from "@/app/services/redux/slices/cartSlice";
 const BestSeller = () => {
   const responsive = {
     superLargeDesktop: {
@@ -36,23 +38,33 @@ const BestSeller = () => {
       dispatch(fetchAllProducts());
     }
   }, [dispatch]);
+
+  const handleAddToCart = (product: any) => {
+    dispatch(addItemToCart(product));
+  };
   return (
     <section id="best__seller" className="mt-20 p-4">
-      <h1 className="text-5xl font-bold antialiased tracking-tight">
+      <h1 className="text-5xl font-bold antialiased tracking-tight mb-10">
         Best Seller
       </h1>
       {status === "loading" && <p>Loading...</p>}
       {status === "failed" && <p>{error}</p>}
-      <Carousel responsive={responsive} showDots itemClass="text-center">
+      <Carousel responsive={responsive} showDots itemClass="mb-12 text-center" autoPlay={true} autoPlaySpeed={2500} infinite={true} arrows={false}>
         {status === "succeeded" &&
           products.slice(0, visableProducts).map((product, index) => (
-            <div className="flex flex-col" key={index}>
-              <img
-                src={product.image}
-                alt={product.title}
-                className="w-32 h-32"
-              />
-              <p className="text-wrap w-32">{product.title}</p>
+            <div className="flex flex-col justify-center items-center space-x-4 space-y-5 border p-5" key={index}>
+              <Gesture scaleHover={1.1}>
+                <img
+                  src={product.image}
+                  alt={product.title}
+                  className="w-48 h-48"
+                />
+              </Gesture>
+              <p className="truncate w-56">{product.title}</p>
+              <p>{product.price}$</p>
+              <Button onClick={()=>handleAddToCart(product)}>
+                Add to cart
+              </Button>
             </div>
           ))}
       </Carousel>

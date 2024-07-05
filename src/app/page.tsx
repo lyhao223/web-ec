@@ -7,6 +7,8 @@ import ElemtentorWidgetContainer from "./UI/Component/HomePage/ElementorWidgetCo
 import FirstContent from "./UI/Component/HomePage/ElementorContent/FirstContent";
 import SeconContent from "./UI/Component/HomePage/ElementorContent/SecondContent";
 import BestSeller from "./UI/Component/HomePage/BestSeller/BestSeller";
+import ThirdContent from "./UI/Component/HomePage/ElementorContent/ThirdContent";
+import FourthContent from "./UI/Component/HomePage/ElementorContent/FourthContent";
 
 export default function Home() {
   return (
@@ -18,6 +20,8 @@ export default function Home() {
       <FirstContent />
       <SeconContent />
       <BestSeller />
+      <ThirdContent />
+      <FourthContent />
     </section>
   );
 }

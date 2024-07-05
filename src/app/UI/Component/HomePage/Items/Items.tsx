@@ -6,6 +6,7 @@ import { addItemToCart } from "@/app/services/redux/slices/cartSlice";
 import Gesture from "../../../Animation/Gesture";
 import LoadingItems from "./LoadingItems";
 import ErrorLoadingItems from "./ErrorLoadingItems";
+import Button from "../../../Reusable/Button";
 const Items = () => {
   const dispatch = useDispatch<AppDispatch>();
   const currentSection = useSelector(
@@ -46,11 +47,9 @@ const Items = () => {
               scaleHover={1.1}
               scaleTap={0.9}
               classes="flex flex-row items-center justify-center">
-              <button
-                className="border p-3 border-black w-56 transition-all duration-200 hover:text-white hover:bg-black ease-linear"
-                onClick={() => handleAddToCart(product)}>
-                Add to Cart
-              </button>
+             <Button onClick={() => handleAddToCart(product)}>
+              Add to Cart
+             </Button>
             </Gesture>
           </div>
         ))}

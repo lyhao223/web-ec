@@ -9,7 +9,7 @@ import "react-multi-carousel/lib/styles.css";
 import RightArrow from "../../../Animation/CustomArrow/RightArrow";
 import LeftArrow from "../../../Animation/CustomArrow/LeftArrow";
 
-export default function CarouselHeroSection() {
+export default function CarouselHeroSection(this: any) {
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
