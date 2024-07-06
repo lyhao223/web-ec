@@ -39,10 +39,10 @@ export default function Header() {
         <Link href="/">
           <img
             src={LogoDunker.src}
-            className="ml-2 w-96 sm:w-80 md:inline hidden"
+            className="mx-3 h-10 w-32  sm:w-80 md:inline-block hidden"
           />
         </Link>
-        <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-[45rem] xl:ml-18 sm:mr-52">
+        <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-[45rem] mx-6 sm:mr-52">
           <Link
             href="/"
             className="text-white font-bold text-sm md:text-lg m-5">

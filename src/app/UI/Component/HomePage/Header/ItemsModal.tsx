@@ -69,9 +69,11 @@ const ItemsModal = ({ close }: ItemClickProps) => {
           Total Amount: {totalAmount.toFixed(2)}$
         </p>
         <Gesture scaleHover={1.1} scaleTap={0.9}>
-          <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
-            Checkout
-          </button>
+          {!noItems && (
+            <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+              Checkout
+            </button>
+          )}
         </Gesture>
         <Gesture scaleHover={1.1} scaleTap={0.9}>
           <button

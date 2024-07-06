@@ -9,6 +9,7 @@ import SeconContent from "./UI/Component/HomePage/ElementorContent/SecondContent
 import BestSeller from "./UI/Component/HomePage/BestSeller/BestSeller";
 import ThirdContent from "./UI/Component/HomePage/ElementorContent/ThirdContent";
 import FourthContent from "./UI/Component/HomePage/ElementorContent/FourthContent";
+import Blogpost from "./UI/Component/HomePage/Blogpost/Blogpost";
 
 export default function Home() {
   return (
@@ -22,6 +23,7 @@ export default function Home() {
       <BestSeller />
       <ThirdContent />
       <FourthContent />
+      <Blogpost />
     </section>
   );
 }

@@ -1,12 +1,12 @@
-import React from 'react'
+import React from "react";
 import { LuQuote } from "react-icons/lu";
-import Carousel from 'react-multi-carousel';
+import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 interface deviceType {
   deviceType?: string; // or the appropriate type for your deviceType
 }
-const FourthContent = ({deviceType}:deviceType) => {
-    const responsive = {
+const FourthContent = ({ deviceType }: deviceType) => {
+  const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
@@ -26,42 +26,51 @@ const FourthContent = ({deviceType}:deviceType) => {
     },
   };
   return (
-    <section id='fourth__content' className='mt-24'>
-        <div className='flex items-center justify-center'>
-            <LuQuote size={70}/>
+    <section id="fourth__content" className="mt-24 border-b-2 border-gray-300">
+      <div className="flex items-center justify-center">
+        <LuQuote size={70} />
+      </div>
+      <Carousel
+        responsive={responsive}
+        autoPlay={true}
+        infinite={true}
+        itemClass="mb-12 text-center"
+        arrows={true}
+        removeArrowOnDeviceType={["mobile"]}
+        showDots={deviceType !== "mobile"}
+        className="xl:mt-7 mt-2 mx-24 mb-24 z-10"
+        deviceType={deviceType}>
+        <div className="mt-12 xl:w-[30rem] xl:mx-[26.55rem]">
+          <p className="text-center xl:text-2xl ">
+            1.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            quam velit, vulputate eu pharetra nec, mattis ac neque. D uis
+            vulputate commodo.
+          </p>
         </div>
-        <Carousel responsive={responsive} autoPlay={true} infinite={true} itemClass="mb-12 text-center" arrows={true} removeArrowOnDeviceType={["mobile"]} showDots={deviceType!=='mobile'}  className='xl:mt-12 mt-4' deviceType={deviceType}>
-            <div className='mt-12'>
-                <p className='text-center xl:text-2xl '>
-                    1.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. D
-                    uis vulputate commodo.
-                </p>
-            </div>
-            <div className='mt-12'>
-                <p className='text-center xl:text-2xl '>
-                    2.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. 
-                    Duis vulputate commodo.
-                </p>      
-            </div>
-             <div className='mt-12'>
-                <p className='text-center xl:text-2xl '>
-                    3.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. 
-                    Duis vulputate commodo.
-                </p>      
-            </div>
-             <div className='mt-12'>
-                <p className='text-center xl:text-2xl '>
-                    4.Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
-                    Nulla quam velit, vulputate eu pharetra nec, mattis ac neque. 
-                    Duis vulputate commodo.
-                </p>      
-            </div>
-        </Carousel>
+        <div className="mt-12 xl:w-[30rem] xl:mx-[26.55rem]">
+          <p className="text-center xl:text-2xl ">
+            2.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            quam velit, vulputate eu pharetra nec, mattis ac neque. Duis
+            vulputate commodo.
+          </p>
+        </div>
+        <div className="mt-12 xl:w-[30rem] xl:mx-[26.55rem]">
+          <p className="text-center xl:text-2xl ">
+            3.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            quam velit, vulputate eu pharetra nec, mattis ac neque. Duis
+            vulputate commodo.
+          </p>
+        </div>
+        <div className="mt-12 xl:w-[30rem] xl:mx-[26.55rem]">
+          <p className="text-center xl:text-2xl ">
+            4.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
+            quam velit, vulputate eu pharetra nec, mattis ac neque. Duis
+            vulputate commodo.
+          </p>
+        </div>
+      </Carousel>
     </section>
-  )
-}
+  );
+};
 
-export default FourthContent
+export default FourthContent;
