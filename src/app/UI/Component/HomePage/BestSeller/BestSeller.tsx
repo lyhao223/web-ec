@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts } from "@/app/services/redux/slices/productSlice";
 import Gesture from "@/app/UI/Animation/Gesture";
 import Button from "@/app/UI/Reusable/Button";
-import {addItemToCart} from "@/app/services/redux/slices/cartSlice";
+import { addItemToCart } from "@/app/services/redux/slices/cartSlice";
 const BestSeller = () => {
   const responsive = {
     superLargeDesktop: {
@@ -49,10 +49,19 @@ const BestSeller = () => {
       </h1>
       {status === "loading" && <p>Loading...</p>}
       {status === "failed" && <p>{error}</p>}
-      <Carousel responsive={responsive} showDots itemClass="mb-12 text-center" autoPlay={true} autoPlaySpeed={2500} infinite={true} arrows={false}>
+      <Carousel
+        responsive={responsive}
+        showDots
+        itemClass="mb-12 text-center"
+        autoPlay={true}
+        autoPlaySpeed={2500}
+        infinite={true}
+        arrows={false}>
         {status === "succeeded" &&
           products.slice(0, visableProducts).map((product, index) => (
-            <div className="flex flex-col justify-center items-center space-x-4 space-y-5 border p-5" key={index}>
+            <div
+              className="flex flex-col justify-center items-center space-x-4 space-y-5 border p-5"
+              key={index}>
               <Gesture scaleHover={1.1}>
                 <img
                   src={product.image}
@@ -62,7 +71,7 @@ const BestSeller = () => {
               </Gesture>
               <p className="truncate w-56">{product.title}</p>
               <p>{product.price}$</p>
-              <Button onClick={()=>handleAddToCart(product)}>
+              <Button onClick={() => handleAddToCart(product)}>
                 Add to cart
               </Button>
             </div>

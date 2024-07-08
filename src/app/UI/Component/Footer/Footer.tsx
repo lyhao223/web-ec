@@ -88,7 +88,7 @@ const Footer = () => {
     setShowFlyoutTerm(null);
   };
   return (
-    <footer id="footer" className="w-full h-full bg-black xl:p-20 p-10">
+    <footer id="footer" className="w-full h-full bg-black xl:p-12 p-10">
       <div className="flex xl:flex-row flex-col items-start justify-start xl:space-x-32 space-y-16 xl:space-y-0">
         <div className="flex flex-col items-start justify-start text-white space-y-9">
           <h1 className="subpixel-antialiased text-4xl font-semibold tracking-wider">

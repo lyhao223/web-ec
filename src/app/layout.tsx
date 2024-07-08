@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Header from "./UI/Component/HomePage/Header/Header";
+import Header from "./UI/Component/Header/Header";
 import ReduxProvider from "./services/redux/provider";
 import Footer from "./UI/Component/Footer/Footer";
 
@@ -22,10 +22,10 @@ export default function RootLayout({
       <body className={inter.className}>
         <ReduxProvider>
           <Header />
-          {/* <SearchInput /> */}
           {children}
-          <Footer />
         </ReduxProvider>
+
+        <Footer />
       </body>
     </html>
   );

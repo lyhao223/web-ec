@@ -47,9 +47,9 @@ const Items = () => {
               scaleHover={1.1}
               scaleTap={0.9}
               classes="flex flex-row items-center justify-center">
-             <Button onClick={() => handleAddToCart(product)}>
-              Add to Cart
-             </Button>
+              <Button onClick={() => handleAddToCart(product)}>
+                Add to Cart
+              </Button>
             </Gesture>
           </div>
         ))}
