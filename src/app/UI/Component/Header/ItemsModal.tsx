@@ -27,7 +27,7 @@ const ItemsModal = ({ close }: ItemClickProps) => {
     <p className="text-2xl font-medium text-red-700">No item in cart</p>
   );
   return (
-    <div className="relative lg:w-[48rem] lg:h-[30rem] w-96 bg-white lg:top-5 xl:top-16 lg:left-96 xl:left-96 top-20 left-6 rounded-md p-10">
+    <div className="relative lg:w-[48rem] lg:h-[30rem] w-96 bg-white lg:top-5 xl:top-16 2xl:left-[37rem] xl:left-96 top-20 left-6 rounded-md p-10">
       <h1 className="text-2xl font-medium">Shopping Cart</h1>
       <div className="flex flex-col items-center justify-start p-3 overflow-y-scroll h-56 my-6">
         {noItems
