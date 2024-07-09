@@ -11,6 +11,7 @@ import SelectOption from "./AllProducts/SelectOption";
 import ShowAllProducts from "./AllProducts/ShowAllProducts";
 import Button from "../../Reusable/Button";
 import { addItemToCart } from "@/app/services/redux/slices/cartSlice";
+import CheckBoxCategory from "./Checkbox/CheckBoxCategory";
 const ShopPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const status = useSelector((state: RootState) => state.productShop.status);
@@ -46,10 +47,10 @@ const ShopPage = () => {
     dispatch(addItemToCart(product));
   };
   return (
-    <section className="relative z-10 xl:p-32 p-2">
-      <div className="grid xl:grid-cols-5 grid-rows-2 xl:grid-flow-row xl:gap-6 gap-2">
+    <section className="relative z-10 xl:p-32 2xl:p-32 p-2">
+      <div className="grid xl:grid-cols-5 grid-rows-1 xl:gap-6 xl:gap-x-12 gap-2">
         <div className="xl:col-span-4 row-span-1">
-          <div className="flex flex-row items-center justify-between">
+          <div className="flex xl:flex-row 2xl:flex-row flex-col space-y-4 xl:space-y-0 2xl:space-y-0 items-center justify-between">
             <div className="subpixel-antialiased leading-3 tracking-tight">
               <h1 className="text-black text-4xl">Shopping</h1>
             </div>
@@ -59,7 +60,7 @@ const ShopPage = () => {
               <option value="lowToHigh">Low to High</option>
             </SelectOption>
           </div>
-          <div className="grid grid-cols-3 items-center justify-center gap-x-12 gap-y-10  mx-10 mt-10">
+          <div className="grid xl:grid-cols-3 2xl:xl:grid-cols-3 grid-cols-1 items-center justify-center gap-x-12 gap-y-10  mx-10 mt-10">
             {status === "loading" && (
               <p className="flex items-center justify-center">Loading...</p>
             )}
@@ -86,6 +87,10 @@ const ShopPage = () => {
               <Button onClick={handleCollapse}>Collapse</Button>
             )}
           </div>
+        </div>
+        <div className="xl:col-span-1">
+          <h1 className="text-4xl subpixel-antialiased tracking-wide">Category</h1>
+          <CheckBoxCategory />
         </div>
       </div>
     </section>

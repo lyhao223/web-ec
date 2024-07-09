@@ -17,7 +17,7 @@ const ShowAllProducts = ({
 }: ProductsProps) => {
   return (
     <div
-      className="flex flex-col items-center justify-center space-y-4 border-2 border-gray-300"
+      className="flex flex-col items-center justify-center space-y-4 border-2 w-fit border-gray-300"
       key={id}>
       <div className="border-b-2 border-gray-300 p-6 ">
         <img src={image} alt={title} className="h-56 w-80" />
