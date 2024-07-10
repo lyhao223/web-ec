@@ -33,7 +33,7 @@ const ShopPage = () => {
   }, [products]);
 
   const handleOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    dispatch(setOption(e.target.value));
+    dispatch(setOption(e.target.value as "all" | "highToLow" | "lowToHigh"));
   };
   const handleClickLoadMore = () => {
     dispatch(loadMoreProducts());
@@ -48,7 +48,7 @@ const ShopPage = () => {
   };
   return (
     <section className="relative z-10 xl:p-32 2xl:p-32 p-2">
-      <div className="grid xl:grid-cols-5 grid-rows-1 xl:gap-6 xl:gap-x-12 gap-2">
+      <div className="grid xl:grid-cols-5 grid-rows-1 xl:gap-6 xl:gap-x-6 gap-2">
         <div className="xl:col-span-4 row-span-1">
           <div className="flex xl:flex-row 2xl:flex-row flex-col space-y-4 xl:space-y-0 2xl:space-y-0 items-center justify-between">
             <div className="subpixel-antialiased leading-3 tracking-tight">
@@ -89,7 +89,9 @@ const ShopPage = () => {
           </div>
         </div>
         <div className="xl:col-span-1">
-          <h1 className="text-4xl subpixel-antialiased tracking-wide">Category</h1>
+          <h1 className="text-4xl subpixel-antialiased tracking-wide">
+            Category
+          </h1>
           <CheckBoxCategory />
         </div>
       </div>
