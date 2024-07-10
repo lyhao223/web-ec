@@ -12,6 +12,8 @@ import ShowAllProducts from "./AllProducts/ShowAllProducts";
 import Button from "../../Reusable/Button";
 import { addItemToCart } from "@/app/services/redux/slices/cartSlice";
 import CheckBoxCategory from "./Checkbox/CheckBoxCategory";
+import { Input, Slider } from "@mui/material";
+import SliderPrice from "./SliderPrice/SliderPrice";
 const ShopPage = () => {
   const dispatch = useDispatch<AppDispatch>();
   const status = useSelector((state: RootState) => state.productShop.status);
@@ -26,7 +28,6 @@ const ShopPage = () => {
   useEffect(() => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
-
 
   const handleOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setOption(e.target.value as "all" | "highToLow" | "lowToHigh"));
@@ -85,10 +86,14 @@ const ShopPage = () => {
           </div>
         </div>
         <div className="xl:col-span-1">
-          <h1 className="text-4xl subpixel-antialiased tracking-wide">
-            Category
-          </h1>
-          <CheckBoxCategory />
+          <div className="subpixel-antialiased tracking-wide">
+            <h1 className="text-4xl">Category</h1>
+            <CheckBoxCategory />
+          </div>
+          <div className="mt-14">
+            <h1 className="text-4xl">Price</h1>
+            <SliderPrice />
+          </div>
         </div>
       </div>
     </section>

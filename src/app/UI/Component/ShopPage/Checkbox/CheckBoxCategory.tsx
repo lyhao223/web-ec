@@ -1,7 +1,4 @@
-import {
-  toggleCategory,
-  selectProductsCountByCategory,
-} from "@/app/services/redux/slices/productsShopSlice";
+import { toggleCategory } from "@/app/services/redux/slices/productsShopSlice";
 import { AppDispatch, RootState } from "@/app/services/redux/store";
 import { Checkbox } from "@mui/material";
 import { stat } from "fs";
@@ -36,13 +33,12 @@ const CheckBoxCategory = () => {
   const selectedCategories = useSelector(
     (state: RootState) => state.productShop.selectedCategories
   );
-  const selectedCategoriesCount = useSelector((state: RootState) =>
-    selectProductsCountByCategory(state.productShop)
-  );
 
+  const { categoryCounts } = useSelector(
+    (state: RootState) => state.productShop
+  );
   const handleCheckBoxChange = (category: string) => {
     dispatch(toggleCategory(category));
-    console.log(category);
   };
   return (
     <div className="flex flex-col items-start justify-center xl:space-y-10 xl:mt-12">
@@ -64,7 +60,7 @@ const CheckBoxCategory = () => {
             {category.title}
           </label>
           <p className="text-sm font-medium">
-            ({selectedCategoriesCount(category.name)})
+            ({categoryCounts[category.name] || 0})
           </p>
         </div>
       ))}

@@ -18,6 +18,7 @@ interface ProductsShopState {
     error: string | null;
     option: "all" | "highToLow" | "lowToHigh";
     selectedCategories: string[];
+    categoryCounts: Record<string, number>;
 }
 
 const initialState: ProductsShopState = {
@@ -28,6 +29,7 @@ const initialState: ProductsShopState = {
     error: null,
     option: "all",
     selectedCategories: [],
+    categoryCounts: {},
 }
 
 export const fetchAllProducts = createAsyncThunk("productsShop/fetchAllProducts",async()=>{
@@ -54,10 +56,11 @@ const filterAndSortProducts = (state: ProductsShopState) => {
     }
 }
 
-export const selectProductsCountByCategory = (state: ProductsShopState) => {
-    return (category: string) => {
-        return state.originalProducts.filter(product => product.category === category).length;
-    }
+const calculateCategoryCounts = (products: ProductsShop[]) => {
+    return products.reduce((counts, product) => {
+        counts[product.category] = (counts[product.category] || 0) + 1;
+        return counts;
+    }, {} as Record<string, number>);
 }
 
 const productsShopSlice = createSlice({
@@ -96,6 +99,7 @@ const productsShopSlice = createSlice({
             state.status = "succeeded";
             state.originalProducts = action.payload;
             state.products = action.payload;
+            state.categoryCounts = calculateCategoryCounts(action.payload);
             filterAndSortProducts(state);
         }).addCase(fetchAllProducts.rejected,(state,action)=>{
             state.status = "failed";
