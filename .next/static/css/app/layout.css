@@ -1741,14 +1741,6 @@ video {
     gap: 1.5rem;
   }
 
-  .xl\:gap-x-12 {
-    column-gap: 3rem;
-  }
-
-  .xl\:gap-x-10 {
-    column-gap: 2.5rem;
-  }
-
   .xl\:gap-x-6 {
     column-gap: 1.5rem;
   }
@@ -1793,6 +1785,12 @@ video {
     --tw-space-y-reverse: 0;
     margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
+  }
+
+  .xl\:space-y-10 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-y-reverse: 0;
+    margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
   }
 
   .xl\:p-12 {

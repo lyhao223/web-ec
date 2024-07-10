@@ -27,10 +27,6 @@ const ShopPage = () => {
     dispatch(fetchAllProducts());
   }, [dispatch]);
 
-  useEffect(() => {
-    window.scrollTo({ top: 1, behavior: "smooth" });
-    console.log("scroll");
-  }, [products]);
 
   const handleOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setOption(e.target.value as "all" | "highToLow" | "lowToHigh"));

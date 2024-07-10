@@ -1,7 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import axios from "axios";
-import { stat } from "fs";
-import { act } from "react";
 
 interface ProductsShop {
     id: number;
