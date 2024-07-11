@@ -19,6 +19,7 @@ interface ProductsShopState {
     option: "all" | "highToLow" | "lowToHigh";
     selectedCategories: string[];
     categoryCounts: Record<string, number>;
+    priceRange: [number, number];
 }
 
 const initialState: ProductsShopState = {
@@ -30,6 +31,7 @@ const initialState: ProductsShopState = {
     option: "all",
     selectedCategories: [],
     categoryCounts: {},
+    priceRange: [0, 2000]
 }
 
 export const fetchAllProducts = createAsyncThunk("productsShop/fetchAllProducts",async()=>{
@@ -39,7 +41,7 @@ export const fetchAllProducts = createAsyncThunk("productsShop/fetchAllProducts"
 
 const filterAndSortProducts = (state: ProductsShopState) => {
     let filteredProducts = state.originalProducts.filter(product =>
-        state.selectedCategories.length === 0 || state.selectedCategories.includes(product.category)
+        state.selectedCategories.length === 0 || state.selectedCategories.includes(product.category) && product.price >= state.priceRange[0] && product.price <= state.priceRange[1]
     );
 
     switch(state.option){
@@ -90,6 +92,10 @@ const productsShopSlice = createSlice({
             state.selectedCategories = [];
             filterAndSortProducts(state);
         },
+        setPriceRange: (state, action: PayloadAction<[number, number]>) => {
+            state.priceRange = action.payload;
+            filterAndSortProducts(state);
+        }
     
     },
     extraReducers: (builder) => {
@@ -109,5 +115,5 @@ const productsShopSlice = createSlice({
 })
 
 
-export const {loadMoreProducts,setOption, collapseProducts, toggleCategory} = productsShopSlice.actions;
+export const {loadMoreProducts,setOption, collapseProducts, toggleCategory, setPriceRange } = productsShopSlice.actions;
 export default productsShopSlice.reducer;
