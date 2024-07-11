@@ -41,7 +41,7 @@ const CheckBoxCategory = () => {
     dispatch(toggleCategory(category));
   };
   return (
-    <div className="flex flex-col items-start justify-center xl:space-y-10 xl:mt-12">
+    <div className="flex flex-col items-start justify-center xl:space-y-8 xl:mt-12 space-y-6">
       {CheckBoxContent.map((category) => (
         <div
           className="flex flex-row items-center justify-center space-x-2"

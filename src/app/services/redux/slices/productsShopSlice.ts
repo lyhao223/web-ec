@@ -40,10 +40,15 @@ export const fetchAllProducts = createAsyncThunk("productsShop/fetchAllProducts"
 })
 
 const filterAndSortProducts = (state: ProductsShopState) => {
-    let filteredProducts = state.originalProducts.filter(product =>
-        state.selectedCategories.length === 0 || state.selectedCategories.includes(product.category) && product.price >= state.priceRange[0] && product.price <= state.priceRange[1]
+    // let filteredProducts = state.originalProducts.filter(product =>
+    //     state.selectedCategories.length === 0 || state.selectedCategories.includes(product.category) 
+    //     && product.price >= state.priceRange[0] 
+    //     && product.price <= state.priceRange[1]
+    // );
+        let filteredProducts = state.originalProducts.filter(product =>
+        (state.selectedCategories.length === 0 || state.selectedCategories.includes(product.category)) &&
+        product.price >= state.priceRange[0] && product.price <= state.priceRange[1]
     );
-
     switch(state.option){
         case "highToLow":
             state.products = [...filteredProducts].sort((a, b) => b.price - a.price);
@@ -88,12 +93,16 @@ const productsShopSlice = createSlice({
             }
             filterAndSortProducts(state);
         },
-        resetCategories: (state) => {
+        resetFilter: (state) => {
             state.selectedCategories = [];
+            state.option = 'all';
+            state.priceRange = [0, 2000];
+            state.visibleProducts = 9;
             filterAndSortProducts(state);
         },
         setPriceRange: (state, action: PayloadAction<[number, number]>) => {
             state.priceRange = action.payload;
+            console.log(state.priceRange)
             filterAndSortProducts(state);
         }
     
@@ -115,5 +124,5 @@ const productsShopSlice = createSlice({
 })
 
 
-export const {loadMoreProducts,setOption, collapseProducts, toggleCategory, setPriceRange } = productsShopSlice.actions;
+export const {loadMoreProducts,setOption, collapseProducts, toggleCategory, setPriceRange, resetFilter } = productsShopSlice.actions;
 export default productsShopSlice.reducer;

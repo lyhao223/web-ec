@@ -566,6 +566,9 @@ video {
   --tw-contain-paint:  ;
   --tw-contain-style:  ;
 }
+.collapse {
+  visibility: collapse;
+}
 .absolute {
   position: absolute;
 }
@@ -641,6 +644,12 @@ video {
 .z-20 {
   z-index: 20;
 }
+.col-span-1 {
+  grid-column: span 1 / span 1;
+}
+.col-span-2 {
+  grid-column: span 2 / span 2;
+}
 .row-span-1 {
   grid-row: span 1 / span 1;
 }
@@ -655,21 +664,17 @@ video {
   margin-left: 6rem;
   margin-right: 6rem;
 }
-.mx-3 {
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
-}
 .mx-4 {
   margin-left: 1rem;
   margin-right: 1rem;
 }
-.mx-6 {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
-}
 .my-12 {
   margin-top: 3rem;
   margin-bottom: 3rem;
+}
+.my-14 {
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
 }
 .my-3 {
   margin-top: 0.75rem;
@@ -690,6 +695,10 @@ video {
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+.mx-12 {
+  margin-left: 3rem;
+  margin-right: 3rem;
 }
 .mb-10 {
   margin-bottom: 2.5rem;
@@ -754,6 +763,12 @@ video {
 .mt-\[0\.3rem\] {
   margin-top: 0.3rem;
 }
+.mr-2 {
+  margin-right: 0.5rem;
+}
+.mr-12 {
+  margin-right: 3rem;
+}
 .line-clamp-3 {
   overflow: hidden;
   display: -webkit-box;
@@ -783,9 +798,6 @@ video {
 }
 .h-1\/2 {
   height: 50%;
-}
-.h-10 {
-  height: 2.5rem;
 }
 .h-20 {
   height: 5rem;
@@ -874,6 +886,9 @@ video {
 .w-screen {
   width: 100vw;
 }
+.w-52 {
+  width: 13rem;
+}
 .min-w-full {
   min-width: 100%;
 }
@@ -932,6 +947,9 @@ video {
 .justify-start {
   justify-content: flex-start;
 }
+.justify-end {
+  justify-content: flex-end;
+}
 .justify-center {
   justify-content: center;
 }
@@ -969,6 +987,11 @@ video {
   --tw-space-x-reverse: 0;
   margin-right: calc(1rem * var(--tw-space-x-reverse));
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-5 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(1.25rem * var(--tw-space-x-reverse));
+  margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
 }
 .space-x-6 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-x-reverse: 0;
@@ -1015,6 +1038,11 @@ video {
   margin-top: calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(1.25rem * var(--tw-space-y-reverse));
 }
+.space-y-6 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-y-reverse: 0;
+  margin-top: calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(1.5rem * var(--tw-space-y-reverse));
+}
 .space-y-7 > :not([hidden]) ~ :not([hidden]) {
   --tw-space-y-reverse: 0;
   margin-top: calc(1.75rem * calc(1 - var(--tw-space-y-reverse)));
@@ -1029,6 +1057,41 @@ video {
   --tw-space-y-reverse: 0;
   margin-top: calc(2.25rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2.25rem * var(--tw-space-y-reverse));
+}
+.-space-x-10 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(-2.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(-2.5rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-28 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(7rem * var(--tw-space-x-reverse));
+  margin-left: calc(7rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-36 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(9rem * var(--tw-space-x-reverse));
+  margin-left: calc(9rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-52 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(13rem * var(--tw-space-x-reverse));
+  margin-left: calc(13rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-80 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(20rem * var(--tw-space-x-reverse));
+  margin-left: calc(20rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-96 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(24rem * var(--tw-space-x-reverse));
+  margin-left: calc(24rem * calc(1 - var(--tw-space-x-reverse)));
+}
+.space-x-0 > :not([hidden]) ~ :not([hidden]) {
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0px * var(--tw-space-x-reverse));
+  margin-left: calc(0px * calc(1 - var(--tw-space-x-reverse)));
 }
 .overflow-hidden {
   overflow: hidden;
@@ -1272,10 +1335,6 @@ video {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
-.text-red-500 {
-  --tw-text-opacity: 1;
-  color: rgb(239 68 68 / var(--tw-text-opacity));
-}
 .underline {
   text-decoration-line: underline;
 }
@@ -1426,12 +1485,8 @@ video {
 
 @media (min-width: 640px) {
 
-  .sm\:mr-52 {
-    margin-right: 13rem;
-  }
-
-  .sm\:w-80 {
-    width: 20rem;
+  .sm\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .sm\:grid-rows-4 {
@@ -1457,10 +1512,6 @@ video {
     top: 0px;
   }
 
-  .md\:-ml-32 {
-    margin-left: -8rem;
-  }
-
   .md\:ml-1 {
     margin-left: 0.25rem;
   }
@@ -1477,20 +1528,8 @@ video {
     margin-left: 1rem;
   }
 
-  .md\:mt-4 {
-    margin-top: 1rem;
-  }
-
   .md\:mt-\[0\.2rem\] {
     margin-top: 0.2rem;
-  }
-
-  .md\:inline-block {
-    display: inline-block;
-  }
-
-  .md\:flex-row {
-    flex-direction: row;
   }
 
   .md\:justify-start {
@@ -1501,6 +1540,16 @@ video {
     --tw-space-x-reverse: 0;
     margin-right: calc(3rem * var(--tw-space-x-reverse));
     margin-left: calc(3rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .md\:space-x-0 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0px * var(--tw-space-x-reverse));
+    margin-left: calc(0px * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .md\:p-10 {
+    padding: 2.5rem;
   }
 
   .md\:text-lg {
@@ -1525,6 +1574,23 @@ video {
     top: 1.25rem;
   }
 
+  .lg\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
+  .lg\:col-span-3 {
+    grid-column: span 3 / span 3;
+  }
+
+  .lg\:my-14 {
+    margin-top: 3.5rem;
+    margin-bottom: 3.5rem;
+  }
+
+  .lg\:mt-3 {
+    margin-top: 0.75rem;
+  }
+
   .lg\:h-\[30rem\] {
     height: 30rem;
   }
@@ -1533,8 +1599,28 @@ video {
     width: 48rem;
   }
 
+  .lg\:w-auto {
+    width: auto;
+  }
+
+  .lg\:min-w-full {
+    min-width: 100%;
+  }
+
+  .lg\:grid-cols-2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .lg\:grid-cols-4 {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
   .lg\:flex-row {
     flex-direction: row;
+  }
+
+  .lg\:flex-col {
+    flex-direction: column;
   }
 
   .lg\:items-start {
@@ -1551,6 +1637,10 @@ video {
 
   .lg\:justify-center {
     justify-content: center;
+  }
+
+  .lg\:gap-x-4 {
+    column-gap: 1rem;
   }
 
   .lg\:space-x-24 > :not([hidden]) ~ :not([hidden]) {
@@ -1575,6 +1665,28 @@ video {
     --tw-space-y-reverse: 0;
     margin-top: calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(0.5rem * var(--tw-space-y-reverse));
+  }
+
+  .lg\:space-x-0 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0px * var(--tw-space-x-reverse));
+    margin-left: calc(0px * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .lg\:space-x-2 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+    margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .lg\:space-x-32 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(8rem * var(--tw-space-x-reverse));
+    margin-left: calc(8rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .lg\:p-4 {
+    padding: 1rem;
   }
 
   .lg\:text-lg {
@@ -1648,16 +1760,16 @@ video {
     margin-bottom: 2rem;
   }
 
+  .xl\:mb-0 {
+    margin-bottom: 0px;
+  }
+
   .xl\:ml-64 {
     margin-left: 16rem;
   }
 
-  .xl\:mr-10 {
-    margin-right: 2.5rem;
-  }
-
-  .xl\:mr-\[45rem\] {
-    margin-right: 45rem;
+  .xl\:mt-0 {
+    margin-top: 0px;
   }
 
   .xl\:mt-12 {
@@ -1696,6 +1808,10 @@ video {
     height: 46.555rem;
   }
 
+  .xl\:h-full {
+    height: 100%;
+  }
+
   .xl\:w-1\/2 {
     width: 50%;
   }
@@ -1712,6 +1828,14 @@ video {
     width: 38rem;
   }
 
+  .xl\:w-full {
+    width: 100%;
+  }
+
+  .xl\:min-w-full {
+    min-width: 100%;
+  }
+
   .xl\:grid-cols-3 {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -1726,6 +1850,10 @@ video {
 
   .xl\:flex-row {
     flex-direction: row;
+  }
+
+  .xl\:flex-col {
+    flex-direction: column;
   }
 
   .xl\:items-start {
@@ -1794,10 +1922,34 @@ video {
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
   }
 
-  .xl\:space-y-10 > :not([hidden]) ~ :not([hidden]) {
+  .xl\:space-y-8 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
-    margin-top: calc(2.5rem * calc(1 - var(--tw-space-y-reverse)));
-    margin-bottom: calc(2.5rem * var(--tw-space-y-reverse));
+    margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
+    margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+  }
+
+  .xl\:space-x-5 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(1.25rem * var(--tw-space-x-reverse));
+    margin-left: calc(1.25rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .xl\:space-x-0 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0px * var(--tw-space-x-reverse));
+    margin-left: calc(0px * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .xl\:space-x-40 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(10rem * var(--tw-space-x-reverse));
+    margin-left: calc(10rem * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .xl\:space-x-96 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(24rem * var(--tw-space-x-reverse));
+    margin-left: calc(24rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .xl\:p-12 {
@@ -1863,6 +2015,22 @@ video {
     left: 37rem;
   }
 
+  .\32xl\:col-span-1 {
+    grid-column: span 1 / span 1;
+  }
+
+  .\32xl\:col-span-4 {
+    grid-column: span 4 / span 4;
+  }
+
+  .\32xl\:mt-0 {
+    margin-top: 0px;
+  }
+
+  .\32xl\:mt-14 {
+    margin-top: 3.5rem;
+  }
+
   .\32xl\:w-full {
     width: 100%;
   }
@@ -1871,10 +2039,30 @@ video {
     flex-direction: row;
   }
 
+  .\32xl\:flex-col {
+    flex-direction: column;
+  }
+
+  .\32xl\:justify-start {
+    justify-content: flex-start;
+  }
+
   .\32xl\:space-y-0 > :not([hidden]) ~ :not([hidden]) {
     --tw-space-y-reverse: 0;
     margin-top: calc(0px * calc(1 - var(--tw-space-y-reverse)));
     margin-bottom: calc(0px * var(--tw-space-y-reverse));
+  }
+
+  .\32xl\:space-x-0 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(0px * var(--tw-space-x-reverse));
+    margin-left: calc(0px * calc(1 - var(--tw-space-x-reverse)));
+  }
+
+  .\32xl\:space-x-96 > :not([hidden]) ~ :not([hidden]) {
+    --tw-space-x-reverse: 0;
+    margin-right: calc(24rem * var(--tw-space-x-reverse));
+    margin-left: calc(24rem * calc(1 - var(--tw-space-x-reverse)));
   }
 
   .\32xl\:p-32 {

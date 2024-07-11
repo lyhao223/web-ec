@@ -1,73 +1,34 @@
 import { Input, Slider } from "@mui/material";
 import React, { Fragment, use, useState } from "react";
 import Button from "../../../Reusable/Button";
-import { AppDispatch } from "@/app/services/redux/store";
-import { useDispatch } from "react-redux";
-const SliderPrice = () => {
-  const [value, setValue] = useState([0, 2000]);
-  const [error, setError] = useState({ min: false, max: false });
-  const dispatch = useDispatch<AppDispatch>();
-  let minDistance = 10;
-  const handleChangeSlider = (
-    event: Event,
-    newValue: number | number[],
-    activeThumb: number
-  ) => {
-    if (!Array.isArray(newValue)) {
-      return;
-    }
+interface SliderPriceProps {
+  onClick: () => void;
+  value: number[];
+  handleChangeSlider: (event: Event, newValue: number | number[], activeThumb: number) => void;
+  handleInputChange: (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => void;
+  handleBlur: () => void;
+  error: { min: boolean; max: boolean };
+  resetFilter: () => void;
+}
+const SliderPrice = ({onClick, value, handleChangeSlider, handleInputChange, handleBlur, error, resetFilter}: SliderPriceProps) => {
 
-    if (activeThumb === 0) {
-      setValue([Math.min(newValue[0], value[1] - minDistance), value[1]]);
-    } else {
-      setValue([value[0], Math.max(newValue[1], value[0] + minDistance)]);
-    }
-  };
-  const handleInputChange =
-    (index: number) => (event: React.ChangeEvent<HTMLInputElement>) => {
-      const newValue = Number(event.target.value);
-      if (newValue < 0 || newValue > 2000) {
-        setError((prevError) => ({
-          ...prevError,
-          [index === 0 ? "min" : "max"]: true,
-        }));
-        return;
-      } else {
-        setError((prevError) => ({
-          ...prevError,
-          [index === 0 ? "min" : "max"]: false,
-        }));
-      }
-      if (index === 0) {
-        setValue([newValue, value[1]]);
-      } else {
-        setValue([value[0], newValue]);
-      }
-    };
-
-  const handleBlur = () => {
-    if (value[1] - value[0] < minDistance) {
-      if (value[0] > value[1] - minDistance) {
-        setValue([value[1] - minDistance, value[1]]);
-      } else {
-        setValue([value[0], value[0] + minDistance]);
-      }
-    }
-  };
   return (
     <Fragment>
       <div className="flex flex-col items-start justify-start">
+        <div className="xl:w-full w-64">
         <Slider
           defaultValue={7}
           step={10}
           min={7}
-          max={2000}
+          max={1000}
           valueLabelDisplay="auto"
           valueLabelFormat={(value) => `$${value}`}
           value={value}
           onChange={handleChangeSlider}
           getAriaLabel={() => "Minimum distance"}
+          className="xl:w-full w-42"
         />
+        </div>
         <div className="flex flex-row items-start justify-between space-x-4">
           <div className="flex flex-col">
             <Input
@@ -83,13 +44,14 @@ const SliderPrice = () => {
             type="number"
             value={value[1]}
             onChange={handleInputChange(1)}
-            inputProps={{ min: 7, max: 2000, step: 10, type: "number" }}
+            inputProps={{ min: 7, max: 1000, step: 10, type: "number" }}
             onBlur={handleBlur}
             error={error.max}
           />
         </div>
-        <div className="mt-6">
-          <Button>Filter</Button>
+        <div className="mt-6 flex flex-col space-y-5 xl:mb-0 xl:mt-12 mb-12 items-start justify-between">
+          <Button onClick={onClick}>Filter</Button>
+          <Button onClick={resetFilter}>Reset</Button>
         </div>
       </div>
     </Fragment>

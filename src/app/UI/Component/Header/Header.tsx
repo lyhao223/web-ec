@@ -36,60 +36,65 @@ export default function Header() {
   return (
     <Fragment>
       <header className="xl:fixed z-20 min-w-full bg-black">
-        <div className="flex flex-col md:flex-row items-center justify-center md:justify-start xl:items-center xl:justify-center">
+        <div className="flex flex-col xl:flex-row 2xl:flex-row lg:flex-col items-center xl:justify-start lg:justify-center 2xl:justify-start space-x-0 xl:space-x-40 lg:space-x-32">
+          <div className="w-52 h-auto p-2">
           <Link href="/">
             <img
               src={LogoDunker.src}
-              className="mx-3 h-10 w-32  sm:w-80 md:inline-block hidden"
+              className="text-white"
             />
           </Link>
-          <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-[45rem] mx-6 sm:mr-52">
-            <Link
-              href="/"
-              className="text-white font-bold text-sm md:text-lg m-5">
-              Home
-            </Link>
-            <FlyOutLink
-              href="/shop"
-              FlyoutContent={ItemMenuShop}
-              IconMenu={
-                <FaAngleDown className="inline-block text-white text-sm md:text-lg md:mt-[0.2rem] mt-[0.3rem] md:ml-1 ml-2 mr-4" />
-              }>
-              Shop
-            </FlyOutLink>
-            <FlyOutLink
-              href="/services"
-              FlyoutContent={ItemMenuServices}
-              IconMenu={
-                <FaAngleDown className="inline-block text-white text-sm md:text-lg md:mt-[0.2rem]  mt-[0.3rem] md:ml-1 ml-2 mr-4" />
-              }>
-              Services
-            </FlyOutLink>
-            <Link
-              href="/contact"
-              className="text-white font-bold text-sm md:text-lg m-5">
-              Contact
-            </Link>
+          </div>
+          <div className="flex flex-col xl:flex-row 2xl:flex-row lg:flex-col items-center justify-center xl:space-x-96 2xl:space-x-96 space-x-0">
+            <div className="flex flex-row items-center justify-center">
+              <Link
+                href="/"
+                className="text-white font-bold text-sm md:text-lg m-5">
+                Home
+              </Link>
+              <FlyOutLink
+                href="/shop"
+                FlyoutContent={ItemMenuShop}
+                IconMenu={
+                  <FaAngleDown className="inline-block text-white text-sm md:text-lg md:mt-[0.2rem] mt-[0.3rem] md:ml-1 ml-2 mr-4" />
+                }>
+                Shop
+              </FlyOutLink>
+              <FlyOutLink
+                href="/services"
+                FlyoutContent={ItemMenuServices}
+                IconMenu={
+                  <FaAngleDown className="inline-block text-white text-sm md:text-lg md:mt-[0.2rem]  mt-[0.3rem] md:ml-1 ml-2 mr-4" />
+                }>
+                Services
+              </FlyOutLink>
+              <Link
+                href="/contact"
+                className="text-white font-bold text-sm md:text-lg m-5">
+                Contact
+              </Link>
+            </div>
+            <div className="flex flex-row items-center justify-center">
+              <FlyDownSearchBar SearchInput={SearchInput} />
+              <button className="flex flex-row items-center justify-center text-white font-bold text-sm md:text-lg m-5 border-r pr-2">
+                Account
+                <MdAccountCircle className="inline-block text-white text-sm md:text-lg md:ml-2 ml-2 md:mt-[0.2rem] mt-1" />
+              </button>
+              <button
+                className="flex flex-row items-center justify-center text-white font-bold text-sm m-5 md:text-sm space-x-2"
+                onClick={handleOpenModal}>
+                Cart
+                <IoCart className="inline-block text-white text-sm md:text-xl md:ml-2 ml-2 md:mt-[0.2rem] mt-1" />
+                <div className=" bg-white w-9 h-9 rounded-full flex items-center justify-center">
+                  <span className="text-center font-bold text-black">
+                    {isClient && TotalQuantity ? TotalQuantity : ""}
+                  </span>
+                </div>
+              </button>
+            </div>
           </div>
 
-          <div className="flex flex-row items-center justify-center md:mt-4 space-x-3 xl:mr-10 md:-ml-32">
-            <FlyDownSearchBar SearchInput={SearchInput} />
-            <button className="flex flex-row items-center justify-center text-white font-bold text-sm md:text-lg m-5 border-r pr-2">
-              Account
-              <MdAccountCircle className="inline-block text-white text-sm md:text-lg md:ml-2 ml-2 md:mt-[0.2rem] mt-1" />
-            </button>
-            <button
-              className="flex flex-row items-center justify-center text-white font-bold text-sm m-5 md:text-sm space-x-2"
-              onClick={handleOpenModal}>
-              Cart
-              <IoCart className="inline-block text-white text-sm md:text-xl md:ml-2 ml-2 md:mt-[0.2rem] mt-1" />
-              <div className=" bg-white w-9 h-9 rounded-full flex items-center justify-center">
-                <span className="text-center font-bold text-black">
-                  {isClient && TotalQuantity ? TotalQuantity : ""}
-                </span>
-              </div>
-            </button>
-          </div>
+         
         </div>
       </header>
       <Modal open={open} onClose={handleCloseModal} disableScrollLock>
