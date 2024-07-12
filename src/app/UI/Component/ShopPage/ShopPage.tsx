@@ -134,7 +134,7 @@ const ShopPage = () => {
             {status === "failed" && <p>Failed to load data</p>}
             {status === "succeeded" &&
               products.slice(0, visibleProducts).map((product) => (
-                <Link href={`/shop/product/${product.id}`}>
+                <Link href={`/shop/productID/${product.id}`}>
                   <ShowAllProducts
                     key={product.id}
                     id={product.id}
