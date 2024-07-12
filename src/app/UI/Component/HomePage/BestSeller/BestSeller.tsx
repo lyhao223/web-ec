@@ -40,7 +40,7 @@ const BestSeller = () => {
   }, [dispatch]);
 
   const handleAddToCart = (product: any) => {
-    dispatch(addItemToCart(product));
+    dispatch(addItemToCart({ item: product, quantity: 1 }));
   };
   return (
     <section id="best__seller" className="mt-20 p-4">

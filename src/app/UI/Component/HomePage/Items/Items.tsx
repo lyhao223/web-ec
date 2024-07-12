@@ -27,7 +27,7 @@ const Items = () => {
   }, [dispatch, currentSection]);
 
   const handleAddToCart = (product: any) => {
-    dispatch(addItemToCart(product));
+    dispatch(addItemToCart({ item: product, quantity: 1 }));
   };
   return (
     <div className="flex xl:flex-row flex-col items-center justify-center xl:px-6 p-4 xl:space-x-8 space-y-2 xl:space-y-0 my-12">

@@ -8,6 +8,10 @@ interface Product {
   description: string;
   category: string;
   image: string;
+  rating:{
+    rate: number;
+    count: number;
+  }
 }
 
 interface ProductState {
@@ -30,7 +34,9 @@ export const fetchDetailProduct = createAsyncThunk('products/fetchDetailProducts
 const productDetailSlice = createSlice({
     name: 'productDetail',
     initialState: initialProductState,
-    reducers: {},
+    reducers: {
+      
+    },
     extraReducers: (builder) => {
         builder.addCase(fetchDetailProduct.pending, (state) => {
             state.status = 'loading';

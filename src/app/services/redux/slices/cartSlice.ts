@@ -26,16 +26,16 @@ const cartSlice = createSlice({
     name: 'cart',
     initialState,
     reducers: {
-        addItemToCart(state, action: PayloadAction<CartItem>) {
-            const existingItem = state.items.find(item=> item.id === action.payload.id);
-            if(existingItem){
-                existingItem.quantity++;
-            }else {
-                state.items.push({...action.payload, quantity: 1});
-                console.log('done')
-            }
-            saveCartToSessionStorage(state.items)
-        },
+        addItemToCart(state, action: PayloadAction<{item: any, quantity?: number}>) {
+      const { item, quantity = 1 } = action.payload;
+      const existingItem = state.items.find(cartItem => cartItem.id === item.id);
+      if (existingItem) {
+        existingItem.quantity += quantity;
+      } else {
+        state.items.push({ ...item, quantity });
+      }
+      saveCartToSessionStorage(state.items);
+    },
 
         increaseItemQuantity(state, action: PayloadAction<number>) {
             const existingItem = state.items.find(item => item.id === action.payload);
