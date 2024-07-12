@@ -1,4 +1,5 @@
 import Button from "@/app/UI/Reusable/Button";
+import Link from "next/link";
 import React from "react";
 
 interface ProductsProps {
@@ -7,6 +8,7 @@ interface ProductsProps {
   price: number;
   image: string;
   children?: React.ReactNode;
+  slug?: number;
 }
 const ShowAllProducts = ({
   id,
@@ -14,6 +16,7 @@ const ShowAllProducts = ({
   price,
   image,
   children,
+  slug,
 }: ProductsProps) => {
   return (
     <div

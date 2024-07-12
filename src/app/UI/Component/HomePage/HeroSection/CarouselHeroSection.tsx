@@ -8,6 +8,7 @@ import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import RightArrow from "../../../Animation/CustomArrow/RightArrow";
 import LeftArrow from "../../../Animation/CustomArrow/LeftArrow";
+import Link from "next/link";
 
 export default function CarouselHeroSection(this: any) {
   const responsive = {
@@ -70,9 +71,11 @@ export default function CarouselHeroSection(this: any) {
             </div>
             <div className="group">
               <div className="border border-white hover:border-white xl:p-5 p-3 group-hover:bg-white duration-500 transition-all ease-in-out">
-                <button className="text-white xl:text-xl text-sm group-hover:text-black antialiased font-light tracking-tight line-clamp-3 duration-500 transition-all ease-in-out">
+                <Link
+                  href="/shop"
+                  className="text-white xl:text-xl text-sm group-hover:text-black antialiased font-light tracking-tight line-clamp-3 duration-500 transition-all ease-in-out cursor-pointer">
                   SHOP NOW
-                </button>
+                </Link>
               </div>
             </div>
           </div>

@@ -88,13 +88,15 @@ const Footer = () => {
     setShowFlyoutTerm(null);
   };
   return (
-    <footer id="footer" className="w-full h-full bg-black xl:p-12 p-12">
+    <footer
+      id="footer"
+      className="xl:w-full lg:w-full xl:h-full min-h-fit bg-black xl:p-12 lg:p-14 p-2">
       <div className="flex xl:flex-row flex-col items-start justify-start xl:space-x-32 space-y-16 xl:space-y-0">
         <div className="flex flex-col items-start justify-start text-white space-y-9">
           <h1 className="subpixel-antialiased text-4xl font-semibold tracking-wider">
             Dunker
           </h1>
-          <p className="w-96 tracking-wide text-lg">
+          <p className="xl:w-96 2xl:w-96 lg:w-96 w-fit   tracking-wide xl:text-lg lg:text-lg 2xl:text-lg text-sm">
             Our collections are fashionable at an affordable price without
             compromising quality, always in style and with global latest outlook
             trends.
@@ -159,13 +161,13 @@ const Footer = () => {
             <input
               type="email"
               placeholder="example@email.com"
-              className="outline-none p-4"
+              className="outline-none p-4 xl:w-fit w-48"
             />
             <button className="bg-white text-black p-4 border-l-2 transition-all duration-200 hover:bg-gray-600 hover:text-white ease-linear cursor-pointer">
               Subscribe
             </button>
           </div>
-          <p className="mt-4 subpixel-antialiased font-serif tracking-wide">
+          <p className="mt-4 subpixel-antialiased font-serif tracking-wide w-fit">
             By subscribing, you accept the Privacy Policy
           </p>
           <div className="flex flex-row items-start justify-start space-x-3 xl:mt-16 mt-4">
@@ -176,17 +178,17 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="flex xl:flex-row flex-col items-start justify-between mt-16 border-t-[1px] border-t-gray-500 p-4">
-        <div className="xl:p-4 xl:my-8 text-white">
+      <div className="flex xl:flex-row flex-col xl:items-start items-center justify-between mt-16 border-t-[1px] border-t-gray-500 overflow-hidden">
+        <div className="xl:p-4 xl:my-8 my-2 text-white">
           <p className="xl:text-lg text-sm subpixel-antialiased">
             ©2024 Dunker, All Rights Reserved. With Love by Ly Hao.
           </p>
         </div>
-        <div className="flex flex-row items-center justify-center text-white xl:p-4 my-8 xl:space-x-10 space-x-3">
+        <div className="flex flex-row items-center justify-center text-white xl:p-4 mt-8 mb-4 xl:space-x-10 space-x-3 relative">
           {terms.map((term) => (
             <button
               key={term.id}
-              className="xl:text-lg text-sm relative"
+              className="xl:text-lg text-xs relative"
               onMouseEnter={() => handleMouseEnterTerm(term.id)}
               onMouseLeave={handleMouseLeaveTerm}>
               {term.title}
@@ -195,7 +197,7 @@ const Footer = () => {
                   transform:
                     showFlyoutTerm === term.id ? "scaleX(1)" : "scaleX(0)",
                 }}
-                className="absolute -bottom-2 left-0 -right-2 h-[0.15rem] origin-left scale-x-0 rounded-full bg-indigo-300 transition-transform duration-300 ease-out"
+                className="absolute -bottom-2 left-0 -right-2 h-[0.15rem] origin-left scale-x-0 rounded-full bg-indigo-300 transition-transform duration-300 ease-out overflow-hidden"
               />
             </button>
           ))}

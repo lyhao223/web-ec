@@ -15,6 +15,7 @@ import CheckBoxCategory from "./Checkbox/CheckBoxCategory";
 import SliderPrice from "./SliderPrice/SliderPrice";
 import { setPriceRange } from "@/app/services/redux/slices/productsShopSlice";
 import { resetFilter } from "@/app/services/redux/slices/productsShopSlice";
+import Link from "next/link";
 const ShopPage = () => {
   const [value, setValue] = useState([0, 2000]);
   const [error, setError] = useState({ min: false, max: false });
@@ -54,9 +55,9 @@ const ShopPage = () => {
   };
 
   //filter price range
-  const handleSetPriceRange = ()=>{
-    dispatch(setPriceRange([value[0],value[1]]))
-  }
+  const handleSetPriceRange = () => {
+    dispatch(setPriceRange([value[0], value[1]]));
+  };
 
   const minDistance = 10;
   const handleChangeSlider = (
@@ -110,7 +111,8 @@ const ShopPage = () => {
   const handleResetFilter = () => {
     dispatch(resetFilter());
     setValue([0, 2000]);
-  }
+  };
+
   return (
     <section className="relative z-10 xl:p-32 2xl:p-32 p-2 lg:p-4 md:p-10">
       <div className="grid xl:grid-cols-5 lg:grid-cols-4 grid-rows-1 xl:gap-6 xl:gap-x-6 lg:gap-x-4 gap-2">
@@ -132,16 +134,18 @@ const ShopPage = () => {
             {status === "failed" && <p>Failed to load data</p>}
             {status === "succeeded" &&
               products.slice(0, visibleProducts).map((product) => (
-                <ShowAllProducts
-                  key={product.id}
-                  id={product.id}
-                  title={product.title}
-                  price={product.price}
-                  image={product.image}>
-                  <Button onClick={() => handleAddToCart(product)}>
-                    Add to Cart
-                  </Button>
-                </ShowAllProducts>
+                <Link href={`/shop/product/${product.id}`}>
+                  <ShowAllProducts
+                    key={product.id}
+                    id={product.id}
+                    title={product.title}
+                    price={product.price}
+                    image={product.image}>
+                    <Button onClick={() => handleAddToCart(product)}>
+                      Add to Cart
+                    </Button>
+                  </ShowAllProducts>
+                </Link>
               ))}
           </div>
           <div className="flex items-center justify-center xl:mt-12 2xl:mt-14 lg:my-14 my-14">
@@ -162,14 +166,14 @@ const ShopPage = () => {
 
           <div className="mt-14">
             <h1 className="text-4xl">Price</h1>
-            <SliderPrice 
-            onClick={handleSetPriceRange} 
-            value={value} 
-            handleChangeSlider={handleChangeSlider} 
-            handleInputChange={handleInputChange}
-            handleBlur={handleBlur}
-            error={error}
-            resetFilter={handleResetFilter}
+            <SliderPrice
+              onClick={handleSetPriceRange}
+              value={value}
+              handleChangeSlider={handleChangeSlider}
+              handleInputChange={handleInputChange}
+              handleBlur={handleBlur}
+              error={error}
+              resetFilter={handleResetFilter}
             />
           </div>
         </div>
