@@ -6,6 +6,7 @@ import { fetchAllProducts } from "@/app/services/redux/slices/productSlice";
 import Gesture from "@/app/UI/Animation/Gesture";
 import Button from "@/app/UI/Reusable/Button";
 import { addItemToCart } from "@/app/services/redux/slices/cartSlice";
+import Link from "next/link";
 const BestSeller = () => {
   const responsive = {
     superLargeDesktop: {
@@ -62,15 +63,20 @@ const BestSeller = () => {
             <div
               className="flex flex-col justify-center items-center space-x-4 space-y-5 border p-5"
               key={index}>
-              <Gesture scaleHover={1.1}>
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-48 h-48"
-                />
-              </Gesture>
-              <p className="truncate w-56">{product.title}</p>
-              <p>{product.price}$</p>
+              <Link
+                href={`/shop/productID/${product.id}`}
+                className="flex flex-col items-center justify-center space-y-4">
+                <Gesture scaleHover={1.1}>
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="w-48 h-48"
+                  />
+                </Gesture>
+                <p className="truncate w-56">{product.title}</p>
+                <p>{product.price}$</p>
+              </Link>
+
               <Button onClick={() => handleAddToCart(product)}>
                 Add to cart
               </Button>

@@ -51,7 +51,7 @@ const ShopPage = () => {
 
   //add to cart
   const handleAddToCart = (product: any) => {
-    dispatch(addItemToCart(product));
+    dispatch(addItemToCart({ item: product, quantity: 1 }));
   };
 
   //filter price range
@@ -134,18 +134,16 @@ const ShopPage = () => {
             {status === "failed" && <p>Failed to load data</p>}
             {status === "succeeded" &&
               products.slice(0, visibleProducts).map((product) => (
-                <Link href={`/shop/productID/${product.id}`}>
-                  <ShowAllProducts
-                    key={product.id}
-                    id={product.id}
-                    title={product.title}
-                    price={product.price}
-                    image={product.image}>
-                    <Button onClick={() => handleAddToCart(product)}>
-                      Add to Cart
-                    </Button>
-                  </ShowAllProducts>
-                </Link>
+                <ShowAllProducts
+                  key={product.id}
+                  id={product.id}
+                  title={product.title}
+                  price={product.price}
+                  image={product.image}>
+                  <Button onClick={() => handleAddToCart(product)}>
+                    Add to Cart
+                  </Button>
+                </ShowAllProducts>
               ))}
           </div>
           <div className="flex items-center justify-center xl:mt-12 2xl:mt-14 lg:my-14 my-14">

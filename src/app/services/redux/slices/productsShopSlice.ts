@@ -39,6 +39,11 @@ export const fetchAllProducts = createAsyncThunk("productsShop/fetchAllProducts"
     return response.data;
 })
 
+export const fetchCategoryProducts = createAsyncThunk("products/fetchCategoryProducts", async (category: string) => {
+    const response = await axios.get<ProductsShop[]>(`https://fakestoreapi.com/products/category/${category}`);
+    return response.data;
+});
+
 const filterAndSortProducts = (state: ProductsShopState) => {
     // let filteredProducts = state.originalProducts.filter(product =>
     //     state.selectedCategories.length === 0 || state.selectedCategories.includes(product.category) 
@@ -117,6 +122,17 @@ const productsShopSlice = createSlice({
             state.categoryCounts = calculateCategoryCounts(action.payload);
             filterAndSortProducts(state);
         }).addCase(fetchAllProducts.rejected,(state,action)=>{
+            state.status = "failed";
+            state.error = action.error.message || "Something went wrong";
+        }).addCase(fetchCategoryProducts.pending,(state)=>{
+            state.status = "loading";
+        }).addCase(fetchCategoryProducts.fulfilled,(state,action)=>{
+            state.status = "succeeded";
+            state.originalProducts = action.payload;
+            state.products = action.payload;
+            state.categoryCounts = calculateCategoryCounts(action.payload);
+            filterAndSortProducts(state);
+        }).addCase(fetchCategoryProducts.rejected,(state,action)=>{
             state.status = "failed";
             state.error = action.error.message || "Something went wrong";
         })

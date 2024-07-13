@@ -7,6 +7,7 @@ import Gesture from "../../../Animation/Gesture";
 import LoadingItems from "./LoadingItems";
 import ErrorLoadingItems from "./ErrorLoadingItems";
 import Button from "../../../Reusable/Button";
+import Link from "next/link";
 const Items = () => {
   const dispatch = useDispatch<AppDispatch>();
   const currentSection = useSelector(
@@ -38,11 +39,17 @@ const Items = () => {
           <div
             key={index}
             className="flex flex-col items-center justify-center space-y-7 border border-black w-full p-6">
-            <Gesture scaleHover={1.1}>
-              <img src={product.image} className="w-80 h-64" />
-            </Gesture>
-            <p className="truncate w-64 text-center text-lg">{product.title}</p>
-            <p>{product.price}$</p>
+            <Link
+              href={`/shop/productID/${product.id}`}
+              className="flex flex-col items-center justify-center space-y-4">
+              <Gesture scaleHover={1.1}>
+                <img src={product.image} className="w-80 h-64" />
+              </Gesture>
+              <p className="truncate w-64 text-center text-lg">
+                {product.title}
+              </p>
+              <p>{product.price}$</p>
+            </Link>
             <Gesture
               scaleHover={1.1}
               scaleTap={0.9}

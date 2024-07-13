@@ -5,6 +5,7 @@ import cartSlice from "./slices/cartSlice";
 import productSlice from "./slices/productSlice";
 import productsShopSlice from "./slices/productsShopSlice";
 import productDetailSlice from "./slices/productDetailSlice";
+import categorySlice from "./slices/categorySlice";
 const store = configureStore({
     reducer: {
         menuSection: menuSlices,
@@ -12,6 +13,7 @@ const store = configureStore({
         products: productSlice,
         productShop: productsShopSlice,
         productDetailSlice: productDetailSlice,
+        categorySlice: categorySlice,
     },
 });    
 
@@ -19,3 +21,5 @@ export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
 
 export default store;
+
+
