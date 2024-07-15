@@ -7,6 +7,7 @@ import Gesture from "@/app/UI/Animation/Gesture";
 import Button from "@/app/UI/Reusable/Button";
 import { addItemToCart } from "@/app/services/redux/slices/cartSlice";
 import Link from "next/link";
+import FlyOutLike from "@/app/UI/Animation/FlyOutLike";
 const BestSeller = () => {
   const responsive = {
     superLargeDesktop: {
@@ -65,7 +66,7 @@ const BestSeller = () => {
               key={index}>
               <Link
                 href={`/shop/productID/${product.id}`}
-                className="flex flex-col items-center justify-center space-y-4">
+                className="relative flex flex-col items-center justify-center space-y-4">
                 <Gesture scaleHover={1.1}>
                   <img
                     src={product.image}
@@ -80,6 +81,7 @@ const BestSeller = () => {
               <Button onClick={() => handleAddToCart(product)}>
                 Add to cart
               </Button>
+              <FlyOutLike id={product.id} />
             </div>
           ))}
       </Carousel>

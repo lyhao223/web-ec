@@ -20,6 +20,7 @@ interface ProductsShopState {
     selectedCategories: string[];
     categoryCounts: Record<string, number>;
     priceRange: [number, number];
+    query: string;
 }
 
 const initialState: ProductsShopState = {
@@ -31,7 +32,8 @@ const initialState: ProductsShopState = {
     option: "all",
     selectedCategories: [],
     categoryCounts: {},
-    priceRange: [0, 2000]
+    priceRange: [0, 2000],
+    query: ""
 }
 
 export const fetchAllProducts = createAsyncThunk("productsShop/fetchAllProducts",async()=>{
@@ -52,7 +54,8 @@ const filterAndSortProducts = (state: ProductsShopState) => {
     // );
         let filteredProducts = state.originalProducts.filter(product =>
         (state.selectedCategories.length === 0 || state.selectedCategories.includes(product.category)) &&
-        product.price >= state.priceRange[0] && product.price <= state.priceRange[1]
+        product.price >= state.priceRange[0] && product.price <= state.priceRange[1] &&
+        product.title.toLowerCase().includes(state.query.toLowerCase())
     );
     switch(state.option){
         case "highToLow":
@@ -109,6 +112,10 @@ const productsShopSlice = createSlice({
             state.priceRange = action.payload;
             console.log(state.priceRange)
             filterAndSortProducts(state);
+        },
+        searchQuery: (state, action: PayloadAction<string>) => {
+            state.query = action.payload;
+            filterAndSortProducts(state);
         }
     
     },
@@ -140,5 +147,5 @@ const productsShopSlice = createSlice({
 })
 
 
-export const {loadMoreProducts,setOption, collapseProducts, toggleCategory, setPriceRange, resetFilter } = productsShopSlice.actions;
+export const {loadMoreProducts,setOption, collapseProducts, toggleCategory, setPriceRange, resetFilter, searchQuery } = productsShopSlice.actions;
 export default productsShopSlice.reducer;

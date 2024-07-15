@@ -81,7 +81,7 @@ export default function Header() {
             </div>
 
             <div className="flex flex-row items-center justify-center">
-              <FlyDownSearchBar SearchInput={SearchInput} />
+              {/* <FlyDownSearchBar SearchInput={SearchInput} /> */}
               <button className="flex flex-row items-center justify-center text-white font-bold m-5 border-r pr-2 space-x-2">
                 <span>Account</span>
                 <MdAccountCircle

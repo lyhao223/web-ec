@@ -8,6 +8,7 @@ import LoadingItems from "./LoadingItems";
 import ErrorLoadingItems from "./ErrorLoadingItems";
 import Button from "../../../Reusable/Button";
 import Link from "next/link";
+import FlyOutLike from "@/app/UI/Animation/FlyOutLike";
 const Items = () => {
   const dispatch = useDispatch<AppDispatch>();
   const currentSection = useSelector(
@@ -38,7 +39,7 @@ const Items = () => {
         products.slice(0, visableProducts).map((product, index) => (
           <div
             key={index}
-            className="flex flex-col items-center justify-center space-y-7 border border-black w-full p-6">
+            className="relative z-10 flex flex-col items-center justify-center space-y-7 border border-black w-full p-6">
             <Link
               href={`/shop/productID/${product.id}`}
               className="flex flex-col items-center justify-center space-y-4">
@@ -58,6 +59,7 @@ const Items = () => {
                 Add to Cart
               </Button>
             </Gesture>
+            <FlyOutLike id={product.id} />
           </div>
         ))}
     </div>

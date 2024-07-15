@@ -1,28 +1,24 @@
 "use client";
 
+import Link from "next/link";
+
 export default function ItemMenuServices() {
   return (
     <div className="w-64 bg-white p-6 shadow-xl">
       <div className="mb-3 space-y-3">
-        <h3 className="font-semibold">Customer Care</h3>
-        <a href="#" className="block text-sm hover:underline">
-          Product Issues
-        </a>
-        <a href="#" className="block text-sm hover:underline">
-          Payment issues
-        </a>
+        <Link href="/service/aboutus" className="block text-sm hover:underline">
+          About us
+        </Link>
+        <Link
+          href="/service/shipandreturn"
+          className="block text-sm hover:underline">
+          Shipping & Returns
+        </Link>
       </div>
       <div className="mb-6 space-y-3">
-        <h3 className="font-semibold">Payment Instructions</h3>
-        <a href="#" className="block text-sm hover:underline">
-          With Credit Card
-        </a>
-        <a href="#" className="block text-sm hover:underline">
-          With Paypal
-        </a>
-        <a href="#" className="block text-sm hover:underline">
-          With Cash
-        </a>
+        <Link href="/service/faq" className="block text-sm hover:underline">
+          Help & FAQs
+        </Link>
       </div>
     </div>
   );

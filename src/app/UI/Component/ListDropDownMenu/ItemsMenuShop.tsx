@@ -30,33 +30,36 @@ export default function ItemMenuShop() {
       </div>
       <div className="mb-6 space-y-3">
         <h3 className="font-semibold">For Women</h3>
-        <a href="#" className="block text-sm hover:underline">
+        <Link
+          href="/shop/forwomen/shirt"
+          className="block text-sm hover:underline">
           Shirt
-        </a>
-        <a href="#" className="block text-sm hover:underline">
+        </Link>
+        <Link
+          href="/shop/forwomen/jeans"
+          className="block text-sm hover:underline">
           Jeans
-        </a>
-        <a href="#" className="block text-sm hover:underline">
+        </Link>
+        <Link
+          href="/shop/forwomen/shoes"
+          className="block text-sm hover:underline">
           Shoes
-        </a>
-        <a href="#" className="block text-sm hover:underline">
+        </Link>
+        <Link
+          href="/shop/forwomen/saleforwomen"
+          className="block text-sm hover:underline">
           Sale for women
-        </a>
+        </Link>
       </div>
       <div className="mb-6 space-y-3">
-        <h3 className="font-semibold">For Kids</h3>
-        <a href="#" className="block text-sm hover:underline">
-          Shirt
-        </a>
-        <a href="#" className="block text-sm hover:underline">
-          Jeans
-        </a>
-        <a href="#" className="block text-sm hover:underline">
-          Shoes
-        </a>
-        <a href="#" className="block text-sm hover:underline">
-          Sale for kids
-        </a>
+        <Link href="/shop/electronics" className="font-semibold">
+          For Electronics
+        </Link>
+      </div>
+      <div className="mb-6 space-y-3">
+        <Link href="/shop/jewelery" className="font-semibold">
+          For Jewelery
+        </Link>
       </div>
     </div>
   );

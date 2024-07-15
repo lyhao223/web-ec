@@ -1,9 +1,0 @@
-{
-  "/page": "app/page.js",
-  "/shop/formen/jeans/page": "app/shop/formen/jeans/page.js",
-  "/shop/formen/shirt/page": "app/shop/formen/shirt/page.js",
-  "/shop/formen/saleforman/page": "app/shop/formen/saleforman/page.js",
-  "/shop/page": "app/shop/page.js",
-  "/favicon.ico/route": "app/favicon.ico/route.js",
-  "/shop/formen/shoes/page": "app/shop/formen/shoes/page.js"
-}

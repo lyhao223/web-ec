@@ -3,7 +3,7 @@ import { IoMdCloseCircle } from "react-icons/io";
 export default function SearchInput() {
   return (
     <div className="relative w-screen p-10 bg-slate-700 h-36">
-      <div className="flex flex-row items-center justify-center group">
+      <form className="flex flex-row items-center justify-center group">
         <input
           type="input"
           placeholder="Search..."
@@ -14,7 +14,7 @@ export default function SearchInput() {
             <FaSearch className="md:ml-4 ml-1" />
           </button>
         </div>
-      </div>
+      </form>
     </div>
   );
 }
