@@ -5,15 +5,26 @@ import menfashion from "@/../../assets/content/menfashion.jpg";
 import womenfashion from "@/../../assets/content/womenfashion.jpg";
 import electronic from "@/../../assets/content/electronic.jpg";
 import jewelry from "@/../../assets/content/jewelry.jpg";
+import Link from "next/link";
 const page = () => {
   return (
     <Fragment>
-      <img src={aboutus.src} alt="aboutus" className="w-full h-[48rem]" />
-      <div className="flex flex-col items-center justify-center mt-10 space-y-4 mb-12">
-        <h1 className="subpixel-antialiased tracking-widest font-semibold text-5xl">
+      <div className="flex flex-col items-center justify-center">
+      <div className="relative top-0 xl:w-full">
+      <img src={aboutus.src} alt="aboutus" className="xl:w-full xl:h-[35rem]" />
+      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
+      <h1 className="subpixel-antialiased tracking-widest font-semibold text-white xl:text-5xl text-2xl">
           About us
-        </h1>
-        <div className="w-[50rem] text-wrap flex flex-col items-center justify-center text-center space-y-6">
+      </h1>
+      <div className="flex flex-row items-center justify-center text-white space-x-2">
+      <Link href="/" className="underline">Home</Link>
+      <span> {">"}</span>
+      <span>About us</span>
+      </div>
+      </div>
+      </div>
+      <div className="flex flex-col items-center justify-center mt-10 space-y-4 mb-12 xl:p-2 p-10 w-fit text-2xl">
+        <div className="xl:w-[50rem] text-wrap flex flex-col items-center justify-center text-center space-y-6">
           <div className="tracking-tight font-extralight">
             Welcome to My Store, your one-stop destination for all things
             fashion and electronics. We are passionate about bringing you the
@@ -23,7 +34,7 @@ const page = () => {
           <img
             src={aboutus_1.src}
             alt="aboutus_1"
-            className="w-96 h-96 rounded-xl shadow-lg"
+            className="xl:w-96 xl:h-96 h-80 w-80 rounded-xl shadow-lg"
           />
           <div className="tracking-tight font-extralight">
             <span className="font-semibold">Men’s Fashion:</span> From casual
@@ -33,7 +44,7 @@ const page = () => {
           <img
             src={menfashion.src}
             alt="men fashion"
-            className="w-96 h-96 rounded-xl shadow-lg"
+            className="xl:w-96 xl:h-96 h-80 w-80 rounded-xl shadow-lg"
           />
           <div className="tracking-tight font-extralight">
             <span className="font-semibold">Women’s Fashion:</span> Discover the
@@ -45,7 +56,7 @@ const page = () => {
           <img
             src={womenfashion.src}
             alt="women fashion"
-            className="w-96 h-96 rounded-xl shadow-lg"
+            className="xl:w-96 xl:h-96 h-80 w-80 rounded-xl shadow-lg"
           />
           <div className="tracking-tight font-extralight">
             <span className="font-semibold">Electronics:</span> Stay ahead of
@@ -56,7 +67,7 @@ const page = () => {
           <img
             src={electronic.src}
             alt="electronic"
-            className="w-96 h-96 rounded-xl shadow-lg"
+            className="xl:w-96 xl:h-96 h-80 w-80 rounded-xl shadow-lg"
           />
           <div className="tracking-tight font-extralight">
             <span className="font-semibold">Jewelry:</span> Add a touch of
@@ -67,9 +78,10 @@ const page = () => {
           <img
             src={jewelry.src}
             alt="jewelry"
-            className="w-96 h-96 rounded-xl shadow-lg"
+            className="xl:w-96 xl:h-96 h-80 w-80 rounded-xl shadow-lg"
           />
         </div>
+      </div>
       </div>
     </Fragment>
   );

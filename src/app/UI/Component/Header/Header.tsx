@@ -40,8 +40,8 @@ export default function Header() {
     </div>
   );
   return (
-    <Fragment>
-      <header className="xl:fixed z-20 min-w-full bg-black">
+    <>
+      <header className="xl:fixed top-0 z-20 min-w-full bg-black">
         <div className="flex flex-col xl:flex-row 2xl:flex-row lg:flex-col items-center xl:justify-start lg:justify-center 2xl:justify-start space-x-0 xl:space-x-40 lg:space-x-32">
           <div className="w-52 h-auto p-2">
             <Link href="/">
@@ -67,7 +67,7 @@ export default function Header() {
               </div>
               <div className="flex flex-row items-center justify-center">
                 <FlyOutLink
-                  href="/services"
+                  href="/service/aboutus"
                   FlyoutContent={ItemMenuServices}
                   IconMenu={
                     <FaAngleDown className="inline-block text-white text-sm md:text-lg md:mt-[0.2rem]  mt-[0.3rem] md:ml-1 ml-2 mr-4" />
@@ -105,6 +105,6 @@ export default function Header() {
           <ItemsModal close={handleCloseModal} />
         </FlyModal>
       </Modal>
-    </Fragment>
+    </>
   );
 }
