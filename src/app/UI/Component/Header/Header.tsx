@@ -78,6 +78,9 @@ export default function Header() {
               <Link href="/contact" className="text-white font-bold ">
                 Contact
               </Link>
+              <Link href="/blog" className="text-white font-bold xl:ml-8 ml-7">
+                Blog
+              </Link>
             </div>
 
             <div className="flex flex-row items-center justify-center">

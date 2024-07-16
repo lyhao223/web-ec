@@ -90,13 +90,13 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className="xl:w-full lg:w-full xl:h-full min-h-fit bg-black xl:p-12 lg:p-14 p-10">
-      <div className="flex xl:flex-row flex-col items-start justify-start xl:space-x-64 space-y-16 xl:space-y-0">
+      className="xl:w-full lg:w-full xl:h-full bg-black xl:p-12 lg:p-14 2xl:p-48 p-10">
+      <div className="flex xl:flex-row flex-col items-start justify-start xl:space-x-32  space-y-16 xl:space-y-0">
         <div className="flex flex-col items-start justify-start text-white space-y-9">
           <h1 className="subpixel-antialiased text-4xl font-semibold tracking-wider">
             Dunker
           </h1>
-          <p className="xl:w-96 2xl:w-96 lg:w-96 w-fit   tracking-wide xl:text-lg lg:text-lg 2xl:text-lg text-sm">
+          <p className="xl:w-96 2xl:w-96 lg:w-96 w-fit tracking-wide xl:text-lg lg:text-lg 2xl:text-lg text-sm">
             Our collections are fashionable at an affordable price without
             compromising quality, always in style and with global latest outlook
             trends.
