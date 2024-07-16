@@ -34,34 +34,34 @@ const FourthContent = ({ deviceType }: deviceType) => {
         responsive={responsive}
         autoPlay={true}
         infinite={true}
-        itemClass="mb-12 text-center"
+        itemClass="mb-12 text-center flex flex-row items-center justify-center"
         arrows={true}
         removeArrowOnDeviceType={["mobile"]}
         showDots={deviceType !== "mobile"}
         className="xl:mt-7 mt-2 mx-24 mb-24 z-10"
         deviceType={deviceType}>
-        <div className="mt-12 xl:w-[30rem] xl:mx-[26.55rem]">
+        <div className="w-[38rem]">
           <p className="text-center xl:text-2xl ">
             1.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
             quam velit, vulputate eu pharetra nec, mattis ac neque. D uis
             vulputate commodo.
           </p>
         </div>
-        <div className="mt-12 xl:w-[30rem] xl:mx-[26.55rem]">
+        <div className="w-[38rem]">
           <p className="text-center xl:text-2xl ">
             2.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
             quam velit, vulputate eu pharetra nec, mattis ac neque. Duis
             vulputate commodo.
           </p>
         </div>
-        <div className="mt-12 xl:w-[30rem] xl:mx-[26.55rem]">
+        <div className="w-[38rem]">
           <p className="text-center xl:text-2xl ">
             3.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
             quam velit, vulputate eu pharetra nec, mattis ac neque. Duis
             vulputate commodo.
           </p>
         </div>
-        <div className="mt-12 xl:w-[30rem] xl:mx-[26.55rem]">
+        <div className="w-[38rem]">
           <p className="text-center xl:text-2xl ">
             4.Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
             quam velit, vulputate eu pharetra nec, mattis ac neque. Duis

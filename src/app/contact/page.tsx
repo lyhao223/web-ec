@@ -117,8 +117,8 @@ const page = () => {
         contentTitle="Contact Us"
         linkText="Contact Us"
       />
-      <div className="grid grid-rows-3 grid-flow-col gap-4 px-20 my-12">
-        <div className="grid row-span-3 gap-y-6 w-80">
+      <div className="grid xl:grid-cols-5 grid-rows-1 gap-4 xl:px-20 p-2 my-12">
+        <div className="grid col-span-2 gap-y-6 w-80">
           <InfoContact
             firstContent="Email: example@email.com"
             secondContent="Phone: 02 01061245741"
@@ -139,16 +139,16 @@ const page = () => {
             {renderIcons}
           </div>
         </div>
-        <div className="grid col-span-2 gap-y-4 ml-12">
+        <div className="grid col-span-3 row-span-2 gap-y-4 w-fit">
           <h1 className="subpixel-antialiased tracking-tight font-semibold text-4xl">
             How can we help?
+            
           </h1>
-          <p>
+          <span>
             Let us know your questions, thoughts and ideas via the form below.
             Our support team will get back to you as soon as possible.
-          </p>
-        </div>
-        <div className="row-span-2 col-span-2 ml-12">
+          </span>
+          
           <form
             onSubmit={handleSubmit}
             className="flex flex-col items-start justify-start space-y-4">
@@ -214,7 +214,9 @@ const page = () => {
             <Button type="submit">Submit</Button>
           </form>
         </div>
-      </div>
+       
+        </div>
+
     </Fragment>
   );
 };

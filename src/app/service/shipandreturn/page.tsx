@@ -5,6 +5,8 @@ import ContentFirstPage from "@/app/UI/Reusable/ContentFirstPage";
 const page = () => {
   return (
     <Fragment>
+      <div className="flex flex-col items-center justify-center">
+
       <ContentFirstPage
         img={shipping.src}
         contentTitle="Shipping & Return"
@@ -116,6 +118,7 @@ const page = () => {
             co-operation.
           </p>
         </div>
+      </div>
       </div>
     </Fragment>
   );

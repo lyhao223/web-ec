@@ -24,14 +24,14 @@ const InfoContact = ({
         <div className="flex flex-row items-start justify-start space-x-2">
           {firstIcon}
 
-          <p className="subpixel-antialiased tracking-wide text-sm">
+          <p className="subpixel-antialiased tracking-wide text-sm text-wrap">
             {firstContent}
           </p>
         </div>
         <div className="flex flex-row items-start justify-start space-x-2">
           {secondIcon}
 
-          <p className="subpixel-antialiased tracking-wide text-sm">
+          <p className="subpixel-antialiased tracking-wide text-sm text-wrap">
             {secondContent}
           </p>
         </div>

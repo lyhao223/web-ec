@@ -90,8 +90,8 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className="xl:w-full lg:w-full xl:h-full bg-black xl:p-12 lg:p-14 2xl:p-48 p-10">
-      <div className="flex xl:flex-row flex-col items-start justify-start xl:space-x-32  space-y-16 xl:space-y-0">
+      className="xl:w-full lg:w-full xl:h-full 2xl:h-full bg-black xl:p-12 lg:p-14  p-10">
+      <div className="flex xl:flex-row flex-col items-start justify-start lg:items-start lg:justify-start xl:space-x-32  space-y-16 xl:space-y-0">
         <div className="flex flex-col items-start justify-start text-white space-y-9">
           <h1 className="subpixel-antialiased text-4xl font-semibold tracking-wider">
             Dunker

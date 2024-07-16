@@ -8,7 +8,7 @@ interface Props {
 }
 const ContentFirstPage = ({ children, img, contentTitle, linkText }: Props) => {
   return (
-    <div className="relative top-0 xl:w-full">
+    <div className="relative top-0 xl:w-full  2xl:max-w-full">
       <img src={img} alt="aboutus" className="xl:w-full xl:h-[35rem]" />
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2">
         <h1 className="subpixel-antialiased tracking-widest font-semibold text-white xl:text-5xl text-2xl">
