@@ -142,13 +142,12 @@ const page = () => {
         <div className="grid col-span-3 row-span-2 gap-y-4 w-fit">
           <h1 className="subpixel-antialiased tracking-tight font-semibold text-4xl">
             How can we help?
-            
           </h1>
           <span>
             Let us know your questions, thoughts and ideas via the form below.
             Our support team will get back to you as soon as possible.
           </span>
-          
+
           <form
             onSubmit={handleSubmit}
             className="flex flex-col items-start justify-start space-y-4">
@@ -214,9 +213,7 @@ const page = () => {
             <Button type="submit">Submit</Button>
           </form>
         </div>
-       
-        </div>
-
+      </div>
     </Fragment>
   );
 };
