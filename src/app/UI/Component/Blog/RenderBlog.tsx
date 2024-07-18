@@ -17,7 +17,7 @@ const RenderBlog = ({ blog, blogPerPageProp, currentPageProp }: BlogProps) => {
         <div
           className="flex flex-col items-start justify-start p-4 space-y-2"
           key={item.id}>
-          <div className="w-96 relative overflow-hidden">
+          <div className="xl:w-96 relative overflow-hidden">
             <img
               src={item.image}
               alt={item.title}

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { blog } from "./blog";
 import { Pagination, Stack } from "@mui/material";
 import Link from "next/link";
@@ -14,6 +14,10 @@ const page = () => {
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
   };
+
+  useEffect(()=>{
+    window.scrollTo(0,200)
+  },[currentPage])
   return (
     <div className="relative top-0 w-full ">
       <ContentFirstPage

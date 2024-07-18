@@ -13,7 +13,7 @@ const ReadMoreFly = ({ id, children }: ReadMoreFlyProps) => {
     setShowFlyoutReadMore(null);
   };
   return (
-    <Link href="/">
+    <Link href={`/blog/blogdetail/${id}`}>
       <button
         className="relative"
         onMouseEnter={() => handleMouseEnterReadMore(id)}
