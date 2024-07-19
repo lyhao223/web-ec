@@ -2,6 +2,7 @@ import React, { Fragment } from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebook, FaTiktok } from "react-icons/fa6";
 import { TfiTwitter } from "react-icons/tfi";
+import Comment from "../../Comment/Comment";
 interface BlogProps {
   blog: any;
 }
@@ -12,9 +13,10 @@ const icons = [
   <TfiTwitter />,
 ];
 
-
 const RenderBlogDetail = ({ blog }: BlogProps) => {
-  const tagsBlog = blog.map((item:any)=>{return item.tags.length});
+  const tagsBlog = blog.map((item: any) => {
+    return item.tags.length;
+  });
 
   return (
     <Fragment>
@@ -48,14 +50,16 @@ const RenderBlogDetail = ({ blog }: BlogProps) => {
                   </div>
                 ))}
               </div>
-              <div className="flex flex-row items-center justify-center space-x-4">  
-                <span>Share</span>             
-                      {icons.map((icon, index) => (
-                        <div key={index}>{icon}</div>
-                      ))}
+              <div className="flex flex-row items-center justify-center space-x-4">
+                <span>Share</span>
+                {icons.map((icon, index) => (
+                  <div key={index}>{icon}</div>
+                ))}
               </div>
             </div>
-            <div>1</div>
+            <div className="border-2 border-black shadow-md w-full h-64 p-10">
+              <Comment />
+            </div>
           </div>
         </div>
       ))}
