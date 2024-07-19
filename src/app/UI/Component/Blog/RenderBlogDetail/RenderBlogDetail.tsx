@@ -1,12 +1,25 @@
 import React, { Fragment } from "react";
+import { FaInstagramSquare } from "react-icons/fa";
+import { FaFacebook, FaTiktok } from "react-icons/fa6";
+import { TfiTwitter } from "react-icons/tfi";
 interface BlogProps {
   blog: any;
 }
+const icons = [
+  <FaFacebook />,
+  <FaInstagramSquare />,
+  <FaTiktok />,
+  <TfiTwitter />,
+];
+
+
 const RenderBlogDetail = ({ blog }: BlogProps) => {
+  const tagsBlog = blog.map((item:any)=>{return item.tags.length});
+
   return (
     <Fragment>
       {blog.map((item: any) => (
-        <div className="grid grid-cols-5 gap-y-4 gap-x-4" key={item.id}>
+        <div className="grid grid-cols-5 gap-y-4 " key={item.id}>
           <div className="col-span-4 grid gap-y-5 grid-flow-row">
             <img src={item.image} className="object-fill h-[30rem] w-full" />
             <div className="text-base text-gray-500 subpixel-antialiased tracking-wider">
@@ -22,12 +35,12 @@ const RenderBlogDetail = ({ blog }: BlogProps) => {
                 </p>
               ))}
             </article>
-            <div className="border-b-2 my-12" />
-            <div className="grid grid-cols-2">
-              <div className="col-span-1 grid grid-cols-4 gap-x-28">
+            <div className="border-b-2 mt-12" />
+            <div className="flex flex-row items-center justify-between mb-12">
+              <div className="flex flex-row items-center justify-center space-x-4">
                 {item.tags.map((tag: any, index: any) => (
                   <div
-                    className="flex flex-col items-center justify-center border p-2 w-32"
+                    className="flex flex-row items-center justify-center border p-2 w-32 hover:underline cursor-pointer"
                     key={index}>
                     <div key={index} className="text-sm">
                       {tag}
@@ -35,7 +48,14 @@ const RenderBlogDetail = ({ blog }: BlogProps) => {
                   </div>
                 ))}
               </div>
+              <div className="flex flex-row items-center justify-center space-x-4">  
+                <span>Share</span>             
+                      {icons.map((icon, index) => (
+                        <div key={index}>{icon}</div>
+                      ))}
+              </div>
             </div>
+            <div>1</div>
           </div>
         </div>
       ))}

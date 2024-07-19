@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { blog } from "./blog";
 import { Pagination, Stack } from "@mui/material";
 import Link from "next/link";
@@ -10,14 +10,17 @@ const page = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const blogPerPages = 6;
   const totalPages = Math.ceil(blog.length / blogPerPages);
-
+  const isInitialRender = useRef(true);
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
   };
-
   useEffect(() => {
-    window.scrollTo(0, 200);
-  }, [currentPage]);
+    if (isInitialRender.current) {
+      isInitialRender.current = false;
+    } else {
+      window.scrollTo(0, 200);
+    }
+  }, []);
   return (
     <div className="relative top-0 w-full ">
       <ContentFirstPage
