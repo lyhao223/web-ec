@@ -15,9 +15,9 @@ const page = () => {
     setCurrentPage(value);
   };
 
-  useEffect(()=>{
-    window.scrollTo(0,200)
-  },[currentPage])
+  useEffect(() => {
+    window.scrollTo(0, 200);
+  }, [currentPage]);
   return (
     <div className="relative top-0 w-full ">
       <ContentFirstPage
