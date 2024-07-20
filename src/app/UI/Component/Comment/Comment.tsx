@@ -12,11 +12,11 @@ const icons = [
 
 const Comment = () => {
   return (
-    <div className="grid grid-cols-4 gap-x-1">
+    <div className="grid grid-cols-4">
       <div className="col-span-1">
         <img src={avatar.src} className="w-40 h-40" />
       </div>
-      <div className="col-span-3">
+      <div className="col-span-3 -ml-10">
         <div className="flex flex-col items-start justify-center space-y-4">
           <h1 className="text-3xl subpixel-antialiased tracking-tight font-medium">
             Jone Done

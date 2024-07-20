@@ -2,11 +2,14 @@ import React, { Fragment } from "react";
 import { blog } from "../../blog";
 import RenderBlogDetail from "@/app/UI/Component/Blog/RenderBlogDetail/RenderBlogDetail";
 import Comment from "@/app/UI/Component/Comment/Comment";
-import FormReplyComment from "@/app/UI/Component/Comment/FormReplyComment/FormReplyComment";
+import FormPostComment from "@/app/UI/Component/Comment/FormPostComment/FormPostComment";
+import Categories from "@/app/UI/Component/Blog/Categories/Categories";
+import RecentBlog from "@/app/UI/Component/Blog/RecentBlog/RecentBlog";
 const page = ({ params }: { params: { id: any } }) => {
   const blogFilter = blog.filter((item: any) => item.id == params.id);
+  const blogSlice = blog.slice(0, 4);
   return (
-    <div className="p-32 grid grid-cols-5 gap-y-4">
+    <div className="p-32 grid grid-cols-5 gap-y-4 gap-x-40">
       <RenderBlogDetail blog={blogFilter}>
         <div className="border-2 border-black shadow-md w-full h-64 p-10">
           <Comment />
@@ -19,9 +22,13 @@ const page = ({ params }: { params: { id: any } }) => {
             Your email address will not be published. Required fields are marked
             *
           </p>
-          <FormReplyComment />
+          <FormPostComment />
         </div>
       </RenderBlogDetail>
+      <div className="col-span-1 ">
+        <Categories  />
+        <RecentBlog blog={blogSlice} />
+      </div>
     </div>
   );
 };
