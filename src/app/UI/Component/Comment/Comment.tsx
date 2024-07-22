@@ -12,12 +12,12 @@ const icons = [
 
 const Comment = () => {
   return (
-    <div className="grid grid-cols-4">
-      <div className="col-span-1">
-        <img src={avatar.src} className="w-40 h-40" />
+    <div className="grid xl:grid-cols-4 grid-row-2 grid-rows-2 lg:grid-cols-4">
+      <div className="xl:col-span-1 row-span-1 mx-20 lg:mx-0 lg:col-span-1">
+        <img src={avatar.src} className="xl:w-40 xl:h-40" />
       </div>
-      <div className="col-span-3 -ml-10">
-        <div className="flex flex-col items-start justify-center space-y-4">
+      <div className="xl:col-span-3 row-span-1 xl:-ml-10 lg:col-span-3">
+        <div className="flex flex-col xl:items-start lg:items-start items-center justify-center space-y-6">
           <h1 className="text-3xl subpixel-antialiased tracking-tight font-medium">
             Jone Done
           </h1>

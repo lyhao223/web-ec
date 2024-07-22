@@ -3,7 +3,7 @@ import React from 'react'
 
 const RecentBlog = ({blog}:any) => {
   return (
-    <div className='mt-52 flex flex-col items-start justify-start space-y-4'>
+    <div className='xl:mt-52 mt-10 flex flex-col items-start justify-start space-y-4'>
         <h1 className='text-2xl subpixel-antialiased tracking-wide font-medium'>
             Recent Blog
         </h1>

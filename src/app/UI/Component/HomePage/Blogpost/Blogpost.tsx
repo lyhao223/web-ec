@@ -56,7 +56,7 @@ const Blogpost = () => {
               {item.title}
             </h1>
             <p className="leading-8">{item.content}</p>
-            <Link href="/">
+            <Link href={`/blog/blogdetail/${item.id}`}>
               <button
                 className="relative"
                 onMouseEnter={() => handleMouseEnterReadMore(item.id)}
