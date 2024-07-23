@@ -11,7 +11,7 @@ const page = () => {
         contentTitle="Help & FAQ"
         linkText="FAQ"
       />
-      <div className="flex flex-col xl:items-start xl:justify-start 2xl:items-center 2xl:justify-center items-start justify-start space-y-24 xl:mx-96 xl:p-0 my-12">
+      <div className="flex flex-col xl:items-start xl:justify-start 2xl:items-center 2xl:justify-center lg:items-start justify-start  space-y-24 xl:mx-96 xl:p-0 my-12">
         <div className="flex flex-col items-center justify-center space-y-2">
           <h1 className="subpixel-antialiased xl:text-4xl text-2xl tracking-widest">
             Orders & Shipping

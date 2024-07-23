@@ -10,7 +10,7 @@ import ContentFirstPage from "@/app/UI/Reusable/ContentFirstPage";
 const page = () => {
   return (
     <Fragment>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col xl:items-center xl:justify-center lg:items-start lg:justify-start">
         <ContentFirstPage
           img={aboutus.src}
           contentTitle="About us"

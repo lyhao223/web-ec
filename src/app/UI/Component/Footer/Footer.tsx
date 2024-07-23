@@ -90,9 +90,9 @@ const Footer = () => {
   return (
     <footer
       id="footer"
-      className="relative bottom-0 right-0 xl:w-full lg:w-full xl:h-full bg-black xl:p-12 lg:p-14  p-10">
-      <div className="flex xl:flex-row flex-col items-start justify-start lg:items-start lg:justify-start xl:space-x-60  space-y-16 xl:space-y-0">
-        <div className="flex flex-col items-start justify-start text-white space-y-9">
+      className="relative bottom-0 right-0 xl:w-full lg:w-full xl:h-full bg-black xl:p-12 lg:p-14 2xl:w-full p-10">
+      <div className="flex xl:flex-row flex-col items-start justify-start lg:items-start lg:justify-start xl:space-x-32 space-y-16 xl:space-y-0">
+        <div className="flex flex-col items-start justify-start text-white space-y-7">
           <h1 className="subpixel-antialiased text-4xl font-semibold tracking-wider">
             Dunker
           </h1>
@@ -184,7 +184,7 @@ const Footer = () => {
             ©2024 Dunker, All Rights Reserved. With Love by Ly Hao.
           </p>
         </div>
-        <div className="flex flex-row items-center justify-center text-white xl:p-4 mt-8 mb-4 xl:space-x-10 space-x-3 relative">
+        <div className="flex flex-row items-center justify-center text-white xl:p-4 mt-8 mb-4 xl:space-x-8 space-x-3 relative">
           {terms.map((term) => (
             <button
               key={term.id}

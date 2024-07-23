@@ -5,13 +5,13 @@ import ContentFirstPage from "@/app/UI/Reusable/ContentFirstPage";
 const page = () => {
   return (
     <Fragment>
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col xl:items-center xl:justify-center lg:items-start lg:justify-start">
         <ContentFirstPage
           img={shipping.src}
           contentTitle="Shipping & Return"
           linkText="Shipping & Return"
         />
-        <div className="flex flex-col items-center justify-center my-12 space-y-8 xl:p-0 p-2">
+        <div className="flex flex-col xl:items-center justify-center my-12 space-y-8 xl:p-0 p-8">
           <div className="flex flex-col items-start justify-start space-y-4 xl:w-[40rem]">
             <h1 className="subpixel-antialiased tracking-widest font-medium xl:text-5xl text-3xl">
               Covid-19 Update

@@ -22,17 +22,24 @@ const RenderBlogDetail = ({ blog, children }: BlogProps) => {
   return (
     <Fragment>
       {blog.map((item: any) => (
-        <div className="xl:col-span-4 lg:col-span-3 xl:grid xl:gap-y-5 xl:grid-flow-row" key={item.id}>
-          <img src={item.image} className="xl:object-fill xl:h-[30rem] xl:w-full w-auto" />
+        <div
+          className="xl:col-span-4 lg:col-span-3 xl:grid xl:gap-y-5 xl:grid-flow-row"
+          key={item.id}>
+          <img
+            src={item.image}
+            className="xl:object-fill xl:h-[30rem] xl:w-full w-auto lg:w-full md:w-full"
+          />
           <div className="text-base text-gray-500 subpixel-antialiased tracking-wider p-2 xl:p-0">
             {item.time}
           </div>
-          <h1 className="xl:text-5xl text-2xl subpixel-antialiased tracking-wide font-medium xl:w-full w-96 p-2 xl:p-0 lg:w-[35rem]">
+          <h1 className="xl:text-5xl text-2xl subpixel-antialiased tracking-wide font-medium xl:w-full w-96 p-2 xl:p-0 lg:w-[35rem] md:w-full">
             {item.title}
           </h1>
-          <article className="xl:w-full w-96 grid gap-y-8 p-2 xl:p-0 lg:w-[35rem]">
+          <article className="xl:w-full w-96 grid gap-y-8 p-2 xl:p-0 lg:w-[35rem] md:w-full">
             {item.detailContent.split("\n").map((line: any, index: any) => (
-              <p key={index} className="xl:text-base text-sm text-black tracking-wide">
+              <p
+                key={index}
+                className="xl:text-base text-sm text-black tracking-wide">
                 {line}
               </p>
             ))}

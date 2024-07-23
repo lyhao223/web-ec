@@ -1,6 +1,11 @@
-'use client';
-import { Checkbox, FormControl, FormControlLabel, TextField } from "@mui/material";
-import {grey} from "@mui/material/colors";
+"use client";
+import {
+  Checkbox,
+  FormControl,
+  FormControlLabel,
+  TextField,
+} from "@mui/material";
+import { grey } from "@mui/material/colors";
 import React from "react";
 
 const FormPostComment = () => {
@@ -8,32 +13,29 @@ const FormPostComment = () => {
     name: "",
     email: "",
     comment: "",
-
   });
 
   const [error, setError] = React.useState({
     name: false,
     email: false,
     comment: false,
-
   });
 
   const [helperText, setHelperText] = React.useState({
     name: "",
     email: "",
     comment: "",
-
   });
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const {id, value} = event.target;
-    setFormData({...formData, [id]: value});
-  }
+    const { id, value } = event.target;
+    setFormData({ ...formData, [id]: value });
+  };
 
   const validateEmail = (email: string) => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
-  } 
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -43,16 +45,16 @@ const FormPostComment = () => {
       name: false,
       email: false,
       comment: false,
-      save: false
+      save: false,
     };
 
     let newHelperText = {
       name: "",
       email: "",
       comment: "",
-      save: ""
+      save: "",
     };
-    
+
     if (formData.name === "") {
       newError.name = true;
       newHelperText.name = "Name is required";
@@ -71,17 +73,18 @@ const FormPostComment = () => {
       valid = false;
     }
 
-
     setError(newError);
     setHelperText(newHelperText);
 
-    if(valid) {
+    if (valid) {
       console.log(formData);
     }
-  }
+  };
   return (
-    <div className="flex flex-col items-start justify-start w-full">
-      <form onSubmit={handleSubmit} className="flex flex-col items-start justify-start w-full space-y-5">
+    <div className="flex xl:flex-col lg:flex-col items-start justify-start w-full">
+      <form
+        onSubmit={handleSubmit}
+        className="flex xl:flex-col lg:flex-col flex-col items-start justify-start w-full space-y-5">
         <TextField
           id="comment"
           label="Your comment"
@@ -94,7 +97,7 @@ const FormPostComment = () => {
           helperText={helperText.comment}
           onChange={handleInputChange}
         />
-        <div className="flex flex-row items-center justify-start space-x-3 w-full">
+        <div className="flex xl:flex-row lg:flex-row items-center justify-start space-x-3 w-full">
           <TextField
             id="name"
             label="Name"
@@ -117,21 +120,26 @@ const FormPostComment = () => {
             onChange={handleInputChange}
           />
         </div>
-          <FormControlLabel control={<Checkbox sx={{
-          color: grey[800],
-          '&.Mui-checked': {
-            color: grey[700],
-          },
-        }}
-          id="save"
-          required
-          
-        />} label="Save my name, email, and website in this browser for the next time I comment."/>
+        <FormControlLabel
+          control={
+            <Checkbox
+              sx={{
+                color: grey[800],
+                "&.Mui-checked": {
+                  color: grey[700],
+                },
+              }}
+              id="save"
+              required
+            />
+          }
+          label="Save my name, email, and website in this browser for the next time I comment."
+        />
         <button
           className="bg-black text-white p-5 w-72 rounded-md"
           type="submit">
-            Post comment
-          </button>
+          Post comment
+        </button>
       </form>
     </div>
   );
