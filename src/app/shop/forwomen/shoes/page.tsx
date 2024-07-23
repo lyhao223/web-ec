@@ -37,7 +37,11 @@ const page = () => {
     dispatch(fetchCategoryProducts(`women's%20clothing`));
     console.log("done");
   }, [dispatch]);
-
+useEffect(() => {
+    if (products) {
+      document.title = "Shoes - Shopping with every products";
+    }
+  }, [products]);
   //filter and sort products
   const handleOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setOption(e.target.value as "all" | "highToLow" | "lowToHigh"));

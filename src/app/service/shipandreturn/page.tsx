@@ -2,6 +2,10 @@ import React, { Fragment } from "react";
 import shipping from "@/../../assets/content/shipping.jpg";
 import Link from "next/link";
 import ContentFirstPage from "@/app/UI/Reusable/ContentFirstPage";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "Shipping and Return - Need to know",
+};
 const page = () => {
   return (
     <Fragment>

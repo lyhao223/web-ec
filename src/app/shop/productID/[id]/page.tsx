@@ -10,6 +10,7 @@ import { FaRegEye } from "react-icons/fa";
 import { addItemToCart } from "@/app/services/redux/slices/cartSlice";
 import StarRating from "@/app/services/utils/arrayStars";
 
+
 const ProductDetail = ({ params }: { params: { id: any } }) => {
   const { status, product } = useSelector(
     (state: RootState) => state.productDetailSlice
@@ -19,7 +20,11 @@ const ProductDetail = ({ params }: { params: { id: any } }) => {
   useEffect(() => {
     dispatch(fetchDetailProduct(params.id));
   }, [dispatch, params.id]);
-
+    useEffect(() => {
+    if (product) {
+      document.title = `${product.title} - Shopping with every products`;
+    }
+  }, [product]);
   const handleAddToCart = () => {
     if (product) {
       dispatch(addItemToCart({ item: product, quantity: quantity }));

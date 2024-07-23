@@ -18,8 +18,8 @@ const RenderBlog = ({ blog, blogPerPageProp, currentPageProp }: BlogProps) => {
         <div
           className="flex flex-col items-start justify-start p-4 space-y-2"
           key={item.id}>
-          <Link
-            href={`/blog/blogdetail/${item.id}`}
+          <div
+            
             className="flex flex-col items-start justify-start space-y-4"
             suppressHydrationWarning={true}>
             <div className="xl:w-96 relative overflow-hidden">
@@ -37,7 +37,7 @@ const RenderBlog = ({ blog, blogPerPageProp, currentPageProp }: BlogProps) => {
               {item.content}
             </p>
             <ReadMoreFly id={item.id}>Read More</ReadMoreFly>
-          </Link>
+          </div>
         </div>
       ))}
     </Fragment>

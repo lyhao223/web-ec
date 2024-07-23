@@ -14,6 +14,7 @@ import Blogpost from "./UI/Component/HomePage/Blogpost/Blogpost";
 export default function Home() {
   return (
     <section id="home_page">
+
       <CarouselHeroSection />
       <SubArtical />
       <ListItems />

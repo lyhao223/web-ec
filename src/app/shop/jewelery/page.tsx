@@ -27,6 +27,7 @@ const page = () => {
   const products = useSelector(
     (state: RootState) => state.productShop.products
   );
+  
   const visibleProducts = useSelector(
     (state: RootState) => state.productShop.visibleProducts
   );
@@ -35,9 +36,12 @@ const page = () => {
   //fetch all products
   useEffect(() => {
     dispatch(fetchCategoryProducts(`jewelery`));
-    console.log("done");
   }, [dispatch]);
-
+    useEffect(() => {
+    if (products) {
+      document.title = "Jewelery - Shopping with every products";
+    }
+  }, [products]);
   //filter and sort products
   const handleOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setOption(e.target.value as "all" | "highToLow" | "lowToHigh"));

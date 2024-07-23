@@ -7,6 +7,10 @@ import electronic from "@/../../assets/content/electronic.jpg";
 import jewelry from "@/../../assets/content/jewelry.jpg";
 import Link from "next/link";
 import ContentFirstPage from "@/app/UI/Reusable/ContentFirstPage";
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "About Us",
+};
 const page = () => {
   return (
     <Fragment>

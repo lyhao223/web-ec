@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, use } from "react";
 import { blog } from "../../blog";
 import RenderBlogDetail from "@/app/UI/Component/Blog/RenderBlogDetail/RenderBlogDetail";
 import Comment from "@/app/UI/Component/Comment/Comment";
@@ -8,6 +8,7 @@ import RecentBlog from "@/app/UI/Component/Blog/RecentBlog/RecentBlog";
 const page = ({ params }: { params: { id: any } }) => {
   const blogFilter = blog.filter((item: any) => item.id == params.id);
   const blogSlice = blog.slice(0, 4);
+
   return (
     <div className="xl:p-32 xl:grid xl:grid-cols-5 xl:gap-y-4 xl:gap-x-36 lg:p-5 lg:grid lg:grid-cols-4  lg:gap-x-4 md:w-full">
       <RenderBlogDetail blog={blogFilter}>

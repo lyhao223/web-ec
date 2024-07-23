@@ -37,7 +37,11 @@ const page = () => {
     dispatch(fetchCategoryProducts(`electronics`));
     console.log("done");
   }, [dispatch]);
-
+  useEffect(() => {
+    if (products) {
+      document.title = "Electrics - Shopping with every products";
+    }
+  }, [products]);
   //filter and sort products
   const handleOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setOption(e.target.value as "all" | "highToLow" | "lowToHigh"));

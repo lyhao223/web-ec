@@ -2,7 +2,10 @@ import React, { Fragment } from "react";
 import faq from "@/../../assets/content/faq.jpg";
 import ContentFirstPage from "@/app/UI/Reusable/ContentFirstPage";
 import FaqAccordion from "@/app/UI/Reusable/FaqAccordion";
-
+import { Metadata } from "next";
+export const metadata: Metadata = {
+  title: "FAQ - Help you every step of the way",
+};
 const page = () => {
   return (
     <Fragment>

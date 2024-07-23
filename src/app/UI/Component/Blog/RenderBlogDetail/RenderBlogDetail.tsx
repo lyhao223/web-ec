@@ -1,8 +1,10 @@
+'use client'
 import React, { Fragment } from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebook, FaTiktok } from "react-icons/fa6";
 import { TfiTwitter } from "react-icons/tfi";
 import Comment from "../../Comment/Comment";
+
 interface BlogProps {
   blog: any;
   children: React.ReactNode;
