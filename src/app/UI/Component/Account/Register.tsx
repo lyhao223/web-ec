@@ -24,7 +24,7 @@ const Register = ({
     },
   }));
   return (
-    <div className="relative lg:top-16 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[70rem] md:left-52 md:top-52 top-56 left-5 h-96 w-96 bg-white border-2 rounded-lg">
+    <div className="relative lg:top-52 lg:left-72 xl:top-28 xl:left-[35rem] 2xl:left-[37rem] md:left-52 md:top-52 top-56 left-0 h-[48rem] w-[40rem] bg-white border-2 rounded-lg">
       <button
         className="absolute top-3 right-5 rounded-full hover:bg-red-600 bg-gray-600 transition-all duration-200 ease-linear p-2"
         onClick={handleCloseAccount}>
@@ -34,22 +34,21 @@ const Register = ({
         <h1 className="text-4xl subpixel-antialiased tracking-widest font-medium">
           Register
         </h1>
-        <div className="flex flex-col items-start justify-start w-full space-y-4">
-          <TextField
-            id="username"
-            label="Username"
-            variant="outlined"
-            autoComplete="off"
-            fullWidth
-          />
-          <TextField
-            id="password"
-            label="Password"
-            variant="outlined"
-            autoComplete="off"
-            fullWidth
-          />
-        </div>
+        <form className="flex flex-col items-start justify-center space-y-5 ">
+          <div className="flex flex-row items-start justify-start space-x-7">
+            <TextField id="firstname" label="First Name" variant="outlined" fullWidth />
+            <TextField id="lastname" label="Last Name" variant="outlined" fullWidth />
+          </div>
+            <TextField id="email" label="Email" variant="outlined" fullWidth type="email" required/>
+            <TextField id="username" label="Username" variant="outlined" fullWidth  required/>
+            <TextField id="password" label="Password" variant="outlined" fullWidth type="password" required/>
+            <TextField id="phone" label="Phone" variant="outlined" fullWidth type="tel" required/>
+          <div className="flex flex-row items-start justify-between space-x-7">
+            <TextField id="city" label="City" variant="outlined" fullWidth />
+            <TextField id="number" label="Number" variant="outlined" fullWidth />
+            <TextField id="zipcode" label="Zipcode" variant="outlined" fullWidth />
+          </div>
+          <TextField id="street" label="Street" variant="outlined" fullWidth />
         <div className="flex flex-row items-start justify-center">
           <button onClick={handleToggleAccount}>
             <p className="text-xs text-blue-700">Do you have an account?</p>
@@ -58,6 +57,7 @@ const Register = ({
         <ColorButton variant="contained" size="large" fullWidth>
           Register
         </ColorButton>
+        </form>
       </div>
     </div>
   );
