@@ -18,12 +18,16 @@ import { Fragment, useEffect, useRef, useState } from "react";
 import { Box, Modal } from "@mui/material";
 import FlyModal from "../../Animation/FlyModal";
 import ItemsModal from "./ItemsModal";
+import Login from "../Account/Login";
+import Register from "../Account/Register";
 export default function Header() {
   const quantity = useSelector((state: RootState) => state.cart.items);
   const TotalQuantity = quantity.reduce((acc, item) => acc + item.quantity, 0);
   const [open, setOpen] = useState(false);
+  const [openAccount, setOpenAccount] = useState(false);
   const [isClient, setIsClient] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
+  const [toggleAccount, setToggleAccount] = useState(false);
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -34,6 +38,17 @@ export default function Header() {
     setOpen(false);
   };
 
+  const handleOpenAccount = () => {
+    setOpenAccount(!openAccount);
+  };
+
+  const handleCloseAccount = () => {
+    setOpenAccount(false);
+  };
+
+  const handleToggleAccount = () => {
+    setToggleAccount(!toggleAccount);
+  };
   const quantityUI = (
     <div className=" bg-white w-8 h-8 rounded-full flex items-center justify-center">
       <span className="text-center font-bold text-black">{TotalQuantity}</span>
@@ -85,7 +100,9 @@ export default function Header() {
 
             <div className="flex flex-row items-center justify-center">
               {/* <FlyDownSearchBar SearchInput={SearchInput} /> */}
-              <button className="flex flex-row items-center justify-center text-white font-bold m-5 border-r pr-2 space-x-2">
+              <button
+                className="flex flex-row items-center justify-center text-white font-bold m-5 border-r pr-2 space-x-2"
+                onClick={handleOpenAccount}>
                 <span>Account</span>
                 <MdAccountCircle
                   className="inline-block text-white"
@@ -106,6 +123,21 @@ export default function Header() {
       <Modal open={open} onClose={handleCloseModal} disableScrollLock>
         <FlyModal open={open} ref={modalRef}>
           <ItemsModal close={handleCloseModal} />
+        </FlyModal>
+      </Modal>
+      <Modal open={openAccount} onClose={handleCloseAccount} disableScrollLock>
+        <FlyModal open={openAccount}>
+          {!toggleAccount ? (
+            <Login
+              handleCloseAccount={handleCloseAccount}
+              handleToggleAccount={handleToggleAccount}
+            />
+          ) : (
+            <Register
+              handleCloseAccount={handleCloseAccount}
+              handleToggleAccount={handleToggleAccount}
+            />
+          )}
         </FlyModal>
       </Modal>
     </>

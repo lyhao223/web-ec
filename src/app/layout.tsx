@@ -8,13 +8,11 @@ import Footer from "./UI/Component/Footer/Footer";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: {
-    absolute:'Dunker Store - Everything you need',
-    default: 'Dunker Store - Everything you need',
-    template: '%s | Dunker Store',
+    absolute: "Dunker Store - Everything you need",
+    default: "Dunker Store - Everything you need",
+    template: "%s | Dunker Store",
   },
 };
-
-
 
 export default function RootLayout({
   children,
@@ -27,9 +25,9 @@ export default function RootLayout({
         <ReduxProvider>
           <Header />
           {children}
-        </ReduxProvider>
 
-        <Footer />
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );

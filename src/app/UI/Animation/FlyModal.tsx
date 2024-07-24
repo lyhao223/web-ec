@@ -3,7 +3,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import React, { forwardRef } from "react";
 interface FlyModalProps {
   children: React.ReactNode;
-  open: boolean;
+  open?: boolean;
 }
 const FlyModal = forwardRef<HTMLDivElement, FlyModalProps>(
   ({ children, open }, ref) => {

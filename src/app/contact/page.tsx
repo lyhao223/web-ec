@@ -1,5 +1,11 @@
 "use client";
-import React, { Fragment, ReactEventHandler, use, useEffect, useState } from "react";
+import React, {
+  Fragment,
+  ReactEventHandler,
+  use,
+  useEffect,
+  useState,
+} from "react";
 import ContentFirstPage from "@/app/UI/Reusable/ContentFirstPage";
 import contact from "@/../../assets/content/contact.jpg";
 import { MdOutlineMailOutline } from "react-icons/md";
@@ -34,7 +40,8 @@ const page = () => {
   });
 
   useEffect(() => {
-    document.title = "Contact Us - Will help you every step of the way - Dunk Store";
+    document.title =
+      "Contact Us - Will help you every step of the way - Dunk Store";
   }, []);
   const [error, setError] = useState({
     name: false,
