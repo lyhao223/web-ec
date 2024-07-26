@@ -20,17 +20,17 @@ import { TextField } from "@mui/material";
 import Button from "../UI/Reusable/Button";
 
 const icons = [
-  <FaFacebook size={20} />,
-  <FaInstagram size={20} />,
-  <FaTwitter size={20} />,
-  <FaTiktok size={20} />,
+  { id: 1, icon: <FaFacebook size={20} /> },
+  { id: 1, icon: <FaInstagram size={20} /> },
+  { id: 1, icon: <FaTwitter size={20} /> },
+  { id: 1, icon: <FaTiktok size={20} /> },
 ];
-const renderIcons = icons.map((icon, index) => (
-  <div className="cursor-pointer" key={index}>
-    {icon}
+const renderIcons = icons.map((icon) => (
+  <div className="cursor-pointer" key={icon.id}>
+    {icon.icon}
   </div>
 ));
-const page = () => {
+const Page = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -228,4 +228,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

@@ -19,7 +19,7 @@ import SliderPrice from "@/app/UI/Component/ShopPage/SliderPrice/SliderPrice";
 import Button from "@/app/UI/Reusable/Button";
 import { fetchCategoryProducts } from "@/app/services/redux/slices/productsShopSlice";
 
-const page = () => {
+const Page = () => {
   const [value, setValue] = useState([0, 2000]);
   const [error, setError] = useState({ min: false, max: false });
   const dispatch = useDispatch<AppDispatch>();
@@ -38,10 +38,10 @@ const page = () => {
     console.log("done");
   }, [dispatch]);
   useEffect(() => {
-      if (products) {
-        document.title = "Jeans for men - Shopping with every products";
-      }
-    }, [products]);
+    if (products) {
+      document.title = "Jeans for men - Shopping with every products";
+    }
+  }, [products]);
   //filter and sort products
   const handleOption = (e: React.ChangeEvent<HTMLSelectElement>) => {
     dispatch(setOption(e.target.value as "all" | "highToLow" | "lowToHigh"));
@@ -185,4 +185,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

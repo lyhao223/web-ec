@@ -1,13 +1,13 @@
 import React from "react";
 import avatar from "@/../../assets/blogpost/avatar.webp";
 import { FaInstagramSquare } from "react-icons/fa";
-import { FaFacebook, FaTiktok } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaTiktok, FaTwitter } from "react-icons/fa6";
 import { TfiTwitter } from "react-icons/tfi";
 const icons = [
-  <FaFacebook />,
-  <FaInstagramSquare />,
-  <FaTiktok />,
-  <TfiTwitter />,
+  { id: 1, icon: <FaFacebook size={20} /> },
+  { id: 1, icon: <FaInstagram size={20} /> },
+  { id: 1, icon: <FaTwitter size={20} /> },
+  { id: 1, icon: <FaTiktok size={20} /> },
 ];
 
 const Comment = () => {
@@ -28,8 +28,8 @@ const Comment = () => {
           </article>
           <div className="flex flex-row items-center justify-center space-x-4">
             <span>Share</span>
-            {icons.map((icon, index) => (
-              <div key={index}>{icon}</div>
+            {icons.map((icon) => (
+              <div key={icon.id}>{icon.icon}</div>
             ))}
           </div>
         </div>

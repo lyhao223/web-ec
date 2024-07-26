@@ -1,6 +1,6 @@
 "use client";
 import React, { Fragment, useState } from "react";
-import { FaFacebook } from "react-icons/fa";
+import { FaFacebook, FaInstagram, FaTwitter } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
 import { TfiTwitter } from "react-icons/tfi";
@@ -54,10 +54,10 @@ const menuLinksInFooter = [
 ];
 const paymentMethods = [visa, master, amex, card, discver];
 const icons = [
-  <FaFacebook />,
-  <FaInstagramSquare />,
-  <FaTiktok />,
-  <TfiTwitter />,
+  { id: 1, icon: <FaFacebook size={20} /> },
+  { id: 1, icon: <FaInstagram size={20} /> },
+  { id: 1, icon: <FaTwitter size={20} /> },
+  { id: 1, icon: <FaTiktok size={20} /> },
 ];
 const terms = [
   { id: "contact", title: "Contact Us" },
@@ -102,9 +102,9 @@ const Footer = () => {
             trends.
           </p>
           <div className="flex flex-row items-start justify-start space-x-8 cursor-pointer text-3xl">
-            {icons.map((icon, index) => (
-              <Gesture scaleHover={1.1} key={index}>
-                {icon}
+            {icons.map((icon) => (
+              <Gesture scaleHover={1.1} key={icon.id}>
+                {icon.icon}
               </Gesture>
             ))}
           </div>

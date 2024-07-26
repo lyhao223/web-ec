@@ -19,7 +19,7 @@ import SliderPrice from "@/app/UI/Component/ShopPage/SliderPrice/SliderPrice";
 import Button from "@/app/UI/Reusable/Button";
 import { fetchCategoryProducts } from "@/app/services/redux/slices/productsShopSlice";
 
-const page = () => {
+const Page = () => {
   const [value, setValue] = useState([0, 2000]);
   const [error, setError] = useState({ min: false, max: false });
   const dispatch = useDispatch<AppDispatch>();
@@ -37,7 +37,7 @@ const page = () => {
     dispatch(fetchCategoryProducts(`men's%20clothing`));
     console.log("done");
   }, [dispatch]);
-useEffect(() => {
+  useEffect(() => {
     if (products) {
       document.title = "Shirt for man - Shopping with every products";
     }
@@ -185,4 +185,4 @@ useEffect(() => {
   );
 };
 
-export default page;
+export default Page;

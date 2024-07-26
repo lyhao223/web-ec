@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Shipping and Return - Need to know",
 };
-const page = () => {
+const Page = () => {
   return (
     <Fragment>
       <div className="flex flex-col xl:items-center xl:justify-center lg:items-start lg:justify-start">
@@ -128,4 +128,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

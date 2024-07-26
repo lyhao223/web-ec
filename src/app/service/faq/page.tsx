@@ -6,7 +6,7 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "FAQ - Help you every step of the way",
 };
-const page = () => {
+const Page = () => {
   return (
     <Fragment>
       <ContentFirstPage
@@ -60,4 +60,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;

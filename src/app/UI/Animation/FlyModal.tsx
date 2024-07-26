@@ -25,5 +25,5 @@ const FlyModal = forwardRef<HTMLDivElement, FlyModalProps>(
     );
   }
 );
-
+FlyModal.displayName = "FlyModal";
 export default FlyModal;
