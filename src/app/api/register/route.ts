@@ -21,11 +21,14 @@ interface IUser {
 
 export default async function POST(req: Request, res: Response) {
     try {        
+        await connectMongoose();
         const { email, username, password, name: { firstName, lastName }, address: {city, street}, phone } = await req.json() as IUser;
         const hashedPassword = await bcrypt.hash(password, 12);
-        const exstingUser = await User.findOne({email} || {username} || {phone});
+        const exstingUser = await User.findOne({
+            $or: [{ email }, { username }, { phone }]
+        });
         if(exstingUser) return NextResponse.json({ message: "User already exists" }, { status: 409 });
-        await connectMongoose();
+        
         await User.create({ email, username, password: hashedPassword, name: { firstName, lastName }, address: {city, street}, phone });
 
         return NextResponse.json({ message: "User registered successfully" }, { status: 201 });
