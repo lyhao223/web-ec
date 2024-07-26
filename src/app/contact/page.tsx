@@ -1,11 +1,5 @@
 "use client";
-import React, {
-  Fragment,
-  ReactEventHandler,
-  use,
-  useEffect,
-  useState,
-} from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import ContentFirstPage from "@/app/UI/Reusable/ContentFirstPage";
 import contact from "@/../../assets/content/contact.jpg";
 import { MdOutlineMailOutline } from "react-icons/md";
@@ -15,21 +9,22 @@ import { FaFacebook } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
-import { render } from "react-dom";
 import { TextField } from "@mui/material";
 import Button from "../UI/Reusable/Button";
 
 const icons = [
   { id: 1, icon: <FaFacebook size={20} /> },
-  { id: 1, icon: <FaInstagram size={20} /> },
-  { id: 1, icon: <FaTwitter size={20} /> },
-  { id: 1, icon: <FaTiktok size={20} /> },
+  { id: 2, icon: <FaInstagram size={20} /> },
+  { id: 3, icon: <FaTwitter size={20} /> },
+  { id: 4, icon: <FaTiktok size={20} /> },
 ];
+
 const renderIcons = icons.map((icon) => (
   <div className="cursor-pointer" key={icon.id}>
     {icon.icon}
   </div>
 ));
+
 const Page = () => {
   const [formData, setFormData] = useState({
     name: "",
@@ -43,6 +38,7 @@ const Page = () => {
     document.title =
       "Contact Us - Will help you every step of the way - Dunk Store";
   }, []);
+
   const [error, setError] = useState({
     name: false,
     email: false,

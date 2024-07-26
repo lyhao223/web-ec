@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import shipping from "@/../../assets/content/shipping.jpg";
-import Link from "next/link";
 import ContentFirstPage from "@/app/UI/Reusable/ContentFirstPage";
 import { Metadata } from "next";
 export const metadata: Metadata = {
@@ -101,7 +100,7 @@ const Page = () => {
             <p>
               Our shipping charges do not include any import taxes and duties
               that may arise when entering your country. Customers are
-              responsible for payment of such charges and these can't be
+              responsible for payment of such charges and these can&apos;t be
               calculated prior to shipping.
             </p>
           </div>

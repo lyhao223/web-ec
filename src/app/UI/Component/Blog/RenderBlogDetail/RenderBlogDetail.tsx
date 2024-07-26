@@ -1,7 +1,7 @@
 "use client";
 import React, { Fragment } from "react";
 import { FaInstagramSquare } from "react-icons/fa";
-import { FaFacebook, FaTiktok } from "react-icons/fa6";
+import { FaFacebook, FaInstagram, FaTiktok, FaTwitter } from "react-icons/fa6";
 import { TfiTwitter } from "react-icons/tfi";
 import Comment from "../../Comment/Comment";
 
@@ -10,10 +10,10 @@ interface BlogProps {
   children: React.ReactNode;
 }
 const icons = [
-  <FaFacebook />,
-  <FaInstagramSquare />,
-  <FaTiktok />,
-  <TfiTwitter />,
+  { id: 1, icon: <FaFacebook size={20} /> },
+  { id: 2, icon: <FaInstagram size={20} /> },
+  { id: 3, icon: <FaTwitter size={20} /> },
+  { id: 4, icon: <FaTiktok size={20} /> },
 ];
 
 const RenderBlogDetail = ({ blog, children }: BlogProps) => {
@@ -62,8 +62,8 @@ const RenderBlogDetail = ({ blog, children }: BlogProps) => {
             </div>
             <div className="flex flex-row items-center justify-center space-x-4">
               <span>Share</span>
-              {icons.map((icon, index) => (
-                <div key={index}>{icon}</div>
+              {icons.map((icon) => (
+                <div key={icon.id}>{icon.icon}</div>
               ))}
             </div>
           </div>

@@ -8,7 +8,7 @@ import ptitle__blog from "@/../../assets/blogpost/ptitle-blog-grid.webp";
 import ContentFirstPage from "../UI/Reusable/ContentFirstPage";
 import Head from "next/head";
 
-const page = () => {
+const Page = () => {
   const [currentPage, setCurrentPage] = React.useState(1);
   const blogPerPages = 6;
   const totalPages = Math.ceil(blog.length / blogPerPages);
@@ -62,4 +62,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
