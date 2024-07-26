@@ -38,7 +38,7 @@ const Login = ({
     
   };
   return (
-    <div className="relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[48rem] md:left-52 md:top-52 top-56 left-5 h-96 w-96 bg-white border-2 rounded-lg">
+    <div className="relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[68rem] md:left-52 md:top-52 top-56 left-9 xl:h-96 xl:w-96 h-[23rem] w-80  bg-white border-2 rounded-lg">
       <button
         className="absolute top-3 right-5 rounded-full hover:bg-red-600 bg-gray-500 transition duration-200 ease-linear p-2"
         onClick={handleCloseAccount}>
@@ -72,12 +72,12 @@ const Login = ({
             value={login.password}
           />
 
-          <div className="flex flex-row items-center justify-between space-x-11">
+          <div className="flex xl:flex-row flex-col xl:items-center xl:justify-between items-start justify-center space-y-2 xl:space-x-11">
             <button onClick={handleToggleAccount}>
-              <p className="text-xs text-blue-700">Did you have an account?</p>
+              <p className="text-xs text-blue-700 text-nowrap">Did you have an account?</p>
             </button>
             <button>
-              <p className="text-xs text-blue-700">Forgot your password</p>
+              <p className="text-xs text-blue-700 text-nowrap">Forgot your password</p>
             </button>
           </div>
           <ColorButton variant="contained" size="large" fullWidth type="submit">

@@ -58,7 +58,7 @@ export default function Header() {
   return (
     <>
       <header className="xl:fixed top-0 z-20 min-w-full bg-black">
-        <div className="flex flex-col xl:flex-row 2xl:flex-row lg:flex-col items-center lg:justify-center lg:items-center 2xl:justify-center 2xl:items-center space-x-0 xl:space-x-40">
+        <div className="flex flex-col xl:flex-row 2xl:flex-row lg:flex-col items-center lg:justify-center lg:items-center 2xl:justify-center 2xl:items-center -space-x-4 xl:space-x-40">
           <div className="w-52 h-auto p-2">
             <Link href="/">
               <img src={LogoDunker.src} className="text-white" />
