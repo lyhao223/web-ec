@@ -1,12 +1,8 @@
 import React, { FormEvent, useDebugValue, useState } from "react";
-import FlyModal from "../../Animation/FlyModal";
 import { Button, ButtonProps, Modal, styled, TextField } from "@mui/material";
-import Link from "next/link";
 import { purple } from "@mui/material/colors";
 import { MdClose } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/app/services/redux/store";
-import { loginUser } from "@/app/services/redux/slices/userSlice";
+
 interface LoginProps {
   openAccount?: boolean;
   handleOpenAccount?: () => void;
@@ -27,12 +23,6 @@ const Login = ({
     },
   }));
 
-  const dispatch = useDispatch<AppDispatch>();
-  const userStatus = useSelector((state: RootState) => state.userSlice.status);
-  const userError = useSelector((state: RootState) => state.userSlice.error);
-  const token = useSelector((state: RootState) => state.userSlice.token);
-  const user = useSelector((state: RootState) => state.userSlice.user);
-  const name = useSelector((state: RootState) => state.userSlice.name);
   const [login, setLogin] = useState({
     username: "",
     password: "",
@@ -45,7 +35,7 @@ const Login = ({
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault();
-    dispatch(loginUser(login));
+    
   };
   return (
     <div className="relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[48rem] md:left-52 md:top-52 top-56 left-5 h-96 w-96 bg-white border-2 rounded-lg">
@@ -94,9 +84,6 @@ const Login = ({
             Login
           </ColorButton>
         </form>
-        {userStatus === "loading" && <p>Logging in...</p>}
-        {userStatus === "succeeded" && token && <p>{token}</p>}
-        {userStatus === "failed" && <p>Error: {userError}</p>}
       </div>
     </div>
   );

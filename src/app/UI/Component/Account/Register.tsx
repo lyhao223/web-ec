@@ -1,12 +1,10 @@
 import React, { FormEvent, use, useState } from "react";
-import FlyModal from "../../Animation/FlyModal";
 import { Button, ButtonProps, Modal, styled, TextField } from "@mui/material";
-import Link from "next/link";
 import { purple } from "@mui/material/colors";
 import { MdClose } from "react-icons/md";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, RootState } from "@/app/services/redux/store";
-import { registerUser } from "@/app/services/redux/slices/userSlice";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { set } from "mongoose";
+
 interface LoginProps {
   openAccount?: boolean;
   handleOpenAccount?: () => void;
@@ -27,9 +25,6 @@ const Register = ({
     },
   }));
 
-  const dispatch = useDispatch<AppDispatch>();
-  const userStatus = useSelector((state: RootState) => state.userSlice.status);
-  const errorStatus = useSelector((state: RootState) => state.userSlice.error);
 
   const [formData, setFormData] = useState({
     email: "",
@@ -39,42 +34,104 @@ const Register = ({
     lastname: "",
     city: "",
     street: "",
-    number: "",
-    zipcode: "",
-    lat: "",
-    long: "",
     phone: "",
   });
 
+  const [registerStatus, setRegisterStatus] = useState<string | null | any>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const loadingIcon = (<button type="button" className="bg-purple-500 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg" disabled>
+  <AiOutlineLoading3Quarters className="animate-spin"/>
+  <span>Processing...</span>
+  </button>)
+  const [error, setError] = useState({
+    email: false,
+    username: false,
+    password: false,
+    phone: false,
+    firtName: false,
+    lastName: false,
+    city: false,
+    street: false,
+  });
+
+  const [helperText, setHelperText] = useState({
+    email: "",
+    username: "",
+    password: "",
+    phone: "",
+    firtName: "",
+    lastName: "",
+    city: "",
+    street: "",
+  });
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
-  };
+    let isValid = true;
+    let errorMessage = "";
 
-  const handleSubmit = (e: FormEvent) => {
+    if (name === "email" && !validateEmail(value)) {
+      isValid = false;
+      errorMessage = "Invalid email format";
+    } else if ((name === "firstname" || name === "lastname" || name === "city" || name === "street") && value.trim() === null) {
+      isValid = false;
+      errorMessage = "This field is required";
+    } else if (name === "password" && value.length < 6) {
+      isValid = false;
+      errorMessage = "Password must be at least 6 characters";
+    } else if (name === "phone" && !/^\d+$/.test(value)) {
+      isValid = false;
+      errorMessage = "Invalid phone number";
+    }
+
+    setError({ ...error, [name]: !isValid });
+    setHelperText({ ...helperText, [name]: errorMessage });
+  };
+  const validateEmail = (email: string) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(String(email).toLowerCase());
+  };
+  const handleSubmit = async(e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
+    setRegisterStatus(null);
+
+    
     const userData = {
       email: formData.email,
       username: formData.username,
       password: formData.password,
       name: {
-        firstname: formData.firstname,
-        lastname: formData.lastname,
+        firstName: formData.firstname,
+        lastName: formData.lastname,
       },
       address: {
         city: formData.city,
         street: formData.street,
-        number: formData.number,
-        zipcode: formData.zipcode,
-        geolocation: {
-          lat: formData.lat,
-          long: formData.long,
-        },
       },
       phone: formData.phone,
     };
-    dispatch(registerUser(userData));
-    console.log(userData);
+    try {
+     const res = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(userData),
+      })
+      if(res.status === 201){
+        setRegisterStatus("success");
+      }else if(res.status === 409){
+        setRegisterStatus("checkInfo");
+      
+      } else{
+        setRegisterStatus("error");
+      }
+    } catch (error) {
+    }finally{
+      setIsLoading(false);
+    }
+    
   };
 
   return (
@@ -100,6 +157,8 @@ const Register = ({
               fullWidth
               onChange={handleChange}
               value={formData.firstname}
+              error={error.firtName}
+              helperText={helperText.firtName}
             />
             <TextField
               id="lastname"
@@ -109,6 +168,8 @@ const Register = ({
               fullWidth
               onChange={handleChange}
               value={formData.lastname}
+              error={error.lastName}
+              helperText={helperText.lastName}
             />
           </div>
           <TextField
@@ -117,10 +178,12 @@ const Register = ({
             label="Email"
             variant="outlined"
             fullWidth
-            type="email"
+            type="text"
             required
             onChange={handleChange}
             value={formData.email}
+            error={error.email}
+            helperText={helperText.email}
           />
           <TextField
             id="username"
@@ -131,6 +194,8 @@ const Register = ({
             required
             onChange={handleChange}
             value={formData.username}
+            error={error.username}
+            helperText={helperText.username}
           />
           <TextField
             id="password"
@@ -142,6 +207,8 @@ const Register = ({
             required
             onChange={handleChange}
             value={formData.password}
+            error={error.password}
+            helperText={helperText.password}
           />
           <TextField
             id="phone"
@@ -153,6 +220,8 @@ const Register = ({
             required
             onChange={handleChange}
             value={formData.phone}
+            error={error.phone}
+            helperText={helperText.phone}
           />
           <div className="flex flex-row items-start justify-between space-x-7">
             <TextField
@@ -161,26 +230,10 @@ const Register = ({
               label="City"
               variant="outlined"
               fullWidth
-            />
-            <TextField
-              id="number"
-              name="number"
-              label="Number"
-              variant="outlined"
-              fullWidth
               onChange={handleChange}
-              value={formData.number}
+              value={formData.city}
             />
-            <TextField
-              id="zipcode"
-              name="zipcode"
-              label="Zipcode"
-              variant="outlined"
-              fullWidth
-              onChange={handleChange}
-              value={formData.zipcode}
-            />
-          </div>
+
           <TextField
             id="street"
             name="street"
@@ -190,6 +243,7 @@ const Register = ({
             onChange={handleChange}
             value={formData.street}
           />
+          </div>
           <div className="flex flex-row items-start justify-center">
             <button onClick={handleToggleAccount}>
               <p className="text-xs text-blue-700">Do you have an account?</p>
@@ -198,12 +252,12 @@ const Register = ({
           <ColorButton variant="contained" size="large" fullWidth type="submit">
             Register
           </ColorButton>
-          {userStatus === "loading" && <p>Logging in...</p>}
-
-          {userStatus === "failed" && <p>Error: {errorStatus}</p>}
-
-          {userStatus === "succeeded" && <p>Done</p>}
+          
         </form>
+        {isLoading && loadingIcon}
+        {registerStatus === "success" && <p>User registered successfully!</p>}
+        {registerStatus === "checkInfo" && <p>Username or email or phone already taken</p>}
+        {registerStatus === "error" && <p>Registration failed. Please try again.</p>}
       </div>
     </div>
   );
