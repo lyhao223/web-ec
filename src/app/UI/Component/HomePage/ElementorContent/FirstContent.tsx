@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import dress from "../../../../../../assets/content/dress.jpg";
 import shirt from "../../../../../../assets/content/shirt.jpg";
 import Link from "next/link";
@@ -76,6 +76,3 @@ const FirstContent = () => {
 };
 
 export default FirstContent;
-function useState(arg0: boolean): [any, any] {
-  throw new Error("Function not implemented.");
-}

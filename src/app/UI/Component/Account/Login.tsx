@@ -95,9 +95,8 @@ const Login = ({
           </ColorButton>
         </form>
         {userStatus === "loading" && <p>Logging in...</p>}
-        {userStatus === "succeeded" && token && (<p>{token}</p>)}
+        {userStatus === "succeeded" && token && <p>{token}</p>}
         {userStatus === "failed" && <p>Error: {userError}</p>}
-        
       </div>
     </div>
   );
