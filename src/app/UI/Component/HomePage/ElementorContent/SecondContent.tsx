@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import accessory from "../../../../../../assets/content/accessory.jpg";
 import blouses from "../../../../../../assets/content/blouses.jpg";
 import Link from "next/link";
 const SecondContent = () => {
-  const [showFlyoutFirstImage, setShowFlyoutFirstImage] = React.useState(false);
-  const [showFlyoutSecondImage, setShowFlyoutSecondImage] =
-    React.useState(false);
+  const [showFlyoutFirstImage, setShowFlyoutFirstImage] = useState(false);
+  const [showFlyoutSecondImage, setShowFlyoutSecondImage] = useState(false);
 
   const handleMouseEnterFirstImage = () => {
     setShowFlyoutFirstImage(true);

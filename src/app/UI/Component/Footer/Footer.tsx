@@ -1,5 +1,5 @@
 "use client";
-import React, { Fragment } from "react";
+import React, { Fragment, useState } from "react";
 import { FaFacebook } from "react-icons/fa";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaTiktok } from "react-icons/fa";
@@ -66,9 +66,9 @@ const terms = [
   { id: "sitemap", title: "Site Map" },
 ];
 const Footer = () => {
-  const [showFlyoutShop, setShowFlyoutShop] = React.useState(null);
-  const [showFlyoutLink, setShowFlyoutLink] = React.useState(null);
-  const [showFlyoutTerm, setShowFlyoutTerm] = React.useState(null);
+  const [showFlyoutShop, setShowFlyoutShop] = useState(null);
+  const [showFlyoutLink, setShowFlyoutLink] = useState(null);
+  const [showFlyoutTerm, setShowFlyoutTerm] = useState(null);
   const handleMouseEnter = (id: any) => {
     setShowFlyoutShop(id);
   };

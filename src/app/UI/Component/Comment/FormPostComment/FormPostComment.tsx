@@ -6,22 +6,22 @@ import {
   TextField,
 } from "@mui/material";
 import { grey } from "@mui/material/colors";
-import React from "react";
+import React, { useState } from "react";
 
 const FormPostComment = () => {
-  const [formData, setFormData] = React.useState({
+  const [formData, setFormData] = useState({
     name: "",
     email: "",
     comment: "",
   });
 
-  const [error, setError] = React.useState({
+  const [error, setError] = useState({
     name: false,
     email: false,
     comment: false,
   });
 
-  const [helperText, setHelperText] = React.useState({
+  const [helperText, setHelperText] = useState({
     name: "",
     email: "",
     comment: "",
