@@ -20,6 +20,7 @@ import FlyModal from "../../Animation/FlyModal";
 import ItemsModal from "./ItemsModal";
 import Login from "../Account/Login";
 import Register from "../Account/Register";
+import Image from "next/image";
 export default function Header() {
   const quantity = useSelector((state: RootState) => state.cart.items);
   const TotalQuantity = quantity.reduce((acc, item) => acc + item.quantity, 0);
