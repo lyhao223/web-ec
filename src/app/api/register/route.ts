@@ -19,7 +19,7 @@ interface IUser {
     phone: string;
 }
 
-export async function POST(req: Request) {
+export default async function POST(req: Request, res: Response) {
     try {        
         const { email, username, password, name: { firstName, lastName }, address: {city, street}, phone } = await req.json() as IUser;
         const hashedPassword = await bcrypt.hash(password, 12);
