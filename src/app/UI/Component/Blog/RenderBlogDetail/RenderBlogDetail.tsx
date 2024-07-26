@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { Fragment } from "react";
 import { FaInstagramSquare } from "react-icons/fa";
 import { FaFacebook, FaTiktok } from "react-icons/fa6";
@@ -26,7 +26,8 @@ const RenderBlogDetail = ({ blog, children }: BlogProps) => {
       {blog.map((item: any) => (
         <div
           className="xl:col-span-4 lg:col-span-3 xl:grid xl:gap-y-5 xl:grid-flow-row"
-          key={item.id}>
+          key={item.id}
+          id={item.id}>
           <img
             src={item.image}
             className="xl:object-fill xl:h-[30rem] xl:w-full w-auto lg:w-full md:w-full"

@@ -1,3 +1,4 @@
+"use client";
 import React, { Fragment, use } from "react";
 import { blog } from "../../blog";
 import RenderBlogDetail from "@/app/UI/Component/Blog/RenderBlogDetail/RenderBlogDetail";

@@ -1,3 +1,4 @@
+'use client'
 import React, { Fragment } from "react";
 import shipping from "@/../../assets/content/shipping.jpg";
 import Link from "next/link";

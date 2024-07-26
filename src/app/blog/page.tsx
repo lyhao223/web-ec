@@ -16,7 +16,7 @@ const page = () => {
   const handleChange = (event: React.ChangeEvent<unknown>, value: number) => {
     setCurrentPage(value);
   };
- 
+
   useEffect(() => {
     if (isInitialRender.current) {
       isInitialRender.current = false;
@@ -29,37 +29,35 @@ const page = () => {
   }, []);
   return (
     <>
-      
-        <div className="relative top-0 w-full ">
-          <ContentFirstPage
-            img={ptitle__blog.src}
-            contentTitle="Our Blog"
-            linkText="Blog"
-          />
-          <div className="grid xl:grid-rows-10  grid-flow-row justify-center p-12 gap-y-2">
-            <div className="xl:row-span-10">
-              <div className="grid xl:grid-cols-3 grid-cols-1 items-center justify-center p-4 gap-y-3">
-                <RenderBlog
-                  blog={blog}
-                  blogPerPageProp={blogPerPages}
-                  currentPageProp={currentPage}
-                />
-              </div>
+      <div className="relative top-0 w-full ">
+        <ContentFirstPage
+          img={ptitle__blog.src}
+          contentTitle="Our Blog"
+          linkText="Blog"
+        />
+        <div className="grid xl:grid-rows-10  grid-flow-row justify-center p-12 gap-y-2">
+          <div className="xl:row-span-10">
+            <div className="grid xl:grid-cols-3 grid-cols-1 items-center justify-center p-4 gap-y-3">
+              <RenderBlog
+                blog={blog}
+                blogPerPageProp={blogPerPages}
+                currentPageProp={currentPage}
+              />
             </div>
           </div>
-          <div className="flex items-center justify-center my-12">
-            <Stack>
-              <Pagination
-                count={totalPages}
-                page={currentPage}
-                onChange={handleChange}
-                color="primary"
-                size="large"
-              />
-            </Stack>
-          </div>
         </div>
-     
+        <div className="flex items-center justify-center my-12">
+          <Stack>
+            <Pagination
+              count={totalPages}
+              page={currentPage}
+              onChange={handleChange}
+              color="primary"
+              size="large"
+            />
+          </Stack>
+        </div>
+      </div>
     </>
   );
 };
