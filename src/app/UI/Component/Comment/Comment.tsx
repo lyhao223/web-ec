@@ -5,9 +5,9 @@ import { FaFacebook, FaInstagram, FaTiktok, FaTwitter } from "react-icons/fa6";
 import { TfiTwitter } from "react-icons/tfi";
 const icons = [
   { id: 1, icon: <FaFacebook size={20} /> },
-  { id: 1, icon: <FaInstagram size={20} /> },
-  { id: 1, icon: <FaTwitter size={20} /> },
-  { id: 1, icon: <FaTiktok size={20} /> },
+  { id: 2, icon: <FaInstagram size={20} /> },
+  { id: 3, icon: <FaTwitter size={20} /> },
+  { id: 4, icon: <FaTiktok size={20} /> },
 ];
 
 const Comment = () => {

@@ -4,7 +4,8 @@ import "./globals.css";
 import Header from "./UI/Component/Header/Header";
 import ReduxProvider from "./services/redux/provider";
 import Footer from "./UI/Component/Footer/Footer";
-
+import { AuthProvider } from "../app/Providers";
+import { UserProvider } from "./utils/useUser";
 const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: {
@@ -22,12 +23,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ReduxProvider>
-          <Header />
-          {children}
+        <AuthProvider>
+          <UserProvider>
+            <ReduxProvider>
+              <Header />
+              {children}
 
-          <Footer />
-        </ReduxProvider>
+              <Footer />
+            </ReduxProvider>
+          </UserProvider>
+        </AuthProvider>
       </body>
     </html>
   );

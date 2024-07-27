@@ -2,6 +2,8 @@ import React, { FormEvent, useDebugValue, useState } from "react";
 import { Button, ButtonProps, Modal, styled, TextField } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import { MdClose } from "react-icons/md";
+import { signIn } from "next-auth/react";
+import { useUser } from "@/app/utils/useUser";
 
 interface LoginProps {
   openAccount?: boolean;
@@ -27,15 +29,28 @@ const Login = ({
     username: "",
     password: "",
   });
-
+  const { setUser } = useUser();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
   };
 
-  const handleSubmit = (e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    
+    try {
+      const res = await signIn("credentials", {
+        username: login.username,
+        password: login.password,
+        redirect: false,
+      });
+
+      if (res && res.ok) {
+        console.log("Login success");
+        setUser(login.username);
+      }
+    } catch (error) {
+      return error;
+    }
   };
   return (
     <div className="relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[68rem] md:left-52 md:top-52 top-56 left-9 xl:h-96 xl:w-96 h-[23rem] w-80  bg-white border-2 rounded-lg">
@@ -74,10 +89,14 @@ const Login = ({
 
           <div className="flex xl:flex-row flex-col xl:items-center xl:justify-between items-start justify-center space-y-2 xl:space-x-11">
             <button onClick={handleToggleAccount}>
-              <p className="text-xs text-blue-700 text-nowrap">Did you have an account?</p>
+              <p className="text-xs text-blue-700 text-nowrap">
+                Did you have an account?
+              </p>
             </button>
             <button>
-              <p className="text-xs text-blue-700 text-nowrap">Forgot your password</p>
+              <p className="text-xs text-blue-700 text-nowrap">
+                Forgot your password
+              </p>
             </button>
           </div>
           <ColorButton variant="contained" size="large" fullWidth type="submit">

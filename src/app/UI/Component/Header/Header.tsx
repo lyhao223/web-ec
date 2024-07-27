@@ -21,6 +21,7 @@ import ItemsModal from "./ItemsModal";
 import Login from "../Account/Login";
 import Register from "../Account/Register";
 import Image from "next/image";
+import { useUser } from "@/app/utils/useUser";
 export default function Header() {
   const quantity = useSelector((state: RootState) => state.cart.items);
   const TotalQuantity = quantity.reduce((acc, item) => acc + item.quantity, 0);
@@ -29,6 +30,7 @@ export default function Header() {
   const [isClient, setIsClient] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const [toggleAccount, setToggleAccount] = useState(false);
+  const { user } = useUser();
   useEffect(() => {
     setIsClient(true);
   }, []);
@@ -104,7 +106,7 @@ export default function Header() {
               <button
                 className="flex flex-row items-center justify-center text-white font-bold m-5 border-r pr-2 space-x-2"
                 onClick={handleOpenAccount}>
-                <span>Account</span>
+                <span>{user ? user : "Account"}</span>
                 <MdAccountCircle
                   className="inline-block text-white"
                   size={28}
@@ -126,21 +128,26 @@ export default function Header() {
           <ItemsModal close={handleCloseModal} />
         </FlyModal>
       </Modal>
-      <Modal open={openAccount} onClose={handleCloseAccount} disableScrollLock>
-        <FlyModal open={openAccount}>
-          {!toggleAccount ? (
-            <Login
-              handleCloseAccount={handleCloseAccount}
-              handleToggleAccount={handleToggleAccount}
-            />
-          ) : (
-            <Register
-              handleCloseAccount={handleCloseAccount}
-              handleToggleAccount={handleToggleAccount}
-            />
-          )}
-        </FlyModal>
-      </Modal>
+      {!user && (
+        <Modal
+          open={openAccount}
+          onClose={handleCloseAccount}
+          disableScrollLock>
+          <FlyModal open={openAccount}>
+            {!user && !toggleAccount ? (
+              <Login
+                handleCloseAccount={handleCloseAccount}
+                handleToggleAccount={handleToggleAccount}
+              />
+            ) : !user && toggleAccount ? (
+              <Register
+                handleCloseAccount={handleCloseAccount}
+                handleToggleAccount={handleToggleAccount}
+              />
+            ) : null}
+          </FlyModal>
+        </Modal>
+      )}
     </>
   );
 }

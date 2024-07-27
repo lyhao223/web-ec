@@ -3,7 +3,7 @@ import { Button, ButtonProps, Modal, styled, TextField } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import { MdClose } from "react-icons/md";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { set } from "mongoose";
+import { useRouter } from "next/navigation";
 
 interface LoginProps {
   openAccount?: boolean;
@@ -25,7 +25,6 @@ const Register = ({
     },
   }));
 
-
   const [formData, setFormData] = useState({
     email: "",
     username: "",
@@ -37,12 +36,21 @@ const Register = ({
     phone: "",
   });
 
-  const [registerStatus, setRegisterStatus] = useState<string | null | any>(null);
+  const [registerStatus, setRegisterStatus] = useState<string | null | any>(
+    null
+  );
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const loadingIcon = (<button type="button" className="bg-purple-500 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg" disabled>
-  <AiOutlineLoading3Quarters className="animate-spin"/>
-  <span>Processing...</span>
-  </button>)
+  const loadingIcon = (
+    <button
+      type="button"
+      className="bg-purple-500 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg"
+      disabled>
+      <AiOutlineLoading3Quarters className="animate-spin" />
+      <span>Processing...</span>
+    </button>
+  );
+  const router = useRouter();
+  const [open, setOpen] = useState(false);
   const [error, setError] = useState({
     email: false,
     username: false,
@@ -73,7 +81,13 @@ const Register = ({
     if (name === "email" && !validateEmail(value)) {
       isValid = false;
       errorMessage = "Invalid email format";
-    } else if ((name === "firstname" || name === "lastname" || name === "city" || name === "street") && value.trim() === null) {
+    } else if (
+      (name === "firstname" ||
+        name === "lastname" ||
+        name === "city" ||
+        name === "street") &&
+      value.trim() === null
+    ) {
       isValid = false;
       errorMessage = "This field is required";
     } else if (name === "password" && value.length < 6) {
@@ -91,12 +105,24 @@ const Register = ({
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(String(email).toLowerCase());
   };
-  const handleSubmit = async(e: FormEvent) => {
+  const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
     setRegisterStatus(null);
 
-    
+    if (
+      !formData.email ||
+      !formData.username ||
+      !formData.password ||
+      !formData.firstname ||
+      !formData.lastname ||
+      !formData.city ||
+      !formData.street ||
+      !formData.phone
+    ) {
+      setIsLoading(false);
+      return;
+    }
     const userData = {
       email: formData.email,
       username: formData.username,
@@ -112,26 +138,26 @@ const Register = ({
       phone: formData.phone,
     };
     try {
-     const res = await fetch("/api/register", {
+      const res = await fetch("/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(userData),
-      })
-      if(res.status === 201){
+      });
+      if (res.status === 201) {
         setRegisterStatus("success");
-      }else if(res.status === 409){
+        setOpen(false);
+        router.push("/");
+      } else if (res.status === 409) {
         setRegisterStatus("checkInfo");
-      
-      } else{
+      } else {
         setRegisterStatus("error");
       }
     } catch (error) {
-    }finally{
+    } finally {
       setIsLoading(false);
     }
-    
   };
 
   return (
@@ -234,15 +260,15 @@ const Register = ({
               value={formData.city}
             />
 
-          <TextField
-            id="street"
-            name="street"
-            label="Street"
-            variant="outlined"
-            fullWidth
-            onChange={handleChange}
-            value={formData.street}
-          />
+            <TextField
+              id="street"
+              name="street"
+              label="Street"
+              variant="outlined"
+              fullWidth
+              onChange={handleChange}
+              value={formData.street}
+            />
           </div>
           <div className="flex flex-row items-start justify-center">
             <button onClick={handleToggleAccount}>
@@ -252,12 +278,15 @@ const Register = ({
           <ColorButton variant="contained" size="large" fullWidth type="submit">
             Register
           </ColorButton>
-          
         </form>
         {isLoading && loadingIcon}
         {registerStatus === "success" && <p>User registered successfully!</p>}
-        {registerStatus === "checkInfo" && <p>Username or email or phone already taken</p>}
-        {registerStatus === "error" && <p>Registration failed. Please try again.</p>}
+        {registerStatus === "checkInfo" && (
+          <p>Username or email or phone already taken</p>
+        )}
+        {registerStatus === "error" && (
+          <p>Registration failed. Please try again.</p>
+        )}
       </div>
     </div>
   );
