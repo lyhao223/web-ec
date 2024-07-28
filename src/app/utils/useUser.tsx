@@ -1,12 +1,13 @@
 "use client";
-import { createContext, useContext, useState, ReactNode } from "react";
+import { useSession } from "next-auth/react";
+import { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 interface UserContextProps {
   user: string | null;
   setUser: (user: string | null) => void;
 }
 
-const UserContext = createContext<UserContextProps | undefined>(undefined);
+const UserContext = createContext<UserContextProps | null >(null);
 
 export const UserProvider = ({ children }: { children: ReactNode }) => {
   const [user, setUser] = useState<string | null>(null);

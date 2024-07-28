@@ -21,7 +21,9 @@ import ItemsModal from "./ItemsModal";
 import Login from "../Account/Login";
 import Register from "../Account/Register";
 import Image from "next/image";
-import { useUser } from "@/app/utils/useUser";
+// import { useUser } from "@/app/utils/useUser";
+import { signOut, useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 export default function Header() {
   const quantity = useSelector((state: RootState) => state.cart.items);
   const TotalQuantity = quantity.reduce((acc, item) => acc + item.quantity, 0);
@@ -30,10 +32,17 @@ export default function Header() {
   const [isClient, setIsClient] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const [toggleAccount, setToggleAccount] = useState(false);
-  const { user } = useUser();
+  // const { user } = useUser();
+  const {data: session} = useSession();
+  const router = useRouter();
   useEffect(() => {
     setIsClient(true);
   }, []);
+     useEffect(() => {
+      if (session) {
+        router.push('/');
+      }
+    }, [session, router]);
   const handleOpenModal = () => {
     setOpen(!open);
   };
@@ -52,6 +61,9 @@ export default function Header() {
   const handleToggleAccount = () => {
     setToggleAccount(!toggleAccount);
   };
+  const handleSignOut = ()=>{
+    signOut();
+  }
   const quantityUI = (
     <div className=" bg-white w-8 h-8 rounded-full flex items-center justify-center">
       <span className="text-center font-bold text-black">{TotalQuantity}</span>
@@ -106,18 +118,25 @@ export default function Header() {
               <button
                 className="flex flex-row items-center justify-center text-white font-bold m-5 border-r pr-2 space-x-2"
                 onClick={handleOpenAccount}>
-                <span>{user ? user : "Account"}</span>
+                <span>{session?.user ? `${session?.user?.name} `: "Account"}</span>
                 <MdAccountCircle
                   className="inline-block text-white"
                   size={28}
                 />
+                {session?.user && (
+                <button
+                  className=""
+                  onClick={handleSignOut}>
+                  <span>Logout</span>
+                </button>
+              )}
               </button>
               <button
                 className="flex flex-row items-center justify-center text-white font-bold m-5 space-x-2"
                 onClick={handleOpenModal}>
                 <span>Cart</span>
                 <IoCart className="inline-block text-white" size={32} />
-                {isClient && TotalQuantity ? quantityUI : ""}
+                {isClient && TotalQuantity && session?.user ? quantityUI : ""}
               </button>
             </div>
           </div>
@@ -128,26 +147,27 @@ export default function Header() {
           <ItemsModal close={handleCloseModal} />
         </FlyModal>
       </Modal>
-      {!user && (
-        <Modal
+     
+        {!session?.user ?
+        (<Modal
           open={openAccount}
           onClose={handleCloseAccount}
           disableScrollLock>
           <FlyModal open={openAccount}>
-            {!user && !toggleAccount ? (
-              <Login
+             {!toggleAccount ? 
+              (<Login
                 handleCloseAccount={handleCloseAccount}
                 handleToggleAccount={handleToggleAccount}
               />
-            ) : !user && toggleAccount ? (
+            ): (
               <Register
                 handleCloseAccount={handleCloseAccount}
                 handleToggleAccount={handleToggleAccount}
               />
-            ) : null}
+            )}
           </FlyModal>
-        </Modal>
-      )}
+        </Modal>):""}
+      
     </>
   );
 }

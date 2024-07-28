@@ -20,7 +20,6 @@ const authOptions = {
           if (!user) {
             throw new Error("No user found");
           }
-
           const passwordMatch = await bcrypt.compare(password, user.password);
           if (!passwordMatch) {
             throw new Error("Password is incorrect");
@@ -37,7 +36,7 @@ const authOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: "/auth/signin",
+    signIn: "/",
     signOut: "/auth/signout",
     error: "/auth/error",
     verifyRequest: "/auth/verify-request",

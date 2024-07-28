@@ -3,7 +3,7 @@ import { Button, ButtonProps, Modal, styled, TextField } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import { MdClose } from "react-icons/md";
 import { signIn } from "next-auth/react";
-import { useUser } from "@/app/utils/useUser";
+
 
 interface LoginProps {
   openAccount?: boolean;
@@ -29,7 +29,7 @@ const Login = ({
     username: "",
     password: "",
   });
-  const { setUser } = useUser();
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
@@ -46,14 +46,14 @@ const Login = ({
 
       if (res && res.ok) {
         console.log("Login success");
-        setUser(login.username);
+        
       }
     } catch (error) {
       return error;
     }
   };
   return (
-    <div className="relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[68rem] md:left-52 md:top-52 top-56 left-9 xl:h-96 xl:w-96 h-[23rem] w-80  bg-white border-2 rounded-lg">
+    <div className="relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[44rem] md:left-52 md:top-52 top-56 left-9 xl:h-96 xl:w-96 h-[23rem] w-80  bg-white border-2 rounded-lg">
       <button
         className="absolute top-3 right-5 rounded-full hover:bg-red-600 bg-gray-500 transition duration-200 ease-linear p-2"
         onClick={handleCloseAccount}>

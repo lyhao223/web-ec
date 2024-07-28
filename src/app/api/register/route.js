@@ -11,7 +11,7 @@ export async function POST(req, res) {
       email,
       username,
       password,
-      name: { firstName, lastName },
+      name,
       address: { city, street },
       phone,
     } = await req.json();
@@ -28,7 +28,7 @@ export async function POST(req, res) {
       email,
       username,
       password: hashedPassword,
-      name: { firstName, lastName },
+      name,
       address: { city, street },
       phone,
     });

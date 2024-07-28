@@ -4,8 +4,9 @@ import { purple } from "@mui/material/colors";
 import { MdClose } from "react-icons/md";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useRouter } from "next/navigation";
+import { FaCheckCircle } from "react-icons/fa";
 
-interface LoginProps {
+interface RegisterProps {
   openAccount?: boolean;
   handleOpenAccount?: () => void;
   handleCloseAccount?: () => void;
@@ -16,7 +17,7 @@ const Register = ({
   handleOpenAccount,
   handleCloseAccount,
   handleToggleAccount,
-}: LoginProps) => {
+}: RegisterProps) => {
   const ColorButton = styled(Button)<ButtonProps>(({ theme }) => ({
     color: theme.palette.getContrastText(purple[500]),
     backgroundColor: purple[500],
@@ -29,8 +30,7 @@ const Register = ({
     email: "",
     username: "",
     password: "",
-    firstname: "",
-    lastname: "",
+    name:"",
     city: "",
     street: "",
     phone: "",
@@ -56,19 +56,17 @@ const Register = ({
     username: false,
     password: false,
     phone: false,
-    firtName: false,
-    lastName: false,
+    name:false,
     city: false,
     street: false,
   });
-
+  const [showSuccessPopup, setShowSuccessPopup] = useState(false);
   const [helperText, setHelperText] = useState({
     email: "",
     username: "",
     password: "",
     phone: "",
-    firtName: "",
-    lastName: "",
+    name:"",
     city: "",
     street: "",
   });
@@ -82,8 +80,7 @@ const Register = ({
       isValid = false;
       errorMessage = "Invalid email format";
     } else if (
-      (name === "firstname" ||
-        name === "lastname" ||
+      (name === "name" ||
         name === "city" ||
         name === "street") &&
       value.trim() === null
@@ -109,13 +106,12 @@ const Register = ({
     e.preventDefault();
     setIsLoading(true);
     setRegisterStatus(null);
-
+  
     if (
       !formData.email ||
       !formData.username ||
       !formData.password ||
-      !formData.firstname ||
-      !formData.lastname ||
+      !formData.name ||
       !formData.city ||
       !formData.street ||
       !formData.phone
@@ -127,10 +123,7 @@ const Register = ({
       email: formData.email,
       username: formData.username,
       password: formData.password,
-      name: {
-        firstName: formData.firstname,
-        lastName: formData.lastname,
-      },
+      name: formData.name,
       address: {
         city: formData.city,
         street: formData.street,
@@ -147,8 +140,15 @@ const Register = ({
       });
       if (res.status === 201) {
         setRegisterStatus("success");
-        setOpen(false);
-        router.push("/");
+        setShowSuccessPopup(true);
+        setTimeout(() => {
+          setShowSuccessPopup(false);
+          setOpen(false);
+          if (handleToggleAccount) {
+            handleToggleAccount(); // Switch to Login component
+          }
+        }, 2000);
+        
       } else if (res.status === 409) {
         setRegisterStatus("checkInfo");
       } else {
@@ -161,7 +161,7 @@ const Register = ({
   };
 
   return (
-    <div className="relative lg:top-52 lg:left-72 xl:-top-3 xl:left-[29rem] 2xl:left-[37rem] md:left-52 md:top-52 top-1 left-2 xl:h-[46rem] xl:w-[40rem] w-[23.5rem] bg-white border-2 rounded-lg">
+    <div className="relative lg:top-52 lg:left-72 xl:-top-3 xl:left-[29rem] 2xl:left-[37rem] 2xl:top-12 md:left-52 md:top-52 top-0 left-10 xl:h-[46rem] xl:w-[40rem] w-[20rem] bg-white border-2 rounded-lg">
       <button
         className="absolute top-3 right-5 rounded-full hover:bg-red-600 bg-gray-600 transition-all duration-200 ease-linear p-2"
         onClick={handleCloseAccount}>
@@ -174,30 +174,20 @@ const Register = ({
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-start justify-center space-y-5 ">
-          <div className="flex flex-row items-start justify-start space-x-7">
+          
             <TextField
-              id="firstname"
-              name="firstname"
-              label="First Name"
+              id="name"
+              name="name"
+              label="Full Name"
               variant="outlined"
               fullWidth
               onChange={handleChange}
-              value={formData.firstname}
-              error={error.firtName}
-              helperText={helperText.firtName}
+              value={formData.name}
+              error={error.name}
+              helperText={helperText.name}
             />
-            <TextField
-              id="lastname"
-              name="lastname"
-              label="Last Name"
-              variant="outlined"
-              fullWidth
-              onChange={handleChange}
-              value={formData.lastname}
-              error={error.lastName}
-              helperText={helperText.lastName}
-            />
-          </div>
+           
+     
           <TextField
             id="email"
             name="email"
@@ -280,12 +270,20 @@ const Register = ({
           </ColorButton>
         </form>
         {isLoading && loadingIcon}
-        {registerStatus === "success" && <p>User registered successfully!</p>}
+        {registerStatus === "success" && <p>Loading...</p>}
         {registerStatus === "checkInfo" && (
           <p>Username or email or phone already taken</p>
         )}
         {registerStatus === "error" && (
           <p>Registration failed. Please try again.</p>
+        )}
+        {showSuccessPopup && (
+          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+            <div className="bg-white p-4 rounded shadow-lg flex items-center">
+              <FaCheckCircle className="text-green-500 mr-2" size={24} />
+              <p>Registration successful!</p>
+            </div>
+          </div>
         )}
       </div>
     </div>
