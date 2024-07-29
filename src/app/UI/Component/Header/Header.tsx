@@ -119,7 +119,7 @@ export default function Header() {
                 <span>
                   {session?.user ? (
                     <ShowMenuAccountDetail>
-                      {session.user.name}
+                      {session?.user?.name}
                     </ShowMenuAccountDetail>
                   ) : (
                     "Account"

@@ -32,7 +32,6 @@ export async function POST(req, res) {
       address: { city, street },
       phone,
     });
-
     return NextResponse.json(
       { message: "User registered successfully" },
       { status: 201 }

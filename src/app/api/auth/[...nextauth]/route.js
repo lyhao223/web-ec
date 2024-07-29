@@ -3,8 +3,7 @@ import Credentials from "next-auth/providers/credentials";
 import { connectMongoose } from "../../../../../lib/mongodb";
 import User from "../../../../../models/user";
 import bcrypt from "bcryptjs";
-import { error } from "console";
-const authOptions = {
+export const authOptions = {
   providers: [
     Credentials({
       name: "credentials",
@@ -42,6 +41,12 @@ const authOptions = {
   ],
   session: {
     strategy: "jwt",
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+    updateAge: 24 * 60 * 60, // 24 hours
+  },
+  jwt: {
+    secret: process.env.NEXTAUTH_SECRET, // Ensure this matches the environment variable
+    encryption: true, // Make sure this is set if you are encrypting JWTs
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
