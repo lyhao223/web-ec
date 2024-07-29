@@ -4,7 +4,8 @@ import { purple } from "@mui/material/colors";
 import { MdClose } from "react-icons/md";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { useRouter } from "next/navigation";
-import { FaCheckCircle } from "react-icons/fa";
+import ActionSuccessfully from "./Success/ActionSuccessfully";
+import FlyModal from "../../Animation/FlyModal";
 
 interface RegisterProps {
   openAccount?: boolean;
@@ -30,7 +31,7 @@ const Register = ({
     email: "",
     username: "",
     password: "",
-    name:"",
+    name: "",
     city: "",
     street: "",
     phone: "",
@@ -50,13 +51,13 @@ const Register = ({
     </button>
   );
   const router = useRouter();
-  const [open, setOpen] = useState(false);
+
   const [error, setError] = useState({
     email: false,
     username: false,
     password: false,
     phone: false,
-    name:false,
+    name: false,
     city: false,
     street: false,
   });
@@ -66,7 +67,7 @@ const Register = ({
     username: "",
     password: "",
     phone: "",
-    name:"",
+    name: "",
     city: "",
     street: "",
   });
@@ -80,9 +81,7 @@ const Register = ({
       isValid = false;
       errorMessage = "Invalid email format";
     } else if (
-      (name === "name" ||
-        name === "city" ||
-        name === "street") &&
+      (name === "name" || name === "city" || name === "street") &&
       value.trim() === null
     ) {
       isValid = false;
@@ -106,7 +105,7 @@ const Register = ({
     e.preventDefault();
     setIsLoading(true);
     setRegisterStatus(null);
-  
+
     if (
       !formData.email ||
       !formData.username ||
@@ -143,12 +142,10 @@ const Register = ({
         setShowSuccessPopup(true);
         setTimeout(() => {
           setShowSuccessPopup(false);
-          setOpen(false);
           if (handleToggleAccount) {
             handleToggleAccount(); // Switch to Login component
           }
         }, 2000);
-        
       } else if (res.status === 409) {
         setRegisterStatus("checkInfo");
       } else {
@@ -174,20 +171,18 @@ const Register = ({
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-start justify-center space-y-5 ">
-          
-            <TextField
-              id="name"
-              name="name"
-              label="Full Name"
-              variant="outlined"
-              fullWidth
-              onChange={handleChange}
-              value={formData.name}
-              error={error.name}
-              helperText={helperText.name}
-            />
-           
-     
+          <TextField
+            id="name"
+            name="name"
+            label="Full Name"
+            variant="outlined"
+            fullWidth
+            onChange={handleChange}
+            value={formData.name}
+            error={error.name}
+            helperText={helperText.name}
+          />
+
           <TextField
             id="email"
             name="email"
@@ -278,12 +273,9 @@ const Register = ({
           <p>Registration failed. Please try again.</p>
         )}
         {showSuccessPopup && (
-          <div className="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
-            <div className="bg-white p-4 rounded shadow-lg flex items-center">
-              <FaCheckCircle className="text-green-500 mr-2" size={24} />
-              <p>Registration successful!</p>
-            </div>
-          </div>
+          <Modal open={showSuccessPopup}>
+            <ActionSuccessfully>Register Successfully</ActionSuccessfully>
+          </Modal>
         )}
       </div>
     </div>

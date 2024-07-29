@@ -8,7 +8,7 @@ import { FaAngleDown } from "react-icons/fa6";
 interface DropDownMenuProps {
   href: string;
   children: React.ReactNode;
-  FlyoutContent: React.ComponentType;
+  FlyoutContent: React.ComponentType | any;
   IconMenu?: React.ReactNode;
 }
 export default function FlyOutLink({

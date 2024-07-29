@@ -18,16 +18,25 @@ const authOptions = {
             username,
           });
           if (!user) {
-            throw new Error("No user found");
+            throw new Error(
+              JSON.stringify({ message: "No user found", status: 400 })
+            );
           }
+
           const passwordMatch = await bcrypt.compare(password, user.password);
           if (!passwordMatch) {
-            throw new Error("Password is incorrect");
+            throw new Error(
+              JSON.stringify({ message: "Password is incorrect", status: 400 })
+            );
           }
 
           return user;
-        } catch (error) {}
-        return error ? null : { username };
+        } catch (error) {
+          const err = JSON.parse(error.message);
+          throw new Error(
+            JSON.stringify({ message: err.message, status: err.status })
+          );
+        }
       },
     }),
   ],
@@ -36,7 +45,7 @@ const authOptions = {
   },
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
-    signIn: "/",
+    signIn: "/auth/signin",
     signOut: "/auth/signout",
     error: "/auth/error",
     verifyRequest: "/auth/verify-request",

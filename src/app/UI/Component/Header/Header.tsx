@@ -24,6 +24,7 @@ import Image from "next/image";
 // import { useUser } from "@/app/utils/useUser";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import ShowMenuAccountDetail from "../Account/Detail/ShowMenuAccountDetail";
 export default function Header() {
   const quantity = useSelector((state: RootState) => state.cart.items);
   const TotalQuantity = quantity.reduce((acc, item) => acc + item.quantity, 0);
@@ -33,16 +34,12 @@ export default function Header() {
   const modalRef = useRef<HTMLDivElement>(null);
   const [toggleAccount, setToggleAccount] = useState(false);
   // const { user } = useUser();
-  const {data: session} = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
   useEffect(() => {
     setIsClient(true);
   }, []);
-     useEffect(() => {
-      if (session) {
-        router.push('/');
-      }
-    }, [session, router]);
+
   const handleOpenModal = () => {
     setOpen(!open);
   };
@@ -61,14 +58,15 @@ export default function Header() {
   const handleToggleAccount = () => {
     setToggleAccount(!toggleAccount);
   };
-  const handleSignOut = ()=>{
+  const handleSignOut = () => {
     signOut();
-  }
+  };
   const quantityUI = (
     <div className=" bg-white w-8 h-8 rounded-full flex items-center justify-center">
       <span className="text-center font-bold text-black">{TotalQuantity}</span>
     </div>
   );
+
   return (
     <>
       <header className="xl:fixed top-0 z-20 min-w-full bg-black">
@@ -118,25 +116,31 @@ export default function Header() {
               <button
                 className="flex flex-row items-center justify-center text-white font-bold m-5 border-r pr-2 space-x-2"
                 onClick={handleOpenAccount}>
-                <span>{session?.user ? `${session?.user?.name} `: "Account"}</span>
+                <span>
+                  {session?.user ? (
+                    <ShowMenuAccountDetail>
+                      {session.user.name}
+                    </ShowMenuAccountDetail>
+                  ) : (
+                    "Account"
+                  )}
+                </span>
                 <MdAccountCircle
                   className="inline-block text-white"
                   size={28}
                 />
                 {session?.user && (
-                <button
-                  className=""
-                  onClick={handleSignOut}>
-                  <span>Logout</span>
-                </button>
-              )}
+                  <div className="cursor-pointer" onClick={handleSignOut}>
+                    <span>Logout</span>
+                  </div>
+                )}
               </button>
               <button
                 className="flex flex-row items-center justify-center text-white font-bold m-5 space-x-2"
                 onClick={handleOpenModal}>
                 <span>Cart</span>
                 <IoCart className="inline-block text-white" size={32} />
-                {isClient && TotalQuantity && session?.user ? quantityUI : ""}
+                {isClient && TotalQuantity ? quantityUI : ""}
               </button>
             </div>
           </div>
@@ -147,27 +151,29 @@ export default function Header() {
           <ItemsModal close={handleCloseModal} />
         </FlyModal>
       </Modal>
-     
-        {!session?.user ?
-        (<Modal
+
+      {!session?.user ? (
+        <Modal
           open={openAccount}
           onClose={handleCloseAccount}
           disableScrollLock>
           <FlyModal open={openAccount}>
-             {!toggleAccount ? 
-              (<Login
+            {!toggleAccount ? (
+              <Login
                 handleCloseAccount={handleCloseAccount}
                 handleToggleAccount={handleToggleAccount}
               />
-            ): (
+            ) : (
               <Register
                 handleCloseAccount={handleCloseAccount}
                 handleToggleAccount={handleToggleAccount}
               />
             )}
           </FlyModal>
-        </Modal>):""}
-      
+        </Modal>
+      ) : (
+        ""
+      )}
     </>
   );
 }

@@ -2,8 +2,13 @@ import React, { FormEvent, useDebugValue, useState } from "react";
 import { Button, ButtonProps, Modal, styled, TextField } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import { MdClose } from "react-icons/md";
-import { signIn } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import clsx from "clsx";
+import { set } from "mongoose";
 
+import { useRouter } from "next/navigation";
+import ActionSuccessfully from "./Success/ActionSuccessfully";
 
 interface LoginProps {
   openAccount?: boolean;
@@ -24,12 +29,24 @@ const Login = ({
       backgroundColor: purple[700],
     },
   }));
-
   const [login, setLogin] = useState({
     username: "",
     password: "",
   });
+  const router = useRouter();
 
+  const [loginStatus, setLoginStatus] = useState<string | null | any>(null);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [showSuccessPopup, setShowSuccessPopup] = useState<boolean>(false);
+  const loadingIcon = (
+    <button
+      type="button"
+      className="bg-purple-500 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg"
+      disabled>
+      <AiOutlineLoading3Quarters className="animate-spin" />
+      <span>Processing...</span>
+    </button>
+  );
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
@@ -37,23 +54,35 @@ const Login = ({
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     try {
       const res = await signIn("credentials", {
         username: login.username,
         password: login.password,
         redirect: false,
       });
-
-      if (res && res.ok) {
-        console.log("Login success");
-        
+      if (res?.error) {
+        setLoginStatus("checkinfo");
+      } else {
+        setLoginStatus("success");
       }
     } catch (error) {
-      return error;
+      setLoginStatus("error");
+    } finally {
+      setIsLoading(false);
     }
   };
   return (
-    <div className="relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[44rem] md:left-52 md:top-52 top-56 left-9 xl:h-96 xl:w-96 h-[23rem] w-80  bg-white border-2 rounded-lg">
+    <div
+      className={clsx(
+        "relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[44rem] md:left-52 md:top-52 top-56 left-9",
+        {
+          "xl:h-[28rem]":
+            isLoading || loginStatus === "error" || loginStatus === "checkinfo",
+          "xl:h-96": !isLoading,
+        },
+        "xl:w-96 h-[23rem] w-80  bg-white border-2 rounded-lg"
+      )}>
       <button
         className="absolute top-3 right-5 rounded-full hover:bg-red-600 bg-gray-500 transition duration-200 ease-linear p-2"
         onClick={handleCloseAccount}>
@@ -103,6 +132,9 @@ const Login = ({
             Login
           </ColorButton>
         </form>
+        {isLoading && loadingIcon}
+        {loginStatus === "checkinfo" ? <p>Check your login info</p> : null}
+        {loginStatus === "error" ? <p>Something went wrong</p> : null}
       </div>
     </div>
   );
