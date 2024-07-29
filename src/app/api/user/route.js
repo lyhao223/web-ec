@@ -1,7 +1,6 @@
-import { getSession } from "next-auth/react";
 import { connectMongoose } from "../../../../lib/mongodb";
 import User from "../../../../models/user";
-import { NextResponse, NextRequest } from "next/server";
+import { NextResponse } from "next/server";
 import { getToken } from "next-auth/jwt";
 // Named export for the GET method
 export async function GET(req) {
@@ -32,7 +31,10 @@ export async function GET(req) {
         email: user.email,
         username: user.username,
         name: user.name,
-        address: user.address,
+        address: {
+          city: user.city,
+          street: user.street,
+        },
         phone: user.phone,
       },
       { status: 200 }
