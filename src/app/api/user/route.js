@@ -26,19 +26,49 @@ export async function GET(req) {
     }
 
     // Return the user information
+
     return NextResponse.json(
       {
         email: user.email,
         username: user.username,
         name: user.name,
-        address: {
-          city: user.city,
-          street: user.street,
-        },
+        address: user.address,
         phone: user.phone,
       },
       { status: 200 }
     );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
+
+export async function PUT(req) {
+  try {
+    const token = await getToken({
+      req,
+      secret: process.env.NEXTAUTH_SECRET,
+    });
+
+    if (!token) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
+    await connectMongoose();
+    const { name, phone, address } = await req.json();
+    const user = await User.findByIdAndUpdate(
+      token.sub,
+      { name, phone, address },
+      { new: true, runValidators: true }
+    );
+    if (!user) {
+      return NextResponse.json({ message: "User not found" }, { status: 404 });
+    }
+
+    return NextResponse.json(user, { status: 200 });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
