@@ -15,7 +15,7 @@ export async function POST(req) {
     }
 
     await connectMongoose();
-    const { items } = await req.json();
+    const { items, paymentMethod } = await req.json();
 
     if (!items || items.length === 0) {
       return NextResponse.json(
@@ -23,14 +23,27 @@ export async function POST(req) {
         { status: 400 }
       );
     }
+
     const totalAmount = items.reduce(
       (total, item) => total + item.price * item.quantity,
       0
     );
+
+    if (
+      !paymentMethod ||
+      (paymentMethod !== "credit" && paymentMethod !== "cash")
+    ) {
+      return NextResponse.json(
+        { message: "Invalid payment method." },
+        { status: 400 }
+      );
+    }
+
     const newOrder = new Order({
       userID: token.sub,
       items,
       totalAmount,
+      paymentMethod,
     });
 
     await newOrder.save();

@@ -5,9 +5,9 @@ import CartItem from "../UI/Component/Checkout/CartItem/CartItem";
 
 const Page = () => {
   return (
-    <div className="relative p-32 flex flex-row items-start justify-start">
+    <div className="relative  bottom-56 flex flex-row items-center justify-center space-x-32 h-[80rem]">
       <InfoShipping />
-      {/* <CartItem /> */}
+      <CartItem />
     </div>
   );
 };

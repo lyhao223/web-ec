@@ -1,6 +1,7 @@
 'use client';
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import isClient from "../../utils/isClient";
+import { clear } from "console";
 interface CartItem{
     id: number;
     title: string;
@@ -52,9 +53,13 @@ const cartSlice = createSlice({
             state.items = state.items.filter(item => item.id !== action.payload);
         }
         saveCartToSessionStorage(state.items);
-    }
+    },
+    clearCart(state){
+        state.items = [];
+        saveCartToSessionStorage(state.items);
+    },
     }
 });
 
-export const { addItemToCart, increaseItemQuantity, decreaseItemQuantity } = cartSlice.actions;
+export const { addItemToCart, increaseItemQuantity, decreaseItemQuantity, clearCart } = cartSlice.actions;
 export default cartSlice.reducer;
