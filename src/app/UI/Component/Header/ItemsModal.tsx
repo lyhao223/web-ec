@@ -9,10 +9,12 @@ import {
   decreaseItemQuantity,
 } from "@/app/services/redux/slices/cartSlice";
 import Gesture from "../../Animation/Gesture";
+import { useRouter } from "next/navigation";
 interface ItemClickProps {
   close: () => void;
+  handleRouteToCheckOut: () => void;
 }
-const ItemsModal = ({ close }: ItemClickProps) => {
+const ItemsModal = ({ close, handleRouteToCheckOut }: ItemClickProps) => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const quantity = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch<AppDispatch>();
@@ -26,6 +28,8 @@ const ItemsModal = ({ close }: ItemClickProps) => {
   const noLoadingItem = (
     <p className="text-2xl font-medium text-red-700">No item in cart</p>
   );
+
+  const router = useRouter();
   return (
     <div className="relative lg:w-[48rem] lg:h-[30rem] md:w-[35rem] w-[22rem] bg-white lg:top-48 lg:left-32 xl:top-28 2xl:left-[37rem] 2xl:top-48 xl:left-96 top-44 left-6  md:top-48 md:left-28  rounded-md p-10">
       <h1 className="text-2xl font-medium">Shopping Cart</h1>
@@ -70,7 +74,9 @@ const ItemsModal = ({ close }: ItemClickProps) => {
         </p>
         <Gesture scaleHover={1.1} scaleTap={0.9}>
           {!noItems && (
-            <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+            <button
+              onClick={handleRouteToCheckOut}
+              className="bg-blue-500 text-white px-4 py-2 rounded-md">
               Checkout
             </button>
           )}

@@ -14,17 +14,17 @@ import FlyDownSearchBar from "../../Animation/FlyDownSearchBar";
 import SearchInput from "../Search/SearchInput";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/services/redux/store";
-import { Fragment, useEffect, useRef, useState } from "react";
-import { Box, Modal } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+import { Modal } from "@mui/material";
 import FlyModal from "../../Animation/FlyModal";
 import ItemsModal from "./ItemsModal";
 import Login from "../Account/Login";
 import Register from "../Account/Register";
-import Image from "next/image";
 // import { useUser } from "@/app/utils/useUser";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import ShowMenuAccountDetail from "../Account/Detail/ShowMenuAccountDetail";
+import { set } from "mongoose";
 export default function Header() {
   const quantity = useSelector((state: RootState) => state.cart.items);
   const TotalQuantity = quantity.reduce((acc, item) => acc + item.quantity, 0);
@@ -67,6 +67,10 @@ export default function Header() {
     </div>
   );
 
+  const handleRouteToCheckOut = () => {
+    router.push("/checkout");
+    setOpen(false);
+  };
   return (
     <>
       <header className="xl:fixed top-0 z-20 min-w-full bg-black">
@@ -148,7 +152,10 @@ export default function Header() {
       </header>
       <Modal open={open} onClose={handleCloseModal} disableScrollLock>
         <FlyModal open={open} ref={modalRef}>
-          <ItemsModal close={handleCloseModal} />
+          <ItemsModal
+            handleRouteToCheckOut={handleRouteToCheckOut}
+            close={handleCloseModal}
+          />
         </FlyModal>
       </Modal>
 

@@ -20,7 +20,6 @@ export async function GET(req) {
 
     // Find the user by the username from the session
     const user = await User.findById(token.sub);
-    console.log("User", user);
     if (!user) {
       return NextResponse.json({ message: "User not found" }, { status: 404 });
     }
