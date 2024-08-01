@@ -179,7 +179,9 @@ const AccountDetail = () => {
       </form>
       {showSuccessPopup && (
         <Modal open={showSuccessPopup}>
-          <ActionSuccessfully>Update Successfully</ActionSuccessfully>
+          <ActionSuccessfully ref={null}>
+            Update Successfully
+          </ActionSuccessfully>
         </Modal>
       )}
     </div>
