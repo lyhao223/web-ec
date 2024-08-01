@@ -1,5 +1,5 @@
 "use client";
-import React, { use, useEffect, useState } from "react";
+import React, { use, useEffect, useRef, useState } from "react";
 import { GoPlusCircle } from "react-icons/go";
 import { GrSubtractCircle } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,6 +15,7 @@ import {
   FormControlLabel,
   FormLabel,
   InputAdornment,
+  Modal,
   Radio,
   RadioGroup,
   TextField,
@@ -24,6 +25,8 @@ import { FaCcMastercard } from "react-icons/fa";
 import { SiAmericanexpress } from "react-icons/si";
 import { set } from "mongoose";
 import { useRouter } from "next/navigation";
+import ActionSuccessfully from "../../Account/Success/ActionSuccessfully";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 const iconMethod = [
   { id: 1, icon: <FaCcVisa />, name: "Visa" },
@@ -33,7 +36,7 @@ const iconMethod = [
 const CartItem = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch<AppDispatch>();
-
+  const ref = useRef(null);
   // State to hold total quantities and amounts to avoid discrepancies during SSR
   const [totals, setTotals] = useState({
     totalQuantity: 0,
@@ -46,6 +49,8 @@ const CartItem = () => {
   const [expirationDate, setExpirationDate] = useState("");
   const [cvv, setCvv] = useState("");
   const [lastNumberCard, setLastNumberCard] = useState("");
+  const [processing, setProcessing] = useState(false);
+  const [showPopup, setShowPopup] = useState(false);
   const handlePaymentMethodChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
@@ -131,11 +136,11 @@ const CartItem = () => {
     totalAmount: totals.totalAmount,
   };
   const handleSubmitOrder = async (e: any) => {
-    console.log(orderData);
     if (paymentMethod === "credit" && lastNumberCard === "") {
       alert("Please add your card");
       return;
     }
+
     try {
       const res = await fetch("/api/checkout", {
         method: "POST",
@@ -146,7 +151,12 @@ const CartItem = () => {
       });
       const result = await res.json();
       if (res.ok) {
-        console.log(result.message);
+        setProcessing(true);
+        setShowPopup(true);
+        setTimeout(() => {
+          setShowPopup(false);
+          router.refresh();
+        }, 2000);
         dispatch(clearCart());
         router.push("/");
       } else {
@@ -154,12 +164,24 @@ const CartItem = () => {
       }
     } catch (error) {
       console.error("Error creating order:", error);
+    } finally {
+      setProcessing(false);
     }
   };
+
+  const loadingIcon = (
+    <button
+      type="button"
+      className="bg-gray-300 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg"
+      disabled>
+      <AiOutlineLoading3Quarters className="animate-spin" />
+      <span>Processing...</span>
+    </button>
+  );
   return (
     <>
       {!isClient ? (
-        "failed"
+        loadingIcon
       ) : (
         <div className="relative bottom-16 flex flex-col xl:items-start xl:justify-start lg:items-center lg:justify-center">
           <div className="flex flex-col items-center justify-center">
@@ -232,12 +254,23 @@ const CartItem = () => {
                   />
                 </RadioGroup>
               </FormControl>
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleSubmitOrder}>
-                Submit Order
-              </Button>
+              {processing ? (
+                loadingIcon
+              ) : (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleSubmitOrder}
+                  disabled={
+                    cartItems.length === 0 ||
+                    totals.totalAmount === 0 ||
+                    processing
+                      ? true
+                      : false
+                  }>
+                  Submit Order
+                </Button>
+              )}
             </div>
             {paymentMethod === "credit" && open && (
               <div className="absolute left-0 top-full mt-4 w-full bg-white p-4 border border-gray-200 shadow-lg">
@@ -305,6 +338,13 @@ const CartItem = () => {
               </div>
             )}
           </div>
+          {showPopup && (
+            <Modal open={showPopup}>
+              <ActionSuccessfully ref={ref}>
+                Order Successfully
+              </ActionSuccessfully>
+            </Modal>
+          )}
         </div>
       )}
     </>

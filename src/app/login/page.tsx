@@ -7,13 +7,16 @@ import { useRouter } from "next/navigation";
 
 const Page = () => {
   const [toggleAccount, setToggleAccount] = useState(false);
-  const { status } = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
   if (status === "loading") {
     return <p>Loading...</p>;
   }
-  if (status === "authenticated") {
+  if (session && status === "authenticated") {
     return router.push("/accountdetail");
+  }
+  if (session && status === "unauthenticated") {
+    return router.push("/login");
   }
   const handleToggleAccount = () => {
     setToggleAccount(!toggleAccount);
