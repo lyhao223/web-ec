@@ -16,4 +16,7 @@ const ActionSuccessfully = React.forwardRef(
   }
 );
 
+// Set a display name for the component
+ActionSuccessfully.displayName = "ActionSuccessfully";
+
 export default ActionSuccessfully;
