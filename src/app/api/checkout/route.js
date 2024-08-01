@@ -60,3 +60,44 @@ export async function POST(req) {
     );
   }
 }
+
+export async function GET(req) {
+  try {
+    const token = await getToken({
+      req,
+      secret: process.env.NEXTAUTH_SECRET,
+    });
+
+    if (!token) {
+      return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+    }
+
+    await connectMongoose();
+
+    const orders = await Order.find({ userID: token.sub });
+    console.log("user", orders);
+    if (!orders || orders.length === 0) {
+      return NextResponse.json({ message: "Not order here" }, { status: 404 });
+    }
+
+    const transformedOrders = orders.map((order) => ({
+      ...order.toObject(),
+      orderID: order._id.toString(),
+      // You can remove _id if you don't want it in the response
+    }));
+
+    console.log("transformedOrders", transformedOrders);
+    return NextResponse.json(
+      {
+        orders: transformedOrders,
+      },
+      { status: 200 }
+    );
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json(
+      { message: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}

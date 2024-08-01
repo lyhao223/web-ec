@@ -74,7 +74,7 @@ export default function Header() {
   return (
     <>
       <header className="xl:fixed top-0 z-20 min-w-full bg-black">
-        <div className="flex flex-col xl:flex-row 2xl:flex-row lg:flex-col items-center lg:justify-center lg:items-center 2xl:justify-center 2xl:items-center -space-x-4 xl:space-x-40">
+        <div className="flex flex-col xl:flex-row 2xl:flex-row lg:flex-col items-center lg:justify-center lg:items-center 2xl:justify-center 2xl:items-center -space-x-4 xl:space-x-24">
           <div className="w-52 h-auto p-2">
             <Link href="/">
               <img src={LogoDunker.src} className="text-white" />
@@ -120,7 +120,7 @@ export default function Header() {
               <button
                 className="flex flex-row items-center justify-center text-white font-bold m-5 border-r pr-2 space-x-2"
                 onClick={handleOpenAccount}>
-                <span>
+                <span className="text-nowrap">
                   {session?.user ? (
                     <ShowMenuAccountDetail>
                       {session?.user?.name}

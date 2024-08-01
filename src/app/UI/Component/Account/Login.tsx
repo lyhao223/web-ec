@@ -116,7 +116,7 @@ const Login = ({
             value={login.password}
           />
 
-          <div className="flex xl:flex-row flex-col xl:items-center xl:justify-between items-start justify-center space-y-2 xl:space-x-11">
+          <div className="flex xl:flex-row flex-col xl:items-center xl:justify-between items-start justify-center space-y-2 xl:space-x-11 xl:space-y-0">
             <button onClick={handleToggleAccount}>
               <p className="text-xs text-blue-700 text-nowrap">
                 Did you have an account?
