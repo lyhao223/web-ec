@@ -36,7 +36,7 @@ const iconMethod = [
 const CartItem = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch<AppDispatch>();
-  const ref = useRef(null);
+  const ref = useRef();
   // State to hold total quantities and amounts to avoid discrepancies during SSR
   const [totals, setTotals] = useState({
     totalQuantity: 0,
