@@ -274,7 +274,9 @@ const Register = ({
         )}
         {showSuccessPopup && (
           <Modal open={showSuccessPopup}>
-            <ActionSuccessfully>Register Successfully</ActionSuccessfully>
+            <ActionSuccessfully ref={null}>
+              Register Successfully
+            </ActionSuccessfully>
           </Modal>
         )}
       </div>

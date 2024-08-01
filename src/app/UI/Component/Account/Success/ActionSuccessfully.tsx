@@ -6,7 +6,7 @@ const ActionSuccessfully = ({
   ref,
 }: {
   children: React.ReactNode;
-  ref: any;
+  ref?: any;
 }) => {
   return (
     <div
