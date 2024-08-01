@@ -100,7 +100,7 @@ const AccountDetail = () => {
   };
 
   return (
-    <div className="relative top-5 p-36">
+    <div className="relative xl:top-5 xl:p-36 lg:-top-7 lg:p-28 md:p-24 md:-top-10 p-20 -top-4">
       {status === "loading" && <div>Loading...</div>}
       <h1 className="subpixel-antialiased text-5xl tracking-wide font-medium ">
         Welcome

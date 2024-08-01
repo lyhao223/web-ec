@@ -9,7 +9,16 @@ import {
   decreaseItemQuantity,
   clearCart,
 } from "@/app/services/redux/slices/cartSlice";
-import { Button, FormControl, FormControlLabel, FormLabel, InputAdornment, Radio, RadioGroup, TextField } from "@mui/material";
+import {
+  Button,
+  FormControl,
+  FormControlLabel,
+  FormLabel,
+  InputAdornment,
+  Radio,
+  RadioGroup,
+  TextField,
+} from "@mui/material";
 import { FaCcVisa } from "react-icons/fa";
 import { FaCcMastercard } from "react-icons/fa";
 import { SiAmericanexpress } from "react-icons/si";
@@ -17,10 +26,10 @@ import { set } from "mongoose";
 import { useRouter } from "next/navigation";
 
 const iconMethod = [
-  {id:1, icon: <FaCcVisa />, name: "Visa"},
-  {id:2, icon: <FaCcMastercard />, name: "Mastercard"},
-  {id:3, icon: <SiAmericanexpress />, name: "American Express"},
-]
+  { id: 1, icon: <FaCcVisa />, name: "Visa" },
+  { id: 2, icon: <FaCcMastercard />, name: "Mastercard" },
+  { id: 3, icon: <SiAmericanexpress />, name: "American Express" },
+];
 const CartItem = () => {
   const cartItems = useSelector((state: RootState) => state.cart.items);
   const dispatch = useDispatch<AppDispatch>();
@@ -29,16 +38,17 @@ const CartItem = () => {
   const [totals, setTotals] = useState({
     totalQuantity: 0,
     totalAmount: 0,
-
   });
-  const [paymentMethod, setPaymentMethod] = useState('');
+  const [paymentMethod, setPaymentMethod] = useState("");
   const [open, setOpen] = useState(false);
   const [cardNumber, setCardNumber] = useState("");
   const [cardHolderName, setCardHolderName] = useState("");
   const [expirationDate, setExpirationDate] = useState("");
   const [cvv, setCvv] = useState("");
   const [lastNumberCard, setLastNumberCard] = useState("");
-  const handlePaymentMethodChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePaymentMethodChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     setPaymentMethod(e.target.value);
     setOpen(true);
   };
@@ -57,7 +67,6 @@ const CartItem = () => {
     setTotals({
       totalQuantity,
       totalAmount,
-
     });
   }, [cartItems]);
 
@@ -68,34 +77,45 @@ const CartItem = () => {
   const router = useRouter();
   const handleCardNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const formattedValue = value.replace(/\D/g, "").replace(/(\d{4})(?=\d)/g, "$1 ");
+    const formattedValue = value
+      .replace(/\D/g, "")
+      .replace(/(\d{4})(?=\d)/g, "$1 ");
     setCardNumber(formattedValue);
-  }
+  };
 
-  const handleExpirationDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleExpirationDateChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { value } = e.target;
     const formattedValue = value
       .replace(/\D/g, "")
       .replace(/(\d{2})(\d{0,2})/, "$1/$2")
       .slice(0, 5);
     setExpirationDate(formattedValue);
-  }
+  };
 
   const handleCvvChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
     const formattedValue = value.replace(/\D/g, "").slice(0, 3);
     setCvv(formattedValue);
-  }
+  };
 
-  const handleCardHolderNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleCardHolderNameChange = (
+    e: React.ChangeEvent<HTMLInputElement>
+  ) => {
     const { value } = e.target;
     const formattedValue = value.replace(/[^a-zA-Z\s]/g, "");
     setCardHolderName(formattedValue);
   };
 
-  const handleAddCard = (e: React.FormEvent<HTMLFormElement>) =>{
+  const handleAddCard = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if(cardNumber.length < 19 || cardHolderName.length < 3 || expirationDate.length < 5 || cvv.length < 3){
+    if (
+      cardNumber.length < 19 ||
+      cardHolderName.length < 3 ||
+      expirationDate.length < 5 ||
+      cvv.length < 3
+    ) {
       alert("Please fill in all fields correctly");
       return;
     }
@@ -103,7 +123,7 @@ const CartItem = () => {
     setLastNumberCard(lastFour);
     console.log(lastNumberCard);
     setOpen(false);
-  }
+  };
 
   const orderData = {
     items: cartItems,
@@ -112,7 +132,7 @@ const CartItem = () => {
   };
   const handleSubmitOrder = async (e: any) => {
     console.log(orderData);
-    if(paymentMethod === "credit" && lastNumberCard === ""){
+    if (paymentMethod === "credit" && lastNumberCard === "") {
       alert("Please add your card");
       return;
     }
@@ -123,27 +143,29 @@ const CartItem = () => {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(orderData),
-      })
+      });
       const result = await res.json();
       if (res.ok) {
         console.log(result.message);
         dispatch(clearCart());
-        router.push('/')
+        router.push("/");
       } else {
         console.error(result.message);
       }
     } catch (error) {
       console.error("Error creating order:", error);
     }
-  }
+  };
   return (
     <>
       {!isClient ? (
         "failed"
       ) : (
-        <div className="relative bottom-[2.8rem] flex flex-col items-start justify-start">
-          <h1 className="subpixel-antialiased text-5xl">Your Order</h1>
-          <div className="flex flex-col items-center justify-start p-3 overflow-y-scroll h-56 my-6">
+        <div className="relative bottom-16 flex flex-col xl:items-start xl:justify-start lg:items-center lg:justify-center">
+          <div className="flex flex-col items-center justify-center">
+            <h1 className="subpixel-antialiased text-5xl">Your Order</h1>
+          </div>
+          <div className="flex flex-col items-center justify-start p-3 overflow-y-scroll xl:h-80 lg:h-96 md:h-96 h-80 my-6">
             {cartItems.length === 0
               ? noLoadingItem
               : cartItems.map((item) => (
@@ -173,96 +195,116 @@ const CartItem = () => {
                   </div>
                 ))}
           </div>
-          <div className="flex lg:flex-row flex-col lg:space-y-0 space-y-4 items-center justify-center space-x-32 ">
-            <p className="lg:text-lg text-sm font-medium">
+          <div className="flex flex-col items-start just-start space-y-4 lg:flex-row lg:items-center lg:justify-center lg:space-x-80 lg:space-y-0 md:flex-col md:items-start md:justify-start md:space-x-0 md:space-y-4 ">
+            <p className="lg:text-xl xl:text-xl md:text-xl text-lg font-medium">
               Total Quantity: {totals.totalQuantity}
             </p>
-            <p className="lg:text-lg text-sm font-medium">
+            <p className="lg:text-xl xl:text-xl md:text-xl text-lg font-medium">
               Total Amount: {totals.totalAmount.toFixed(2)}$
             </p>
           </div>
           <div className="relative mt-8 w-full">
-            <div className="flex flex-row items-center justify-between">
-            <FormControl className="flex flex-col items-start justify-start">
-              <FormLabel>Payment Method</FormLabel>
-              <RadioGroup value={paymentMethod} onChange={handlePaymentMethodChange}>
-                <FormControlLabel
-                  value="credit"
-                  control={<Radio />}
-                  label={
-                    <span>
-                      Credit card {lastNumberCard && <span className="text-gray-400 text-sm">ending in Card*** {lastNumberCard}</span>}
-                    </span>
-                  }               
-                />
+            <div className="flex xl:flex-row xl:items-center xl:justify-between md:flex-col md:items-start md:justify-start md:space-y-4 flex-col">
+              <FormControl className="flex flex-col items-start justify-start">
+                <FormLabel>Payment Method</FormLabel>
+                <RadioGroup
+                  value={paymentMethod}
+                  onChange={handlePaymentMethodChange}>
                   <FormControlLabel
-                  value="cash"
-                  control={<Radio />}
-                  label={
-                    <span>
-                      With cash
-                    </span>
-                  }               
-                />
-              </RadioGroup>
-            </FormControl>
-            <Button variant="contained" color="primary" onClick={handleSubmitOrder}>
-              Submit Order
-            </Button>
+                    value="credit"
+                    control={<Radio />}
+                    defaultChecked
+                    label={
+                      <span>
+                        Credit card{" "}
+                        {lastNumberCard && (
+                          <span className="text-gray-400 text-sm">
+                            ending in Card*** {lastNumberCard}
+                          </span>
+                        )}
+                      </span>
+                    }
+                  />
+                  <FormControlLabel
+                    value="cash"
+                    control={<Radio />}
+                    label={<span>With cash</span>}
+                  />
+                </RadioGroup>
+              </FormControl>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleSubmitOrder}>
+                Submit Order
+              </Button>
             </div>
             {paymentMethod === "credit" && open && (
               <div className="absolute left-0 top-full mt-4 w-full bg-white p-4 border border-gray-200 shadow-lg">
-                <p className="subpixel-antialiased tracking-wider text-lg">Add your card with</p>
+                <p className="subpixel-antialiased tracking-wider text-lg">
+                  Add your card with
+                </p>
                 <div className="flex flex-row items-center justify-start space-x-4">
                   {iconMethod.map((item) => (
-                    <div key={item.id} className="flex flex-col items-center justify-center">
-                      {item.icon}                   
+                    <div
+                      key={item.id}
+                      className="flex flex-col items-center justify-center">
+                      {item.icon}
                     </div>
                   ))}
-                  </div>
-                  <form id="payment" onSubmit={handleAddCard} className="flex flex-col items-start justify-start">
-
-                  <TextField 
-                  label="Card Number" 
-                  variant="outlined" 
-                  fullWidth 
-                  margin="normal" 
-                  value={cardNumber} 
-                  onChange={handleCardNumberChange} 
-                  inputProps={{ maxLength: 19 }}/>
-
-                  <TextField 
-                  label="Card Holder Name" 
-                  variant="outlined" 
-                  fullWidth margin="normal" 
-                  value={cardHolderName} 
-                  onChange={handleCardHolderNameChange}/>
-
-                  <TextField 
-                  label="Expiration Date" 
-                  variant="outlined" 
-                  fullWidth 
-                  margin="normal" 
-                  value={expirationDate}
-                  onChange={handleExpirationDateChange}
+                </div>
+                <form
+                  id="payment"
+                  onSubmit={handleAddCard}
+                  className="flex flex-col items-start justify-start">
+                  <TextField
+                    label="Card Number"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={cardNumber}
+                    onChange={handleCardNumberChange}
+                    inputProps={{ maxLength: 19 }}
                   />
 
-                  <TextField 
-                  label="CVV" 
-                  variant="outlined" 
-                  fullWidth 
-                  margin="normal" 
-                  value={cvv}
-                  onChange={handleCvvChange}
+                  <TextField
+                    label="Card Holder Name"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={cardHolderName}
+                    onChange={handleCardHolderNameChange}
                   />
-                  <Button id="payment" variant="contained" color="primary" className="mt-2" type="submit">
+
+                  <TextField
+                    label="Expiration Date"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={expirationDate}
+                    onChange={handleExpirationDateChange}
+                  />
+
+                  <TextField
+                    label="CVV"
+                    variant="outlined"
+                    fullWidth
+                    margin="normal"
+                    value={cvv}
+                    onChange={handleCvvChange}
+                  />
+                  <Button
+                    id="payment"
+                    variant="contained"
+                    color="primary"
+                    className="mt-2"
+                    type="submit">
                     Submit
                   </Button>
-                  </form>
+                </form>
               </div>
             )}
           </div>
-          
         </div>
       )}
     </>

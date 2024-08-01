@@ -47,7 +47,7 @@ const InfoShipping = () => {
     }
   }, [status]);
 
-   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setActive(true);
     if (name === "city" || name === "street") {
@@ -84,78 +84,82 @@ const InfoShipping = () => {
           setShowSuccessPopup(false);
           router.refresh();
         }, 2000);
-      }else{
+      } else {
         console.error("Failed to update user info");
       }
     } catch (error) {
       console.error("Error updating user info:", error);
-    }finally{
+    } finally {
       setLoading(false);
     }
-  }
+  };
   return (
     <div className="flex flex-col items-center justify-center ">
       <p className="subpixel-antialiased text-5xl">Billing Detail</p>
-      <div className="mt-12 flex flex-col items-start justify-start space-y-8 w-full ">
-        <form onSubmit={handleSubmit} className="flex flex-col items-start justify-start space-y-8 w-full">
+      <div className="mt-12 flex flex-col xl:items-start xl:justify-start lg:items-center lg:justify-center space-y-8 w-full ">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col  xl:items-start xl:justify-start lg:items-center lg:justify-center space-y-8 w-full">
+          <TextField
+            id="email"
+            name="email"
+            label="Email"
+            value={userInfo.email}
+            disabled={true}
+            fullWidth
+          />
+          <TextField
+            id="name"
+            name="name"
+            label="Name"
+            value={userInfo.name}
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            id="phone"
+            name="phone"
+            label="Phone"
+            value={userInfo.phone}
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            id="city"
+            name="city"
+            label="City"
+            value={userInfo.address.city}
+            onChange={handleChange}
+            fullWidth
+          />
+          <TextField
+            id="street"
+            name="street"
+            label="Street"
+            value={userInfo.address.street}
+            onChange={handleChange}
+            fullWidth
+          />
 
-        <TextField
-          id="email"
-          name="email"
-          label="Email"
-          value={userInfo.email}
-          disabled={true}
-          fullWidth
-        />
-        <TextField
-          id="name"
-          name="name"
-          label="Name"
-          value={userInfo.name}
-          onChange={handleChange}
-          fullWidth
-        />
-        <TextField
-          id="phone"
-          name="phone"
-          label="Phone"
-          value={userInfo.phone}
-          onChange={handleChange}
-          fullWidth
-        />
-        <TextField
-          id="city"
-          name="city"
-          label="City"
-          value={userInfo.address.city}
-          onChange={handleChange}
-          fullWidth
-        />
-        <TextField
-          id="street"
-          name="street"
-          label="Street"
-          value={userInfo.address.street}
-          onChange={handleChange}
-          fullWidth
-        />
-     
-      {loading ? loadingIcon :(<Button
-        variant="contained"
-        color="primary"
-        className="mt-12"
-        type="submit"
-        disabled={active?false:true}
-        >
-        Update Info
-      </Button>)}
+          {loading ? (
+            loadingIcon
+          ) : (
+            <Button
+              variant="contained"
+              color="primary"
+              className="mt-12"
+              type="submit"
+              disabled={active ? false : true}>
+              Update Info
+            </Button>
+          )}
         </form>
-       {showSuccessPopup && (
-        <Modal open={showSuccessPopup}>
-          <ActionSuccessfully>Update Successfully</ActionSuccessfully>
-        </Modal>
-      )}
-       </div>
+        {showSuccessPopup && (
+          <Modal open={showSuccessPopup}>
+            <ActionSuccessfully>Update Successfully</ActionSuccessfully>
+          </Modal>
+        )}
+      </div>
     </div>
   );
 };
