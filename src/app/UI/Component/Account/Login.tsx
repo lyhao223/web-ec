@@ -1,4 +1,4 @@
-import React, { FormEvent, useDebugValue, useState } from "react";
+import React, { FormEvent, useDebugValue, useEffect, useState } from "react";
 import { Button, ButtonProps, Modal, styled, TextField } from "@mui/material";
 import { purple } from "@mui/material/colors";
 import { MdClose } from "react-icons/md";
@@ -51,7 +51,7 @@ const Login = ({
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
   };
-
+ 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -65,6 +65,11 @@ const Login = ({
         setLoginStatus("checkinfo");
       } else {
         setLoginStatus("success");
+        setShowSuccessPopup(true);
+        setTimeout(() => {
+          setShowSuccessPopup(false);
+          router.push("/");
+        }, 3000);
       }
     } catch (error) {
       setLoginStatus("error");
@@ -75,13 +80,13 @@ const Login = ({
   return (
     <div
       className={clsx(
-        "relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[44rem] md:left-52 md:top-52 top-56 left-9",
+        "relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[44rem] md:left-52 md:top-52 top-20 left-9",
         {
           "xl:h-[28rem]":
             isLoading || loginStatus === "error" || loginStatus === "checkinfo",
           "xl:h-96": !isLoading,
         },
-        "xl:w-96 h-[23rem] w-80  bg-white border-2 rounded-lg"
+        "xl:w-96 h-[24rem] w-80  bg-white border-2 rounded-lg"
       )}>
       <button
         className="absolute top-3 right-5 rounded-full hover:bg-red-600 bg-gray-500 transition duration-200 ease-linear p-2"
@@ -111,6 +116,7 @@ const Login = ({
             label="Password"
             variant="outlined"
             autoComplete="off"
+            type="password"
             fullWidth
             onChange={handleChange}
             value={login.password}
@@ -133,9 +139,16 @@ const Login = ({
           </ColorButton>
         </form>
         {isLoading && loadingIcon}
-        {loginStatus === "checkinfo" ? <p>Check your login info</p> : null}
-        {loginStatus === "error" ? <p>Something went wrong</p> : null}
+        {loginStatus === "checkinfo" && !isLoading ? <p>Check your login info</p> : null}
+        {loginStatus === "error" && !isLoading ? <p>Something went wrong</p> : null}
       </div>
+      {/* {showSuccessPopup && (
+        <Modal open={showSuccessPopup}>
+          <ActionSuccessfully ref={null}>
+            Login Successfully
+          </ActionSuccessfully>
+        </Modal>
+      )} */}
     </div>
   );
 };

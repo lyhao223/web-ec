@@ -162,7 +162,6 @@ export default function Header() {
       {!session?.user ? (
         <Modal
           open={openAccount}
-          onClose={handleCloseAccount}
           disableScrollLock>
           <FlyModal open={openAccount}>
             {!toggleAccount ? (

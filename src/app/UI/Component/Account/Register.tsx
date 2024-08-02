@@ -158,7 +158,7 @@ const Register = ({
   };
 
   return (
-    <div className="relative lg:top-52 lg:left-72 xl:-top-3 xl:left-[29rem] 2xl:left-[37rem] 2xl:top-12 md:left-52 md:top-52 top-0 left-10 xl:h-[46rem] xl:w-[40rem] w-[20rem] bg-white border-2 rounded-lg">
+    <div className="relative lg:top-52 lg:left-72 xl:-top-3 xl:left-[29rem] 2xl:left-[37rem] 2xl:top-12 md:left-52 md:top-52 top-0 left-10 xl:h-[46rem] xl:w-[40rem] w-[19rem] bg-white border-2 rounded-lg">
       <button
         className="absolute top-3 right-5 rounded-full hover:bg-red-600 bg-gray-600 transition-all duration-200 ease-linear p-2"
         onClick={handleCloseAccount}>
