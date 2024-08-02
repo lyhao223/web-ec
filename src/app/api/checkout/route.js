@@ -75,7 +75,6 @@ export async function GET(req) {
     await connectMongoose();
 
     const orders = await Order.find({ userID: token.sub });
-    console.log("user", orders);
     if (!orders || orders.length === 0) {
       return NextResponse.json({ message: "Not order here" }, { status: 404 });
     }
@@ -86,7 +85,6 @@ export async function GET(req) {
       // You can remove _id if you don't want it in the response
     }));
 
-    console.log("transformedOrders", transformedOrders);
     return NextResponse.json(
       {
         orders: transformedOrders,
