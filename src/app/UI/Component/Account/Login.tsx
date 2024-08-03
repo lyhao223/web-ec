@@ -49,7 +49,7 @@ const Login = ({
     <Modal open={isLoading}>
       <button
         type="button"
-        className="absolute 2xl:top-72 2xl:left-[70rem] xl:top-64 xl:left-[42rem] lg:top-36 lg:left-[28rem] md:top-28 md:left-80 top-36 left-32  bg-purple-500 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg"
+        className="absolute 2xl:top-72 2xl:left-[52rem] xl:top-64 xl:left-[42rem] lg:top-36 lg:left-[28rem] md:top-28 md:left-80 top-36 left-32  bg-purple-500 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg"
         disabled>
         <AiOutlineLoading3Quarters className="animate-spin" />
         <span>Processing...</span>
@@ -90,7 +90,7 @@ const Login = ({
     }
   };
   return (
-    <div className="relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[44rem] md:left-52 md:top-52 top-20 left-9 xl:h-96 xl:w-96 h-[24rem] w-80  bg-white border-2 rounded-lg">
+    <div className={clsx("relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[44rem] md:left-52 md:top-52 top-20 left-9 xl:h-96 xl:w-96 w-80  bg-white border-2 rounded-lg", {"h-[28rem]": error.status==="username" || error.status==="password"} )}>
       <button
         className="absolute top-3 right-5 rounded-full hover:bg-red-600 bg-gray-500 transition duration-200 ease-linear p-2"
         onClick={handleCloseAccount}>
@@ -102,8 +102,8 @@ const Login = ({
         </h1>
         <form
           onSubmit={handleSubmit}
-          className="flex flex-col items-start justify-start w-full space-y-4">
-          {error && !isLoading ? <p>{error.message}</p> : null}
+          className="flex flex-col items-center justify-center w-full space-y-4">
+          {error && !isLoading ? <div className="flex flex-col items-center justify-center"><p className="text-lg font-medium text-red-500 tracking-tight">{error.message}</p></div> : null}
           <TextField
             id="username"
             name="username"
@@ -126,7 +126,7 @@ const Login = ({
             value={login.password}
           />
 
-          <div className="flex xl:flex-row flex-col xl:items-center xl:justify-between items-start justify-center space-y-2 xl:space-x-11 xl:space-y-0">
+          <div className="flex xl:flex-row flex-col xl:items-center xl:justify-between 2xl:items-center 2xl:justify-between lg:items-center lg:justify-between md:items-center md:justify-between items-start justify-start space-y-2 xl:space-x-11 xl:space-y-0">
             <button onClick={handleToggleAccount}>
               <p className="text-xs text-blue-700 text-nowrap">
                 Did you have an account?
