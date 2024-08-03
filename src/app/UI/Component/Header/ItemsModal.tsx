@@ -31,7 +31,7 @@ const ItemsModal = ({ close, handleRouteToCheckOut }: ItemClickProps) => {
 
   const router = useRouter();
   return (
-    <div className="relative lg:w-[48rem] lg:h-[30rem] md:w-[35rem] w-[22rem] bg-white lg:top-48 lg:left-32 xl:top-28 2xl:left-[37rem] 2xl:top-48 xl:left-96 top-44 left-6  md:top-48 md:left-28  rounded-md p-10">
+    <div className="relative lg:w-[48rem] lg:h-[30rem] md:w-[35rem] w-[22rem] bg-white lg:top-20 lg:left-36 xl:top-28 2xl:left-[53rem] 2xl:top-48 xl:left-80 top-5 left-10  md:top-0 md:left-28  rounded-md p-7">
       <h1 className="text-2xl font-medium">Shopping Cart</h1>
       <div className="flex flex-col items-center justify-start p-3 overflow-y-scroll h-56 my-6">
         {noItems
@@ -66,12 +66,14 @@ const ItemsModal = ({ close, handleRouteToCheckOut }: ItemClickProps) => {
             ))}
       </div>
       <div className="flex lg:flex-row flex-col lg:space-y-0 space-y-4 items-center justify-between">
-        <p className="lg:text-lg text-sm font-medium">
+        {TotalQuantity===0 ? "":<p className="lg:text-lg text-sm font-medium">
           Total Quantity: {TotalQuantity}
-        </p>
-        <p className="lg:text-lg text-sm font-medium">
+        </p>}
+        {totalAmount===0 ?"":<p className="lg:text-lg text-sm font-medium">
           Total Amount: {totalAmount.toFixed(2)}$
-        </p>
+        </p>}
+        <div className="flex flex-row items-center justify-center space-x-5">
+
         <Gesture scaleHover={1.1} scaleTap={0.9}>
           {!noItems && (
             <button
@@ -88,6 +90,7 @@ const ItemsModal = ({ close, handleRouteToCheckOut }: ItemClickProps) => {
             Close
           </button>
         </Gesture>
+        </div>
       </div>
     </div>
   );
