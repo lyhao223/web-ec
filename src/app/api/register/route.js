@@ -15,12 +15,25 @@ export async function POST(req, res) {
       address: { city, street },
       phone,
     } = await req.json();
-    const exstingUser = await User.findOne({
-      $or: [{ email }, { username }, { phone }],
-    });
-    if (exstingUser)
+
+    const exstingEmail = await User.findOne({ email });
+    if (exstingEmail)
       return NextResponse.json(
-        { message: "User already exists" },
+        { field: "email", dmessage: "Email already exists" },
+        { status: 409 }
+      );
+
+    const exstingUsername = await User.findOne({ username });
+    if (exstingUsername)
+      return NextResponse.json(
+        { field: "username", message: "Username already exists" },
+        { status: 409 }
+      );
+
+    const exstingPhone = await User.findOne({ phone });
+    if (exstingPhone)
+      return NextResponse.json(
+        { field: "phone", message: "Phone already exists" },
         { status: 409 }
       );
     const hashedPassword = await bcrypt.hash(password, 12);

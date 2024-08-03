@@ -9,7 +9,10 @@ import { set } from "mongoose";
 
 import { useRouter } from "next/navigation";
 import ActionSuccessfully from "./Success/ActionSuccessfully";
-
+interface ErrorResponse {
+  message: string;
+  status?: number;
+}
 interface LoginProps {
   openAccount?: boolean;
   handleOpenAccount?: () => void;
@@ -38,20 +41,26 @@ const Login = ({
   const [loginStatus, setLoginStatus] = useState<string | null | any>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showSuccessPopup, setShowSuccessPopup] = useState<boolean>(false);
+  const [error, setError] = useState({
+    message: "",
+    status: "" as any,
+  });
   const loadingIcon = (
-    <button
-      type="button"
-      className="bg-purple-500 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg"
-      disabled>
-      <AiOutlineLoading3Quarters className="animate-spin" />
-      <span>Processing...</span>
-    </button>
+    <Modal open={isLoading}>
+      <button
+        type="button"
+        className="absolute 2xl:top-72 2xl:left-[70rem] xl:top-64 xl:left-[42rem] lg:top-36 lg:left-[28rem] md:top-28 md:left-80 top-36 left-32  bg-purple-500 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg"
+        disabled>
+        <AiOutlineLoading3Quarters className="animate-spin" />
+        <span>Processing...</span>
+      </button>
+    </Modal>
   );
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setLogin({ ...login, [name]: value });
   };
- 
+
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
@@ -62,7 +71,10 @@ const Login = ({
         redirect: false,
       });
       if (res?.error) {
+        const errorData: ErrorResponse = JSON.parse(res.error);
         setLoginStatus("checkinfo");
+        setError({ message: errorData.message, status: errorData.status });
+        console.log(error.message);
       } else {
         setLoginStatus("success");
         setShowSuccessPopup(true);
@@ -78,16 +90,7 @@ const Login = ({
     }
   };
   return (
-    <div
-      className={clsx(
-        "relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[44rem] md:left-52 md:top-52 top-20 left-9",
-        {
-          "xl:h-[28rem]":
-            isLoading || loginStatus === "error" || loginStatus === "checkinfo",
-          "xl:h-96": !isLoading,
-        },
-        "xl:w-96 h-[24rem] w-80  bg-white border-2 rounded-lg"
-      )}>
+    <div className="relative lg:top-52 lg:left-80 xl:top-28 xl:left-[35rem] 2xl:left-[44rem] md:left-52 md:top-52 top-20 left-9 xl:h-96 xl:w-96 h-[24rem] w-80  bg-white border-2 rounded-lg">
       <button
         className="absolute top-3 right-5 rounded-full hover:bg-red-600 bg-gray-500 transition duration-200 ease-linear p-2"
         onClick={handleCloseAccount}>
@@ -100,6 +103,7 @@ const Login = ({
         <form
           onSubmit={handleSubmit}
           className="flex flex-col items-start justify-start w-full space-y-4">
+          {error && !isLoading ? <p>{error.message}</p> : null}
           <TextField
             id="username"
             name="username"
@@ -139,8 +143,10 @@ const Login = ({
           </ColorButton>
         </form>
         {isLoading && loadingIcon}
-        {loginStatus === "checkinfo" && !isLoading ? <p>Check your login info</p> : null}
-        {loginStatus === "error" && !isLoading ? <p>Something went wrong</p> : null}
+
+        {loginStatus === "error" && !isLoading ? (
+          <p>Something went wrong</p>
+        ) : null}
       </div>
       {/* {showSuccessPopup && (
         <Modal open={showSuccessPopup}>

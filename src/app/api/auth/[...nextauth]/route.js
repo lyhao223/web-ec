@@ -17,6 +17,7 @@ const authOptions = {
           const user = await User.findOne({
             username,
           });
+
           if (!user) {
             throw new Error(
               JSON.stringify({ message: "No user found", status: 400 })
