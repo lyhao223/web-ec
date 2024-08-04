@@ -31,7 +31,7 @@ const ItemsModal = ({ close, handleRouteToCheckOut }: ItemClickProps) => {
 
   const router = useRouter();
   return (
-    <div className="relative lg:w-[48rem] lg:h-[30rem] md:w-[35rem] w-[22rem] bg-white lg:top-20 lg:left-36 xl:top-28 2xl:left-[35rem] 2xl:top-48 xl:left-80 top-5 left-10  md:top-0 md:left-28  rounded-md p-7">
+    <div className="relative lg:w-[48rem] lg:h-[30rem] md:w-[35rem] w-[22rem] bg-white lg:top-20 lg:left-36 xl:top-28 2xl:left-[35rem] 2xl:top-48 xl:left-80 top-5 left-5  md:top-0 md:left-28  rounded-md p-7">
       <h1 className="text-2xl font-medium">Shopping Cart</h1>
       <div className="flex flex-col items-center justify-start p-3 overflow-y-scroll h-56 my-6">
         {noItems
