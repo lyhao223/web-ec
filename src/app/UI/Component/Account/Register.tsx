@@ -52,7 +52,7 @@ const Register = ({
     <Modal open={isLoading}>
       <button
         type="button"
-        className="absolute 2xl:top-72 2xl:left-[70rem] xl:top-64 xl:left-[42rem] lg:top-36 lg:left-[28rem] md:top-28 md:left-80 top-36 left-32  bg-purple-500 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg"
+        className="absolute 2xl:top-72 2xl:left-[50rem] xl:top-64 xl:left-[42rem] lg:top-36 lg:left-[28rem] md:top-28 md:left-80 top-36 left-32  bg-purple-500 flex flex-row items-center justify-center space-x-2 p-2 rounded-lg"
         disabled>
         <AiOutlineLoading3Quarters className="animate-spin" />
         <span>Processing...</span>
@@ -167,7 +167,7 @@ const Register = ({
   };
 
   return (
-    <div className="relative lg:top-0 lg:left-72 xl:top-0 xl:left-[32rem] 2xl:left-[60rem] 2xl:top-12 md:left-48 md:top-3 top-0 left-3 xl:h-[37rem] xl:w-[29rem] lg:w-[30rem] w-[23rem]  bg-white border-2 rounded-lg">
+    <div className="relative lg:top-0 lg:left-72 xl:top-0 xl:left-[32rem] 2xl:left-[40rem] 2xl:top-12 md:left-48 md:top-3 top-0 left-3 xl:h-[37rem] 2xl:h-[33rem] xl:w-[29rem] lg:w-[30rem] w-[23rem]  bg-white border-2 rounded-lg">
       <button
         className="absolute top-3 right-5 rounded-full hover:bg-red-600 bg-gray-600 transition-all duration-200 ease-linear p-2"
         onClick={handleCloseAccount}>
