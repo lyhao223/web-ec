@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { FaAngleDown } from "react-icons/fa6";
-import { FaSearch } from "react-icons/fa";
 import { MdAccountCircle } from "react-icons/md";
 import { IoCart } from "react-icons/io5";
 
@@ -10,8 +9,6 @@ import LogoDunker from "../../../../../assets/Logo/Dunker-logo-white.png";
 import FlyOutLink from "../../Animation/FlyOutLink";
 import ItemMenuShop from "../ListDropDownMenu/ItemsMenuShop";
 import ItemMenuServices from "../ListDropDownMenu/ItemsMenuServices";
-import FlyDownSearchBar from "../../Animation/FlyDownSearchBar";
-import SearchInput from "../Search/SearchInput";
 import { useSelector } from "react-redux";
 import { RootState } from "@/app/services/redux/store";
 import { useEffect, useRef, useState } from "react";
@@ -24,7 +21,6 @@ import Register from "../Account/Register";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import ShowMenuAccountDetail from "../Account/Detail/ShowMenuAccountDetail";
-import { set } from "mongoose";
 export default function Header() {
   const quantity = useSelector((state: RootState) => state.cart.items);
   const TotalQuantity = quantity.reduce((acc, item) => acc + item.quantity, 0);
@@ -160,9 +156,7 @@ export default function Header() {
       </Modal>
 
       {!session?.user ? (
-        <Modal
-          open={openAccount}
-          disableScrollLock>
+        <Modal open={openAccount} disableScrollLock>
           <FlyModal open={openAccount}>
             {!toggleAccount ? (
               <Login

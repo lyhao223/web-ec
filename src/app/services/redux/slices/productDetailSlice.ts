@@ -27,7 +27,13 @@ const initialProductState: ProductState = {
 };
 
 export const fetchDetailProduct = createAsyncThunk('products/fetchDetailProducts', async (id:any) => {
-    const response = await axios.get<Product>(`https://fakestoreapi.com/products/${id}`);
+    const response = await axios.get<Product>(`https://fakestoreapi.com/products/${id}`,{
+      headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+        }
+    });
     return response.data;
 });
 

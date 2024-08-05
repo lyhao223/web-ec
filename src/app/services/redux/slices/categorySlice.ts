@@ -29,7 +29,13 @@ const initialState: ProductsState = {
 };
 
 export const fetchCategoryProducts = createAsyncThunk("products/fetchCategoryProducts", async (category: string) => {
-    const response = await axios.get<Product[]>(`https://fakestoreapi.com/products/category/${category}`);
+    const response = await axios.get<Product[]>(`https://fakestoreapi.com/products/category/${category}`,{
+        headers: {
+            'Cache-Control': 'no-cache',
+            'Pragma': 'no-cache',
+            'Expires': '0',
+        }
+    });
     return response.data;
 });
 

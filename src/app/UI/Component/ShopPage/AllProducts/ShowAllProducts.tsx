@@ -1,10 +1,7 @@
 import FlyOutLike from "@/app/UI/Animation/FlyOutLike";
 import Gesture from "@/app/UI/Animation/Gesture";
-import Button from "@/app/UI/Reusable/Button";
 import Link from "next/link";
 import React from "react";
-import { FaHeart } from "react-icons/fa";
-import { FaEye } from "react-icons/fa";
 interface ProductsProps {
   id: number;
   title: string;

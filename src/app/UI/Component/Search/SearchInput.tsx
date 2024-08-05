@@ -1,5 +1,4 @@
 import { FaSearch } from "react-icons/fa";
-import { IoMdCloseCircle } from "react-icons/io";
 export default function SearchInput() {
   return (
     <div className="relative w-screen p-10 bg-slate-700 h-36">

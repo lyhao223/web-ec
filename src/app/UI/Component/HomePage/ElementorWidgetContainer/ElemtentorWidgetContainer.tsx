@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import { MdOutlineLocalShipping } from "react-icons/md";
 import { MdCurrencyExchange } from "react-icons/md";
 import { FaExchangeAlt } from "react-icons/fa";

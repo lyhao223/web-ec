@@ -1,4 +1,4 @@
-import React, { use, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { AppDispatch, RootState } from "@/app/services/redux/store";
 import { fetchProducts } from "../../../../services/redux/slices/menuSlice";

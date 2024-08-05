@@ -1,5 +1,5 @@
 import { AppDispatch, RootState } from "@/app/services/redux/store";
-import React, { use, useEffect } from "react";
+import React, { useEffect } from "react";
 import Carousel from "react-multi-carousel";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAllProducts } from "@/app/services/redux/slices/productSlice";

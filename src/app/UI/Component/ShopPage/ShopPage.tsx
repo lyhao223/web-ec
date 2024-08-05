@@ -1,4 +1,4 @@
-'use client';
+"use client";
 import {
   fetchAllProducts,
   setOption,
@@ -16,8 +16,6 @@ import CheckBoxCategory from "./Checkbox/CheckBoxCategory";
 import SliderPrice from "./SliderPrice/SliderPrice";
 import { setPriceRange } from "@/app/services/redux/slices/productsShopSlice";
 import { resetFilter } from "@/app/services/redux/slices/productsShopSlice";
-import Link from "next/link";
-import Head from "next/head";
 
 const ShopPage = () => {
   const [value, setValue] = useState([0, 2000]);
@@ -117,8 +115,7 @@ const ShopPage = () => {
   };
 
   return (
-    <section
-      className="relative z-10 xl:p-32 2xl:p-32 p-2 lg:p-4 md:p-10 2xl:mb-96">
+    <section className="relative z-10 xl:p-32 2xl:p-32 p-2 lg:p-4 md:p-10 2xl:mb-96">
       <div className="grid xl:grid-cols-5 lg:grid-cols-4 grid-rows-1 xl:gap-6 xl:gap-x-6 lg:gap-x-4 gap-2">
         <div className="xl:col-span-4 2xl:col-span-4 lg:col-span-3 col-span-2 row-span-1">
           <div className="flex xl:flex-row 2xl:flex-row lg:flex-row flex-col space-y-4 xl:space-y-0 2xl:space-y-0 items-center justify-between">

@@ -45,7 +45,11 @@ export const fetchProducts = createAsyncThunk(
         url = "https://fakestoreapi.com/products/category/women's%20clothing";
         break;
     }
-    const response = await axios.get<Product[]>(url);
+    const response = await axios.get<Product[]>(url,{headers: {
+      'Cache-Control': 'no-cache',
+      'Pragma': 'no-cache',
+      'Expires': '0',      
+    }});
     return { section, products: response.data };
   }
 );

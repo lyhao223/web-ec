@@ -1,5 +1,5 @@
 import { Input, Slider } from "@mui/material";
-import React, { Fragment, use, useState } from "react";
+import React, { Fragment } from "react";
 import Button from "../../../Reusable/Button";
 interface SliderPriceProps {
   onClick: () => void;
